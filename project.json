@@ -1,0 +1,33 @@
+{
+  "s3": {
+    "stage": {
+      "bucket": "stage-apps.npr.org",
+      "path": "joy-generator"
+    },
+    "live": {
+      "bucket": "apps.npr.org",
+      "path": "joy-generator"
+    }
+  },
+  "styles": {
+    "src/css/seed.less": "build/style.css"
+  },
+  "scripts": {
+    "src/js/main.js": "build/app.js"
+  },
+  "title": "",
+  "description": "",
+  "url": "",
+  "image": "assets/logo.png",
+  "analytics": {
+    "topicIDs": [],
+    "primaryTopic": "",
+    "secondaryTopics": []
+  },
+  "sheets": [],
+  "docs": {
+    "text": "1RWuTaYzMyRp7CTWHXsoc-4BGTh3bQYqHut1lHuZZ2X8"
+  },
+  "embedded": true,
+  "production": false
+}

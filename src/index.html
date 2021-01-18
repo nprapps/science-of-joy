@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <%= t.include("partials/_head.html", grunt.data.json) %>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+
+    <div id="intro" class="story-container">
+      <sketch-svg>
+        <%= t.include("assets/export-selection.svg") %>
+      </sketch-svg>
+      <web-story>
+        <section data-slug="dyk">
+          <h2>Did you know there is science behind joy?</h2>
+          <div class="bubble">
+            Click the arrows to continue
+          </div>
+        </section>
+        <section>
+          <h2>So we made this experience to share that with you</h2>
+        </section>
+        <section>
+          <a class="big-nav" href="#nostalgia" data-transition="demo">Nostalgia</a>
+          <a class="big-nav" href="#forest" data-transition="demo">Forest Bathing</a>
+          <a class="big-nav" href="#nostalgia" data-transition="demo">ASMR</a>
+          <a class="big-nav" href="#nostalgia" data-transition="demo">Ritual</a>
+        </section>
+      </web-story>
+    </div>
+
+    <div id="main" class="story-container">
+    </div>
+
+    <%= t.include("_nostalgia.html") %>
+
+    <script src="app.js" async></script>
+    <%= t.include("partials/_analytics.html") %>
+  </body>
+</html>

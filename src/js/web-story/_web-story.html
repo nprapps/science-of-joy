@@ -1,0 +1,134 @@
+<style>
+/*
+Expose controllable values (such as colors or fonts) using CSS custom properties.
+Set those on the web-story elements via LESS to have them propagate in.
+*/
+:host {
+  --controls-bg: rgba(0, 0, 0, .5);
+  display: block;
+  min-height: 100vh;
+  position: relative;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.touch-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.controls {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  padding: 24px 8px 8px;
+  align-items: center;
+  justify-content: space-between;
+  background-image: linear-gradient(to bottom, transparent, var(--controls-bg) 36px);
+}
+
+.controls button {
+  cursor: pointer;
+  border: none;
+  background: white;
+  opacity: .8;
+  color: black;
+  border-radius: 100%;
+  padding: 8px;
+  margin: 0;
+  top: 40%;
+  border: 2px solid transparent;
+}
+
+.controls button:hover,
+.controls button:focus {
+  opacity: 1;
+}
+
+.controls button:focus {
+  border: 2px dashed black;
+  outline: none;
+}
+
+.controls svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+}
+
+.filmstrip {
+  flex: 1;
+  display: flex;
+  max-width: 400px;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.filmstrip .block {
+  height: 16px;
+  width: 16px;
+  background: white;
+  border-radius: 100%;
+  opacity: .4;
+  margin: 2px;
+}
+
+.filmstrip .block.active {
+  opacity: .8;
+  border: 1px solid black;
+}
+
+</style>
+<svg width=0 height=0 as="svg">
+  <defs>
+    <filter id="scribble">
+      <feTurbulence
+        as="turbulence"
+        result="t" type="fractalNoise"
+        baseFrequency=".02" numOctaves="1" />
+      <feDisplacementMap
+        as="displacement"
+        in2="t" in="SourceGraphic"
+        scale="4" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+</svg>
+<!-- the backdrop gets events, can be swipeable -->
+<div as="backdrop" class="touch-panel"></div>
+<slot as="slot"></slot>
+<div as="controls" class="controls">
+  <button class="previous pager" as="previous" data-shift="-1">
+    <svg viewBox="0 0 4 2" preserveAspectRatio="none">
+      <path
+        filter="url(#scribble)"
+        d="M3,0 L.5,1 3,2"
+        vector-effect="non-scaling-stroke"
+        fill="none"
+        stroke="currentColor"
+        stroke-width=2 />
+    </svg>
+  </button>
+
+  <div class="filmstrip" as="filmstrip"></div>
+
+  <button class="next pager" as="next" data-shift="1">
+    <svg viewBox="0 0 4 2" preserveAspectRatio="none">
+      <path
+        filter="url(#scribble)"
+        d="M1,0 L3.5,1 1,2"
+        vector-effect="non-scaling-stroke"
+        fill="none"
+        stroke="currentColor"
+        stroke-width=2 />
+    </svg>
+  </button>
+
+</div>
