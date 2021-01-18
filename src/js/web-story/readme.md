@@ -12,5 +12,16 @@ Pages also have some special data attributes that can be used to trigger behavio
 
 Styles for the internal controls and parts of web-story elements are in its Shadow DOM template, `_web-story.html`. Inside this template, we can only use CSS, not LESS. However, you can set values as CSS custom properties and pass those through by setting them on the appropriate element in your LESS file. For example, to change the background color of the control section to True Blue, you could set `web-story#example { --controls-bg: @true }` in the LESS.
 
+These elements dispatch some events when they update:
 
+* webstorypage - dispatched with a `page` value in the detail hash when the user goes to a new page
+
+Custom Element superclass
+-------------------------
+
+`web-story` inherits from a `CustomElement` superclass that provides a few utility functions:
+
+* static `boundMethods` property will automatically bind functions to this instance
+* static `mirroredProps` property will create getters and setters for attributes
+* static `template` property will attach a shadow DOM and populate it, and create a lookup on `this.elements` for any tags with an `as="..."` attribute.
 

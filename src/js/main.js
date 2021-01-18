@@ -31,3 +31,5 @@ var onHash = async function() {
 window.addEventListener("hashchange", onHash);
 
 onHash();
+
+document.body.addEventListener("webstorypage", e => console.log(e.target, e.detail));

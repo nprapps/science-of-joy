@@ -1,22 +1,9 @@
+var CustomElement = require("../customElement.js");
 
-class WebStory extends HTMLElement {
+class WebStory extends CustomElement {
   constructor() {
     super();
 
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.innerHTML = require("./_web-story.html")
-
-    this.elements = {};
-    this.shadowRoot.querySelectorAll(`[as]`).forEach(el => {
-      var name = el.getAttribute("as");
-      this.elements[name] = el;
-    });
-
-    var boundMethods = [
-      "onClickPager",
-      "setNav"
-    ]
-    boundMethods.forEach(f => this[f] = this[f].bind(this));
 
     this.elements.previous.addEventListener("click", this.onClickPager);
     this.elements.next.addEventListener("click", this.onClickPager);
@@ -26,12 +13,27 @@ class WebStory extends HTMLElement {
     var observer = new MutationObserver(this.setNav);
     observer.observe(this, { childList: true });
 
+    this.timeout = null;
+
+    this.reset();
+  }
+
+  static get boundMethods() {
+    return [
+      "onClickPager",
+      "setNav",
+      "churn"
+    ];
+  }
+
+  static get template() {
+    return require("./_web-story.html")
+  }
+
+  reset() {
     this.selectedSection = null;
     this.selectedIndex = 0;
-
     this.setPage(0);
-    this.churn = this.churn.bind(this);
-    this.timeout = null;
   }
 
   connectedCallback() {
@@ -44,6 +46,15 @@ class WebStory extends HTMLElement {
       clearTimeout(this.timeout);
       this.timeout = null;
     }
+  }
+
+  attributeChangedCallback(attr, was, value) {
+    console.log(attr, value);
+  }
+
+  broadcast(event, detail = {}) {
+    var e = new CustomEvent(event, { bubbles: true, composed: true, detail });
+    this.dispatchEvent(e);
   }
 
   churn() {
@@ -95,6 +106,7 @@ class WebStory extends HTMLElement {
       this.elements.controls.style.display = "takeover" in chosen.dataset ? "none" : "";
     }
     this.setNav();
+    this.broadcast("webstorypage", { page: this.selectedIndex })
   }
 }
 
