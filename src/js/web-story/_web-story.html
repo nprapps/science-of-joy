@@ -28,13 +28,6 @@ Set those on the web-story elements via LESS to have them propagate in.
   position: fixed;
   top: 8px;
   right: 8px;
-  background: var(--buttons-bg);
-  color: var(--buttons-fg);
-  border: none;
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 8px;
 }
 
@@ -56,7 +49,7 @@ Set those on the web-story elements via LESS to have them propagate in.
   background-image: linear-gradient(to bottom, transparent, var(--controls-bg) 36px);
 }
 
-.controls button {
+button {
   cursor: pointer;
   border: none;
   background: var(--buttons-bg);
@@ -65,16 +58,15 @@ Set those on the web-story elements via LESS to have them propagate in.
   border-radius: 100%;
   padding: 8px;
   margin: 0;
-  top: 40%;
   border: 2px solid transparent;
 }
 
-.controls button:hover,
-.controls button:focus {
+button:hover,
+button:focus {
   opacity: 1;
 }
 
-.controls button:focus {
+button:focus {
   border: 2px dashed var(--buttons-fg);
   outline: none;
 }
@@ -97,7 +89,7 @@ Set those on the web-story elements via LESS to have them propagate in.
 .filmstrip .block {
   height: 16px;
   width: 16px;
-  background: white;
+  background: var(--buttons-bg);
   border-radius: 100%;
   opacity: .4;
   margin: 2px;
@@ -105,7 +97,7 @@ Set those on the web-story elements via LESS to have them propagate in.
 
 .filmstrip .block.active {
   opacity: .8;
-  border: 1px solid black;
+  border: 1px solid var(--buttons-fg);
 }
 
 /* hide controls */
@@ -129,27 +121,14 @@ Set those on the web-story elements via LESS to have them propagate in.
 }
 
 </style>
-<svg width=0 height=0 as="svg" style="position: absolute">
-  <defs>
-    <filter id="scribble">
-      <feTurbulence
-        as="turbulence"
-        result="t" type="fractalNoise"
-        baseFrequency=".02" numOctaves="1" />
-      <feDisplacementMap
-        as="displacement"
-        in2="t" in="SourceGraphic"
-        scale="4" xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-  </defs>
-</svg>
 <!-- the backdrop gets events, can be swipeable -->
 <div as="backdrop" class="touch-panel"></div>
+<!-- child elements are placed here -->
 <slot as="slot"></slot>
+<!-- top-level UI -->
 <button as="close" class="close">
   <svg viewBox="0 0 1 1" preserveAspectRatio="none">
     <path
-      filter="url(#scribble)"
       d="M0,0 L1,1 M0,1 L1,0"
       vector-effect="non-scaling-stroke"
       fill="none"
@@ -162,7 +141,6 @@ Set those on the web-story elements via LESS to have them propagate in.
   <button class="previous pager" as="previous" data-shift="-1">
     <svg viewBox="0 0 4 2" preserveAspectRatio="none">
       <path
-        filter="url(#scribble)"
         d="M3,0 L.5,1 3,2"
         vector-effect="non-scaling-stroke"
         fill="none"
@@ -176,7 +154,6 @@ Set those on the web-story elements via LESS to have them propagate in.
   <button class="next pager" as="next" data-shift="1">
     <svg viewBox="0 0 4 2" preserveAspectRatio="none">
       <path
-        filter="url(#scribble)"
         d="M1,0 L3.5,1 1,2"
         vector-effect="non-scaling-stroke"
         fill="none"
