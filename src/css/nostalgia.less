@@ -1,0 +1,36 @@
+
+web-story#nostalgia {
+  background: #f1dcac;
+  transition: background 1s linear;
+
+  video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .content {
+    position: relative;
+    background: fade(white, 50%);
+    padding: 24px;
+    font-size: 24px;
+    max-width: 400px;
+    font-family: @knockout;
+  }
+
+
+  &[slug="boost"] {
+    background: #FDD;
+  }
+
+  &[slug="optimism"] {
+    background: #DDF;
+  }
+
+  &[slug="sounds"] {
+    background: #DDD;
+  }
+}

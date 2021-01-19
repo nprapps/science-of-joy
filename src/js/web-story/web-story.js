@@ -70,9 +70,9 @@ class WebStory extends CustomElement {
     this.shiftPage(shift);
   }
 
-  shiftPage(shift) {
+  shiftPage(shift = 1) {
     var sections = this.elements.slot.assignedElements();
-    var index = (this.selectedIndex + shift) % sections.length;
+    var index = (this.selectedIndex * 1 + shift) % sections.length;
     if (index < 0) index = sections.length + index;
     this.setPage(index);
   }
@@ -100,6 +100,9 @@ class WebStory extends CustomElement {
       }
     }
     if (chosen) {
+      if (chosen.dataset.goto) {
+        return this.broadcast("webstorygoto", { story: chosen.dataset.goto });
+      }
       this.setAttribute("slug", chosen.dataset.slug);
       this.selectedSection = chosen;
       this.selectedIndex = index;

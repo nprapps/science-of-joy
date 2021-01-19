@@ -1,16 +1,13 @@
-<div id="nostalgia" class="story-container">
-  <web-story>
-    <% archieml.text.pages.nostalgia.slides.forEach(function(slide) { %>
-    <section intangible data-slug="<%= slide.slug %>">
-      <% if (slide.video) { %>
-      <video loop autoplay muted src="./assets/video/<%= slide.video %>"></video>
-      <% } %>
-      <div class="content"><%= t.renderMarkdown(slide.text) %></div>
-    </section>
-    <% }) %>
-    <section data-slug="chipmunk" data-takeover>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/mfhBM_Yay6w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </section>
-  </web-story>
-  </web-story>
-</div>
+<web-story id="nostalgia" class="story-route">
+  <% archieml.text.pages.nostalgia.slides.forEach(function(slide) { %>
+  <section intangible data-slug="<%= slide.slug %>">
+    <% if (slide.video) { %>
+    <video loop autoplay muted src="./assets/video/<%= slide.video %>"></video>
+    <% } %>
+    <div class="content"><%= t.renderMarkdown(slide.text) %></div>
+  </section>
+  <% }) %>
+  <section data-slug="chipmunk" data-goto="intro">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/mfhBM_Yay6w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </section>
+</web-story>

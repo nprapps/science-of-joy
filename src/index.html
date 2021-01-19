@@ -6,7 +6,7 @@
   </head>
   <body>
 
-    <div id="intro" class="story-container">
+    <div id="intro" class="story-route">
       <sketch-svg>
         <%= t.include("assets/export-selection.svg") %>
       </sketch-svg>
@@ -21,15 +21,12 @@
           <h2>So we made this experience to share that with you</h2>
         </section>
         <section>
-          <a class="big-nav" href="#nostalgia" data-transition="demo">Nostalgia</a>
-          <a class="big-nav" href="#forest" data-transition="demo">Forest Bathing</a>
-          <a class="big-nav" href="#nostalgia" data-transition="demo">ASMR</a>
-          <a class="big-nav" href="#nostalgia" data-transition="demo">Ritual</a>
+          <a class="big-nav" data-href="nostalgia">Nostalgia</a>
+          <a class="big-nav" data-href="forest">Forest Bathing</a>
+          <a class="big-nav" data-href="nostalgia">ASMR</a>
+          <a class="big-nav" data-href="nostalgia">Ritual</a>
         </section>
       </web-story>
-    </div>
-
-    <div id="main" class="story-container">
     </div>
 
     <%= t.include("_nostalgia.html") %>
