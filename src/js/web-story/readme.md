@@ -15,7 +15,9 @@ Styles for the internal controls and parts of web-story elements are in its Shad
 
 These elements dispatch some events when they update:
 
-* webstorypage - dispatched with a `page` value in the detail hash when the user goes to a new page
+* webstorypage - when the user goes to a new page, event detail will include `page` index
+* webstorygoto - dispatched when a page is marked with `data-goto`
+* webstoryclose - when the user clicks the close button
 
 Custom Element superclass
 -------------------------

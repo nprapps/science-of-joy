@@ -5,6 +5,8 @@ Set those on the web-story elements via LESS to have them propagate in.
 */
 :host {
   --controls-bg: rgba(0, 0, 0, .5);
+  --buttons-bg: white;
+  --buttons-fg: black;
   display: block;
   min-height: 100vh;
   position: relative;
@@ -22,6 +24,26 @@ Set those on the web-story elements via LESS to have them propagate in.
   height: 100%;
 }
 
+.close {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  background: var(--buttons-bg);
+  color: var(--buttons-fg);
+  border: none;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.close svg {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
 .controls {
   position: fixed;
   left: 0;
@@ -37,9 +59,9 @@ Set those on the web-story elements via LESS to have them propagate in.
 .controls button {
   cursor: pointer;
   border: none;
-  background: white;
+  background: var(--buttons-bg);
   opacity: .8;
-  color: black;
+  color: var(--buttons-fg);
   border-radius: 100%;
   padding: 8px;
   margin: 0;
@@ -53,7 +75,7 @@ Set those on the web-story elements via LESS to have them propagate in.
 }
 
 .controls button:focus {
-  border: 2px dashed black;
+  border: 2px dashed var(--buttons-fg);
   outline: none;
 }
 
@@ -86,6 +108,26 @@ Set those on the web-story elements via LESS to have them propagate in.
   border: 1px solid black;
 }
 
+/* hide controls */
+:host([hidecontrols~=previous]) .previous {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+:host([hidecontrols~=filmstrip]) .filmstrip {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+:host([hidecontrols~=next]) .next {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+:host([hidecontrols~=close]) .close {
+  display: none;
+}
+
 </style>
 <svg width=0 height=0 as="svg" style="position: absolute">
   <defs>
@@ -104,6 +146,18 @@ Set those on the web-story elements via LESS to have them propagate in.
 <!-- the backdrop gets events, can be swipeable -->
 <div as="backdrop" class="touch-panel"></div>
 <slot as="slot"></slot>
+<button as="close" class="close">
+  <svg viewBox="0 0 1 1" preserveAspectRatio="none">
+    <path
+      filter="url(#scribble)"
+      d="M0,0 L1,1 M0,1 L1,0"
+      vector-effect="non-scaling-stroke"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+    />
+  </svg>
+</button>
 <div as="controls" class="controls">
   <button class="previous pager" as="previous" data-shift="-1">
     <svg viewBox="0 0 4 2" preserveAspectRatio="none">

@@ -68,6 +68,10 @@ document.body.addEventListener("webstorygoto", function(e) {
   setStory(story);
 });
 
+document.body.addEventListener("webstoryclose", function() {
+  setStory("intro");
+});
+
 var pickRandom = function() {
   console.log(history);
 }

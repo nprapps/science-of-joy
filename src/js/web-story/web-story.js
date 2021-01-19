@@ -4,16 +4,13 @@ class WebStory extends CustomElement {
   constructor() {
     super();
 
-
     this.elements.previous.addEventListener("click", this.onClickPager);
     this.elements.next.addEventListener("click", this.onClickPager);
-
     this.elements.backdrop.addEventListener("click", () => this.shiftPage(1));
+    this.elements.close.addEventListener("click", this.onClose);
 
     var observer = new MutationObserver(this.setNav);
     observer.observe(this, { childList: true });
-
-    this.timeout = null;
 
     this.reset();
   }
@@ -21,8 +18,8 @@ class WebStory extends CustomElement {
   static get boundMethods() {
     return [
       "onClickPager",
-      "setNav",
-      "churn"
+      "onClose",
+      "setNav"
     ];
   }
 
@@ -38,14 +35,9 @@ class WebStory extends CustomElement {
 
   connectedCallback() {
     this.setNav();
-    if (!this.timeout) this.timeout = setTimeout(this.churn, 300);
   }
 
   disconnectedCallback() {
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-      this.timeout = null;
-    }
   }
 
   attributeChangedCallback(attr, was, value) {
@@ -57,17 +49,14 @@ class WebStory extends CustomElement {
     this.dispatchEvent(e);
   }
 
-  churn() {
-    var index = Date.now() % 5 + 5;
-    var { svg, turbulence, displacement } = this.elements;
-    displacement.setAttributeNS(svg.namespace, "scale", index);
-    this.timeout = setTimeout(this.churn, 300);
-  }
-
   onClickPager(e) {
     var target = e.currentTarget;
     var shift = target.dataset.shift * 1;
     this.shiftPage(shift);
+  }
+
+  onClose() {
+    this.broadcast("webstoryclose");
   }
 
   shiftPage(shift = 1) {
