@@ -1,0 +1,14 @@
+<div class="chooser">
+  <div class="block">
+    <button class="random-choice">Random</button>
+  </div>
+
+  <ul class="block">
+    <% archieml.text.chooser.forEach(function(item) { %>
+    <li>
+      <a data-href="<%= item.id %>">
+        <%= item.label %>
+      </a>
+    <% }) %>
+  </ul>
+</div>

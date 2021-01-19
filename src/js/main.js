@@ -67,3 +67,21 @@ document.body.addEventListener("webstorygoto", function(e) {
   var { story } = e.detail;
   setStory(story);
 });
+
+var pickRandom = function() {
+  console.log(history);
+}
+
+// chooser code
+var choosers = $(".chooser");
+choosers.forEach(function(menu) {
+  // add random button listener
+  var randomButton = $.one("button", menu);
+  randomButton.addEventListener("click", pickRandom);
+  // shuffle items
+  var items = $("li", menu);
+  var shuffle = items.map(item => [Math.random(), item]);
+  shuffle.sort((a, b) => a[0] - b[0]);
+  var ul = $.one("ul", menu);
+  shuffle.forEach(([_, item]) => ul.appendChild(item));
+});

@@ -1,9 +1,16 @@
 @import "base";
 @import "web-story";
+@import "chooser";
 
+.story-route:not(.active) {
+  display: none;
+}
+
+// specific story styles
 @import "intro";
 @import "nostalgia";
 
+// story transition styles
 @keyframes fade-out {
   from { opacity: 1; }
   to { opacity: 0; }
@@ -40,9 +47,4 @@
   animation-name: fade-in, zoom;
   animation-duration: 800ms, 1s;
   animation-fill-mode: both;
-}
-
-
-.story-route:not(.active) {
-  display: none;
 }
