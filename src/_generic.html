@@ -1,0 +1,10 @@
+<web-story id="<%= id %>" class="story-route">
+  <% grunt.data.archieml.text.pages[id].slides.forEach(function(slide) { %>
+  <section intangible data-slug="<%= slide.slug %>">
+    <% if (slide.video) { %>
+    <video loop autoplay muted src="./assets/synced/video/<%= slide.video %>"></video>
+    <% } %>
+    <div class="content"><%= t.renderMarkdown(slide.text) %></div>
+  </section>
+  <% }) %>
+</web-story>
