@@ -2,7 +2,7 @@
   "s3": {
     "stage": {
       "bucket": "stage-apps.npr.org",
-      "path": "joy-generator"
+      "path": "tragicomic-relief"
     },
     "live": {
       "bucket": "apps.npr.org",
