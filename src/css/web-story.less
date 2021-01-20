@@ -4,6 +4,24 @@ web-story {
   --controls-bg: fade(black, 20%);
   --buttons-bg: fade(white, 80%);
   --buttons-fg: black;
+  
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .content {
+    position: relative;
+    background: fade(white, 50%);
+    padding: 24px;
+    font-size: 24px;
+    max-width: 400px;
+    font-family: @knockout;
+  }
 
   [hidden] {
     display: none !important;
