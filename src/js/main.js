@@ -80,7 +80,7 @@ var pickRandom = function() {
 var choosers = $(".chooser");
 choosers.forEach(function(menu) {
   // add random button listener
-  var randomButton = $.one("button", menu);
+  var randomButton = $.one(".random-choice", menu);
   randomButton.addEventListener("click", pickRandom);
   // shuffle items
   var items = $("li", menu);
@@ -88,4 +88,9 @@ choosers.forEach(function(menu) {
   shuffle.sort((a, b) => a[0] - b[0]);
   var ul = $.one("ul", menu);
   shuffle.forEach(([_, item]) => ul.appendChild(item));
+  // expander
+  var expandButton = $.one(".expander", menu);
+  expandButton.addEventListener("click", function() {
+    menu.classList.remove("collapsed");
+  })
 });

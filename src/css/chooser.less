@@ -1,4 +1,5 @@
 .chooser {
+  min-width: 300px;
 
   .block {
     background: fade(black, 50%);
@@ -10,6 +11,9 @@
 
   ul {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
+
     li {
       display: block;
       margin-bottom: 12px;
@@ -17,6 +21,16 @@
       &:last-child {
         margin-bottom: 0;
       }
+    }
+  }
+
+  &.collapsed {
+    li:nth-child(n + 4) {
+      display: none;
+    }
+
+    .expander {
+      display: block;
     }
   }
 
@@ -39,6 +53,22 @@
 
     &:focus {
       outline: 3px dashed white; 
+    }
+  }
+
+  .expander {
+    background: transparent;
+    color: white;
+    text-align: center;
+    display: none;
+
+    &:hover {
+      background: fade(white, 20%);
+    }
+
+    svg {
+      display: block;
+      margin: 10px auto;
     }
   }
 

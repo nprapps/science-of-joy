@@ -1,14 +1,23 @@
-<div class="chooser">
+<div class="chooser collapsed">
   <div class="block">
     <button class="random-choice">Random</button>
   </div>
 
-  <ul class="block">
-    <% archieml.text.chooser.forEach(function(item) { %>
-    <li>
-      <a data-href="<%= item.id %>" tabindex="0">
-        <%= item.label %>
-      </a>
-    <% }) %>
-  </ul>
+  <div class="block">
+    <ul>
+      <% archieml.text.chooser.forEach(function(item) { %>
+      <li>
+        <a data-href="<%= item.id %>" tabindex="0">
+          <%= item.label %>
+        </a>
+      <% }) %>
+    </ul>
+    
+    <button class="expander">
+      See more
+      <svg width="24" height="16">
+        <path fill="none" stroke="currentColor" d="M0,0 L12,16 L24,0" />
+      </svg>
+    </button>
+  </div>
 </div>
