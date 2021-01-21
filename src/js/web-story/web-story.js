@@ -93,10 +93,11 @@ class WebStory extends CustomElement {
       if (chosen.dataset.goto) {
         return this.broadcast("webstorygoto", { story: chosen.dataset.goto });
       }
-      if (!chosen.hasAttribute("tabindex")) {
-        chosen.setAttribute("tabindex", -1);
+      var cursor = $.one("[data-focus]", chosen) || chosen;
+      if (!cursor.hasAttribute("tabindex")) {
+        cursor.setAttribute("tabindex", -1);
       }
-      chosen.focus();
+      cursor.focus();
       this.activatePage(chosen);
       this.setAttribute("slug", chosen.dataset.slug);
       this.selectedSection = chosen;
