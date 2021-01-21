@@ -1,4 +1,5 @@
 var CustomElement = require("../customElement.js");
+var $ = require("../lib/qsa");
 
 class WebStory extends CustomElement {
   constructor() {
@@ -92,13 +93,39 @@ class WebStory extends CustomElement {
       if (chosen.dataset.goto) {
         return this.broadcast("webstorygoto", { story: chosen.dataset.goto });
       }
+      this.activatePage(chosen);
       this.setAttribute("slug", chosen.dataset.slug);
       this.selectedSection = chosen;
       this.selectedIndex = index;
-      this.elements.controls.style.display = "takeover" in chosen.dataset ? "none" : "";
+      var isTakeover = "takeover" in chosen.dataset;
+      this.elements.controls.style.display = isTakeover ? "none" : "";
+      // trigger lazy-load for this page and the next page
+      this.loadLazy(chosen);
+      var nextUp = sections[index + 1];
+      if (nextUp) {
+        this.loadLazy(nextUp);
+      }
     }
     this.setNav();
-    this.broadcast("webstorypage", { page: this.selectedIndex })
+    this.broadcast("webstorypage", { page: this.selectedIndex });
+  }
+
+  activatePage(page) {
+    // run custom element activations
+    var activations = $("[data-activate]", page);
+    activations.forEach(function(element) {
+      var method = element.dataset.activate;
+      element[method]();
+    });
+  }
+
+  loadLazy(container) {
+    var media = $("[data-src]", container);
+    media.forEach(function(medium) {
+      var src = medium.dataset.src;
+      medium.setAttribute("src", src);
+      medium.removeAttribute("data-src");
+    });
   }
 }
 
