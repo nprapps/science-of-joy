@@ -34,6 +34,11 @@ class CustomElement extends HTMLElement {
       }
     }
   }
+  
+  broadcast(event, detail = {}) {
+    var e = new CustomEvent(event, { bubbles: true, composed: true, detail });
+    this.dispatchEvent(e);
+  }
 
 }
 

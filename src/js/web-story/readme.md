@@ -11,6 +11,12 @@ Pages also have some special data attributes that can be used to trigger behavio
 * data-takeover - hides the story controls if not empty
 * data-goto - transfers the page to a new location instead of loading this page
 
+Within the page itself, you can set a few data attributes on individual elements to change their behavior:
+
+* data-focus - when the containing page is activated, send focus here
+* data-activate - call the specified method on activation, e.g. `data-activate="play"` on a media element would call `element.play()` when its page becomes visible.
+* data-src - lazy-load via the `src` attribute of an element
+
 Styles for the internal controls and parts of web-story elements are in its Shadow DOM template, `_web-story.html`. Inside this template, we can only use CSS, not LESS. However, you can set values as CSS custom properties and pass those through by setting them on the appropriate element in your LESS file. For example, to change the background color of the control section to True Blue, you could set `web-story#example { --controls-bg: @true }` in the LESS.
 
 These elements dispatch some events when they update:

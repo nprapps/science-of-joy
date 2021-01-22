@@ -45,11 +45,6 @@ class WebStory extends CustomElement {
     console.log(attr, value);
   }
 
-  broadcast(event, detail = {}) {
-    var e = new CustomEvent(event, { bubbles: true, composed: true, detail });
-    this.dispatchEvent(e);
-  }
-
   onClickPager(e) {
     var target = e.currentTarget;
     var shift = target.dataset.shift * 1;
