@@ -1,6 +1,7 @@
 // require("./lib/pym");
-require("./web-story/web-story");
 require("./sketch-svg");
+require("./web-story/web-story");
+require("./media-controls");
 
 var $ = require("./lib/qsa");
 var hashUtils = require("./hashUtils");

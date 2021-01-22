@@ -120,7 +120,7 @@ class WebStory extends CustomElement {
     var activations = $("[data-activate]", page);
     activations.forEach(function(element) {
       var method = element.dataset.activate;
-      element[method]();
+      if (element[method]) element[method]();
     });
   }
 

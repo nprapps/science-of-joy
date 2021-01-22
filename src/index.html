@@ -7,17 +7,20 @@
   <body>
 
     <div id="intro" class="story-route">
-      <sketch-svg>
-        <%= t.include("assets/export-selection.svg") %>
-      </sketch-svg>
       <web-story hidecontrols="previous filmstrip close">
         <section data-slug="dyk">
+          <sketch-svg data-activate="sketch">
+            <%= t.include("assets/export-selection.svg") %>
+          </sketch-svg>
           <h2>Did you know there is science behind joy?</h2>
           <div class="bubble">
             Click the arrows to continue
           </div>
         </section>
         <section>
+          <sketch-svg data-activate="sketch">
+            <%= t.include("assets/export-selection.svg") %>
+          </sketch-svg>
           <h2>So we made this experience to share that with you</h2>
         </section>
         <section>

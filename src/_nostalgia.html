@@ -2,7 +2,13 @@
   <% archieml.text.pages.nostalgia.slides.forEach(function(slide) { %>
   <section intangible data-slug="<%= slide.slug %>">
     <% if (slide.video) { %>
-    <video class="backdrop" loop autoplay muted data-src="./assets/synced/temp/<%= slide.video %>"></video>
+    <video
+      class="backdrop"
+      loop autoplay muted
+      data-src="./assets/synced/temp/<%= slide.video %>"
+      id="<%= slide.slug %>-video"
+    ></video>
+    <media-controls for="<%= slide.slug %>-video"></media-controls>
     <% } %>
     <div class="content"><%= t.renderMarkdown(slide.text) %></div>
   </section>
