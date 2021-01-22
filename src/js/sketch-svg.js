@@ -20,9 +20,8 @@ class SketchSVG extends HTMLElement {
     var paths = this.querySelectorAll("path");
     var lastDuration = 0;
     paths.forEach(function(p, i) {
-      // bail for old Safari
       p.setAttribute("vector-effect", "non-scaling-stroke");
-      p.style.strokeWidth = 3;
+      // bail for old Safari
       if (!p.animate) return;
       // cancel running animations
       var current = p.getAnimations();

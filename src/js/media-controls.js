@@ -39,6 +39,10 @@ class MediaControls extends CustomElement {
     }
   }
 
+  onMutation() {
+    
+  }
+
 
 }
 
