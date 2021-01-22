@@ -1,4 +1,4 @@
-var CustomElement = require("./customElement");
+var CustomElement = require("../customElement");
 
 class MediaControls extends CustomElement {
   constructor() {
