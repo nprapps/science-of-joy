@@ -51,7 +51,7 @@ Set those on the web-story elements via LESS to have them propagate in.
 
 button {
   cursor: pointer;
-  border: solid 2px var(--buttons-fg);
+  border: none;
   background: var(--buttons-bg);
   opacity: .8;
   color: var(--buttons-fg);
@@ -60,6 +60,44 @@ button {
   padding: 8px;
   margin: 0;
   /* border: 2px solid transparent; */
+  position: relative;
+}
+
+button::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transform: rotate(130deg) scale(1.1);
+  background: var(--buttons-bg);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  border: 2px solid var(--buttons-fg);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+button.close::before {
+  transform: rotate(60deg) scale(1.3);
+}
+
+button.next::after {
+  transform: rotate(80deg);
 }
 
 button:hover,
