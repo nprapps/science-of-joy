@@ -102,12 +102,12 @@ button.next::after {
 
 button:hover,
 button:focus {
-  opacity: 1;
+  /* opacity: 1; */
+  outline: none; 
 }
 
-button:focus {
+button:focus::after {
   border: 2px dashed var(--buttons-fg);
-  outline: none;
 }
 
 .controls svg {
