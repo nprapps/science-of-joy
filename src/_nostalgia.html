@@ -5,15 +5,24 @@
     <video
       class="backdrop"
       loop autoplay muted
-      data-src="./assets/synced/temp/<%= slide.video %>"
+      data-src="./assets/<%= slide.video %>"
       id="<%= slide.slug %>-video"
     ></video>
-    <media-controls for="<%= slide.slug %>-video"></media-controls>
     <% } %>
     <div class="content"><%= t.renderMarkdown(slide.text) %></div>
   </section>
   <% }) %>
-  <section data-slug="chipmunk" data-goto="intro">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/mfhBM_Yay6w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <section data-slug="nostalgia-audio">
+    <div class="clips">
+      <h3>I want to revisit the tech of the past</h3>
+      <media-controls src="./assets/ignored/138049__pakasit21__typewriter.mp3.mp3" for="nostalgia-typing" label="The way we used to work"></media-controls>
+      <h3>I miss visiting with my friends</h3>
+      <media-controls src="./assets/ignored/479964__craigsmith__r19-30-bowling-alley.wav.mp3" for="nostalgia-typing" label="The social experience"></media-controls>
+      <h3>Remember traveling?</h3>
+      <media-controls src="./assets/ignored/479964__craigsmith__r19-30-bowling-alley.wav.mp3" for="nostalgia-typing" label="Take me on a journey"></media-controls>
+    </div>
+  </section>
+  <section>
+    <%= t.include("_chooser.html") %>
   </section>
 </web-story>
