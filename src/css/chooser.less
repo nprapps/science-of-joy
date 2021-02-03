@@ -53,7 +53,9 @@
     }
 
     &:focus {
-      outline: 3px dashed white;
+      outline: none;
+      // box-shadow: 0 0 0 2px var(--buttons-fg);
+      border: 2px dashed var(--buttons-fg);
     }
 
     &.random-choice {
@@ -78,8 +80,16 @@
         border-radius: inherit;
       }
 
-      &::after {
+      &:hover, &:focus {
+        outline: none;
+      }
 
+      &:focus {
+        border: none;
+      }
+
+      &:focus::after {
+        border: 2px dashed var(--buttons-fg);
       }
     }
   }
