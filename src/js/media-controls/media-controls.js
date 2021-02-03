@@ -9,11 +9,11 @@ class MediaControls extends CustomElement {
   }
 
   static get observedAttributes() {
-    return ["for", "label"];
+    return ["for", "label", "src"];
   }
 
   static get mirroredProps() {
-    return ["for"];
+    return ["for", "src"];
   }
 
   static get boundMethods() {
@@ -46,6 +46,13 @@ class MediaControls extends CustomElement {
 
       case "label":
         this.elements.labels.innerHTML = value;
+        break;
+
+      case "src":
+        var media = document.createElement("audio");
+        media.src = value;
+        this.connect(media);
+        break;
 
     }
   }
@@ -76,7 +83,8 @@ class MediaControls extends CustomElement {
   // checks to see if there's still an element matching the for attribute
   onMutation() {
     var id = this.for;
-    if (!id) return;
+    var src = this.src;
+    if (!id || src) return;
     var located = document.getElementById(id);
     this.connect(located);
   }
