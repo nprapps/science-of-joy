@@ -17,11 +17,19 @@ web-story {
 
   .content {
     position: relative;
-    background: fade(white, 50%);
+    background: fade(black, 50%);
+    color: #F8F8F8;
     padding: 24px;
-    font-size: 24px;
+    font-size: 22px;
     max-width: 400px;
-    font-family: @knockout;
+    font-family: @gotham;
+    text-align: left;
+
+    h2 {
+      font-size: 48px;
+      .knockout();
+      text-transform: uppercase;
+    }
   }
 
   [hidden] {
@@ -36,6 +44,7 @@ web-story {
     flex-direction: column;
     text-align: center;
     position: relative;
+    background: linear-gradient(to bottom, #FFD, #FFB);
   }
 
   [intangible] {
