@@ -5,10 +5,11 @@ class MediaControls extends CustomElement {
     super();
     this.observer = new MutationObserver(this.onMutation);
     this.media = null;
+    this.elements.playButton.addEventListener("click", this.onClickedPlay);
   }
 
   static get observedAttributes() {
-    return ["for"];
+    return ["for", "label"];
   }
 
   static get mirroredProps() {
@@ -18,7 +19,8 @@ class MediaControls extends CustomElement {
   static get boundMethods() {
     return [
       "onMutation",
-      "onMediaUpdate"
+      "onMediaUpdate",
+      "onClickedPlay"
     ];
   }
 
@@ -41,6 +43,9 @@ class MediaControls extends CustomElement {
       case "for":
         this.onMutation();
         break;
+
+      case "label":
+        this.elements.labels.innerHTML = value;
 
     }
   }
@@ -77,7 +82,38 @@ class MediaControls extends CustomElement {
   }
 
   onMediaUpdate(e) {
-    console.log(e);
+    var { duration, currentTime, paused } = this.media;
+    var ratio = currentTime / duration;
+    var { labels, progress, playIcon, pauseIcon } = this.elements;
+    try {
+      var pLength = Math.ceil(progress.getTotalLength());
+      var pDash = Math.ceil(ratio * pLength);
+      progress.style.strokeDasharray = [pLength, pLength].join(" ");
+      progress.style.strokeDashoffset = pDash;
+      if (paused) {
+        playIcon.style.display = "";
+        pauseIcon.style.display = "none";
+      } else {
+        playIcon.style.display = "none";
+        pauseIcon.style.display = "";
+      }
+    } catch (err) {
+      // SVG code will fail if the button isn't immediately visible, it's fine.
+    }
+  }
+
+  onClickedPlay() {
+    if (!this.media) return;
+    if (this.media.paused) {
+      this.media.play();
+    } else {
+      this.media.pause();
+      this.media.currentTime = 0;
+    }
+  }
+
+  static get template() {
+    return require("./_media-controls.html");
   }
 
 }
