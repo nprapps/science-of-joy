@@ -2,7 +2,8 @@
   min-width: 300px;
 
   .block {
-    background: fade(black, 50%);
+    background: fade(black, 30%);
+    border: 2px solid var(--buttons-fg);
     padding: 20px;
     list-style-type: none;
     margin: 0 0 20px;
@@ -53,6 +54,13 @@
 
     &:focus {
       outline: 3px dashed white;
+    }
+
+    &.random-choice {
+      border-radius: 70px 50px 70px 40px;
+      margin-bottom: 20px;
+      background: white;
+      border: 2px solid var(--buttons-fg);
     }
   }
 
