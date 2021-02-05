@@ -8,7 +8,8 @@ var hashUtils = require("./hashUtils");
 
 var wait = (d = 1000) => new Promise(ok => setTimeout(ok, d));
 
-var history = [];
+var history = new Set();
+var storyPaths = $(".story-route:not(#intro)").map(s => s.id);
 
 var setStory = async function(story) {
   var current = $.one(".story-route.active");
@@ -25,7 +26,7 @@ var setStory = async function(story) {
   }
   activated.classList.add("active");
   hashUtils.setParams({ story });
-  history.push(story);
+  history.add(story);
   return activated;
 }
 
@@ -74,7 +75,16 @@ document.body.addEventListener("webstoryclose", function() {
 });
 
 var pickRandom = function() {
-  console.log(history);
+  var available = storyPaths.filter(s => !history.has(s));
+  // maybe you've seen everything?
+  if (!available.length) {
+    console.log("All stories visited, resetting history");
+    history = new Set();
+    available = storyPaths;
+  }
+  var selected = available[(Math.random() * available.length) | 0];
+  history.add(selected);
+  setStory(selected);
 }
 
 // chooser code
@@ -83,6 +93,7 @@ choosers.forEach(function(menu) {
   // add random button listener
   var randomButton = $.one(".random-choice", menu);
   randomButton.addEventListener("click", pickRandom);
+  return;
   // shuffle items
   var items = $("li", menu);
   var shuffle = items.map(item => [Math.random(), item]);

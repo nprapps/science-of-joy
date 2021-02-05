@@ -76,8 +76,13 @@
         width: 100%;
         height: 100%;
         transform-origin: center;
-        transform: rotate(1deg);
+        transform: rotate(-1deg);
         border-radius: inherit;
+      }
+
+      &:nth-child(2n)::after {
+        border-width: 1px 3px 2px 3px;
+        transform: translateX(-4px) rotate(1deg);
       }
 
       &:hover, &:focus {
