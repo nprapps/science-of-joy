@@ -1,5 +1,23 @@
+<% var section = grunt.data.archieml.text.pages[id]; %>
 <web-story id="<%= id %>" class="story-route">
-  <% grunt.data.archieml.text.pages[id].slides.forEach(function(slide) { %>
+  <% if (section.metadata) { %>
+  <section intangible data-slug="title">
+    <% if (section.metadata.video) { %>
+    <video
+      class="backdrop"
+      loop autoplay muted
+      data-src="./assets/<%= section.metadata.video %>"
+      id="title-video"
+    ></video>
+    <% } %>
+    <div class="content">
+      <h2><%= section.metadata.title %></h2>
+      <h3><%= section.metadata.subtitle %></h3>
+      <input type="checkbox" checked> Autoplay video?
+    </div>
+  </section>
+  <% } %>
+  <% section.slides.forEach(function(slide) { %>
   <section intangible data-slug="<%= slide.slug %>">
     <% if (slide.video) { %>
     <video class="backdrop" loop autoplay muted data-src="./assets/synced/temp/<%= slide.video %>"></video>
@@ -7,4 +25,7 @@
     <div class="content"><%= t.renderMarkdown(slide.text) %></div>
   </section>
   <% }) %>
+  <section>
+    <%= t.include("_chooser.html") %>
+  </section>
 </web-story>
