@@ -10,21 +10,25 @@ var wait = (d = 1000) => new Promise(ok => setTimeout(ok, d));
 
 var history = new Set();
 var storyPaths = $(".story-route:not(#intro)").map(s => s.id);
+var intro = $("#intro");
 
 var setStory = async function(story) {
   var current = $.one(".story-route.active");
   if (current) {
     current.classList.remove("entering");
     current.classList.add("exiting");
-    await wait(1000);
+    await wait(500);
     current.classList.remove("active");
   }
   var activated = $.one("#" + story);
+  if (!activated) activated = $("#intro");
   activated.classList.remove("exiting");
-  if (history.length) {
+  if (history.size) {
     activated.classList.add("entering");
   }
   activated.classList.add("active");
+  var storyElement = activated.tagName == "WEB-STORY" ? activated : $.one("web-story", activated);
+  if (storyElement != intro) storyElement.setPage(0);
   hashUtils.setParams({ story });
   history.add(story);
   return activated;
@@ -87,22 +91,5 @@ var pickRandom = function() {
   setStory(selected);
 }
 
-// chooser code
-var choosers = $(".chooser");
-choosers.forEach(function(menu) {
-  // add random button listener
-  var randomButton = $.one(".random-choice", menu);
-  randomButton.addEventListener("click", pickRandom);
-  return;
-  // shuffle items
-  var items = $("li", menu);
-  var shuffle = items.map(item => [Math.random(), item]);
-  shuffle.sort((a, b) => a[0] - b[0]);
-  var ul = $.one("ul", menu);
-  shuffle.forEach(([_, item]) => ul.appendChild(item));
-  // expander
-  var expandButton = $.one(".expander", menu);
-  expandButton.addEventListener("click", function() {
-    menu.classList.remove("collapsed");
-  })
-});
+var randomButtons = $(".random-choice");
+randomButtons.forEach(b => b.addEventListener("click", pickRandom));
