@@ -1,7 +1,7 @@
 <% var section = archieml.text.pages.nostalgia; %>
 <web-story id="nostalgia" class="story-route">
   <% if (section.metadata) { %>
-  <section intangible data-slug="title">
+  <section data-slug="title">
     <% if (section.metadata.video) { %>
     <video
       class="backdrop"
@@ -13,7 +13,7 @@
     <div class="content">
       <h2><%= section.metadata.title %></h2>
       <h3><%= section.metadata.subtitle %></h3>
-      <input type="checkbox" checked> Autoplay video?
+      <input type="checkbox" checked class="autoplay"> Autoplay video?
     </div>
   </section>
   <% } %>
