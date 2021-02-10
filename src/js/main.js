@@ -2,9 +2,11 @@
 require("./sketch-svg");
 require("./web-story/web-story");
 require("./media-controls/media-controls");
+require("./media-mute/media-mute");
 
 var $ = require("./lib/qsa");
 var hashUtils = require("./hashUtils");
+var events = require("./eventBus");
 
 var wait = (d = 1000) => new Promise(ok => setTimeout(ok, d));
 
@@ -66,6 +68,8 @@ document.body.addEventListener("webstorypage", function(e) {
   var { page } = e.detail;
   var updated = { story, page };
   hashUtils.setParams(updated);
+  // tell currently playing media files to pause
+  events.fire("media-play", null);
 });
 
 // handle goto events

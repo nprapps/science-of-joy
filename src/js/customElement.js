@@ -21,7 +21,7 @@ class CustomElement extends HTMLElement {
     }
 
     if (def.mirroredProps) {
-      for (var f of def.mirroredProps) {
+      def.mirroredProps.forEach(f => {
         Object.defineProperty(this, f, {
           get() {
             return this.getAttribute(f);
@@ -31,7 +31,7 @@ class CustomElement extends HTMLElement {
             this.setAttribute(f, v);
           }
         })
-      }
+      });
     }
   }
   

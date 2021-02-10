@@ -1,4 +1,5 @@
 var CustomElement = require("../customElement");
+var events = require("../eventBus");
 
 class MediaControls extends CustomElement {
   constructor() {
@@ -6,6 +7,7 @@ class MediaControls extends CustomElement {
     this.observer = new MutationObserver(this.onMutation);
     this.media = null;
     this.elements.playButton.addEventListener("click", this.onClickedPlay);
+    events.on("media-play", this.onPlayEvent);
   }
 
   static get observedAttributes() {
@@ -20,7 +22,8 @@ class MediaControls extends CustomElement {
     return [
       "onMutation",
       "onMediaUpdate",
-      "onClickedPlay"
+      "onClickedPlay",
+      "onPlayEvent"
     ];
   }
 
@@ -113,11 +116,17 @@ class MediaControls extends CustomElement {
   onClickedPlay() {
     if (!this.media) return;
     if (this.media.paused) {
-      this.media.play();
-    } else {
-      this.media.pause();
       this.media.currentTime = 0;
+      this.media.play();
+      events.fire("media-play", this.media);
+    } else {
+      this.media.currentTime = 0;
+      this.media.pause();
     }
+  }
+
+  onPlayEvent(element) {
+    if (this.media != element) this.media.pause();
   }
 
   static get template() {
