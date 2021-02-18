@@ -26,7 +26,7 @@ observer.observe(document.body, {
 });
 
 var watchSelector = function(selector, callback) {
-  var watch = watchList.get(selector) || { selector, callbacks: [], previous: false };
+  var watch = watchList.get(selector) || { selector, callbacks: [] };
   if (watch.callbacks.includes(callback)) return;
   watch.callbacks.push(callback);
   try {
