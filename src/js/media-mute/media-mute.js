@@ -1,10 +1,10 @@
 var CustomElement = require("../customElement");
 var events = require("../eventBus");
+var { watchSelector, unwatchSelector } = require("../watchSelector");
 
 class MediaMute extends CustomElement {
   constructor() {
     super();
-    this.observer = new MutationObserver(this.onMutation);
     this.media = null;
     events.on("media-play", this.onPlayEvent);
     this.elements.muteButton.addEventListener("click", this.onClickedMute);
@@ -20,7 +20,7 @@ class MediaMute extends CustomElement {
 
   static get boundMethods() {
     return [
-      "onMutation",
+      "onWatch",
       "onClickedMute",
       "onPlayEvent"
     ];
@@ -34,7 +34,8 @@ class MediaMute extends CustomElement {
     switch (attr) {
 
       case "for":
-        this.onMutation();
+        if (was) unwatchSelector(`[id="${was}"]`, this.onWatch);
+        if (value) watchSelector(`[id="${value}"]`, this.onWatch);
         break;
 
       case "src":
@@ -53,8 +54,10 @@ class MediaMute extends CustomElement {
     }
     // subscribe to events
     this.media = element;
-    element.muted = true;
-    this.elements.muteButton.setAttribute("aria-pressed", "true");
+    if (element) {
+      element.muted = true;
+      this.elements.muteButton.setAttribute("aria-pressed", "true");
+    }
   }
 
   disconnect() {
@@ -62,17 +65,16 @@ class MediaMute extends CustomElement {
     this.media = null;
   }
 
-  // checks to see if there's still an element matching the for attribute
-  onMutation() {
-    var id = this.for;
-    var src = this.src;
-    if (!id || src) return;
-    var located = document.getElementById(id);
-    this.connect(located);
+  onWatch(element) {
+    if (this.src) return;
+    this.connect(element);
   }
 
-  toggleMuted(update = !this.media.muted) {
+  toggleMuted(update) {
     if (!this.media) return;
+    if (typeof update == "undefined") {
+      update = !this.media.muted;
+    }
     this.media.muted = update;
     this.elements.muteButton.setAttribute("aria-pressed", update);
   }

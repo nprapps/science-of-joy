@@ -1,10 +1,10 @@
 var CustomElement = require("../customElement");
 var events = require("../eventBus");
+var { watchSelector, unwatchSelector } = require("../watchSelector");
 
 class MediaControls extends CustomElement {
   constructor() {
     super();
-    this.observer = new MutationObserver(this.onMutation);
     this.media = null;
     this.elements.playButton.addEventListener("click", this.onClickedPlay);
     events.on("media-play", this.onPlayEvent);
@@ -20,7 +20,7 @@ class MediaControls extends CustomElement {
 
   static get boundMethods() {
     return [
-      "onMutation",
+      "onWatch",
       "onMediaUpdate",
       "onClickedPlay",
       "onPlayEvent"
@@ -44,7 +44,8 @@ class MediaControls extends CustomElement {
     switch (attr) {
 
       case "for":
-        this.onMutation();
+        if (was) unwatchSelector(`[id="${was}"]`, this.onWatch);
+        if (value) watchSelector(`[id="${value}"]`, this.onWatch)
         break;
 
       case "label":
@@ -83,13 +84,9 @@ class MediaControls extends CustomElement {
     this.media = null;
   }
 
-  // checks to see if there's still an element matching the for attribute
-  onMutation() {
-    var id = this.for;
-    var src = this.src;
-    if (!id || src) return;
-    var located = document.getElementById(id);
-    this.connect(located);
+  onWatch(element) {
+    if (this.src) return;
+    this.connect(element);
   }
 
   onMediaUpdate(e) {
