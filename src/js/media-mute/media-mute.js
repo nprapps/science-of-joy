@@ -93,4 +93,4 @@ class MediaMute extends CustomElement {
 
 }
 
-customElements.define("media-mute", MediaMute);
+MediaMute.define("media-mute");

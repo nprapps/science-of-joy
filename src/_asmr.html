@@ -1,0 +1,41 @@
+<% var section = grunt.data.archieml.text.pages.asmr; %>
+<web-story id="asmr" class="story-route">
+  <% if (section.metadata) { %>
+  <section data-slug="title">
+    <% if (section.metadata.video) { %>
+    <video
+      class="backdrop"
+      loop autoplay muted
+      data-src="./assets/<%= section.metadata.video %>"
+      id="title-video"
+    ></video>
+    <% } %>
+    <div class="content">
+      <h2><%= section.metadata.title %></h2>
+      <h3><%= section.metadata.subtitle %></h3>
+      <input type="checkbox" checked class="autoplay"> Autoplay video?
+    </div>
+  </section>
+  <% } %>
+  <% section.slides.forEach(function(slide) { %>
+  <section data-slug="<%= slide.slug %>">
+    <% if (slide.video) { %>
+    <video class="backdrop" loop autoplay muted data-src="./assets/<%= slide.video %>"></video>
+    <% } %>
+    <div class="content"><%= t.renderMarkdown(slide.text) %></div>
+  </section>
+  <% }) %>
+  <section>
+    <media-collection class="grid">
+      <!-- <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 4px"> -->
+        <video loop src="./assets/ignored/ASMR-sand-cutting.mp4"></video>
+        <video loop src="./assets/ignored/ASMR-sand-bubbles.mp4"></video>
+        <video loop src="./assets/ignored/ASMR-sand-stir.mp4"></video>
+        <video loop src="./assets/ignored/ASMR-sand-mix.mp4"></video>
+      <!-- </div> -->
+    </media-collection>
+  </section>
+  <section>
+    <%= t.include("_chooser.html") %>
+  </section>
+</web-story>

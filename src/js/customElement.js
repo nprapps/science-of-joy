@@ -40,6 +40,10 @@ class CustomElement extends HTMLElement {
     this.dispatchEvent(e);
   }
 
+  static define(tag) {
+    window.customElements.define(tag, this);
+  }
+
 }
 
 module.exports = CustomElement;

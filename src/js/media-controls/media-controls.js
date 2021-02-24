@@ -132,4 +132,4 @@ class MediaControls extends CustomElement {
 
 }
 
-customElements.define("media-controls", MediaControls);
+MediaControls.define("media-controls");

@@ -129,4 +129,4 @@ class WebStory extends CustomElement {
   }
 }
 
-customElements.define("web-story", WebStory);
+WebStory.define("web-story");
