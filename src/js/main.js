@@ -4,6 +4,7 @@ require("./web-story/web-story");
 require("./media-controls/media-controls");
 require("./media-mute/media-mute");
 require("./media-collection/media-collection");
+require("./audio-visualizer/audio-visualizer");
 
 var $ = require("./lib/qsa");
 var hashUtils = require("./hashUtils");
