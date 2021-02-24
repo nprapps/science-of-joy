@@ -10,22 +10,30 @@
     <div id="intro" class="story-route">
       <web-story hidecontrols="previous filmstrip close">
         <section data-slug="dyk">
-          <!-- <sketch-svg class="svgbg" data-activate="sketch">
-            <%= t.include("assets/reading-background.svg") %>
-          </sketch-svg> -->
-          <sketch-svg data-activate="sketch">
+          <!-- <sketch-svg data-activate="sketch">
             <%= t.include("assets/reading-outline.svg") %>
-          </sketch-svg>
-          <h2>Did you know there is science behind joy?</h2>
+          </sketch-svg> -->
+          <div class="text-bubble">
+            <h2>Looking for joy/calm/zen?</h2>
+          </div>
           <div class="bubble">
             Click the arrows to continue
           </div>
         </section>
         <section>
-          <sketch-svg data-activate="sketch">
+          <!-- <sketch-svg data-activate="sketch">
             <%= t.include("assets/export-selection.svg") %>
-          </sketch-svg>
-          <h2>So we made this experience to share that with you</h2>
+          </sketch-svg> -->
+          <div class="text-bubble">
+            <h2>Science has your back. There are proven ways to rediscover your zen. You just have to dive in and try them.</h2>
+          </div>
+        </section>
+        <section>
+          <div class="title-bubble">
+            <img src="assets/npr-logo.png" alt="NPR logo">
+            <h1>Joy Generator</h1>
+            <p>Let us surprise you. <br> Play along to feel better now. </p>
+          </div>
         </section>
         <section>
           <%= t.include("_chooser.html") %>
