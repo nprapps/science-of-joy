@@ -17,12 +17,15 @@
     </div>
   </section>
   <% } %>
-  <% section.slides.forEach(function(slide) { %>
+  <% section.slides.forEach(function(slide, index) { %>
   <section data-slug="<%= slide.slug %>">
     <% if (slide.video) { %>
-    <video class="backdrop" loop autoplay muted data-src="./assets/<%= slide.video %>"></video>
+    <video class="backdrop" id="asmr-bg-<%= index %>" loop autoplay muted data-src="./assets/<%= slide.video %>"></video>
     <% } %>
-    <div class="content"><%= t.renderMarkdown(slide.text) %></div>
+    <div class="content">
+      <%= t.renderMarkdown(slide.text) %>
+      <media-mute for="asmr-bg-<%= index %>"></media-mute>  
+    </div>
   </section>
   <% }) %>
   <section>

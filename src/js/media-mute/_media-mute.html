@@ -3,5 +3,9 @@ button[aria-pressed="true"] {
   background: red;
   color: white;
 }
+
+button[aria-pressed="true"]::before {
+  content: "UN";
+}
 </style>
 <button as="muteButton">MUTE</button>
