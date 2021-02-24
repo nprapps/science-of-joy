@@ -45,8 +45,8 @@ class AudioVisualizer extends CustomElement {
 
   onAudio() {
     var bins = new Uint8Array(this.analyzer.fftSize);
-    // var bins = new Uint8Array(this.analyzer.frequencyBinCount);
     this.analyzer.getByteTimeDomainData(bins);
+    // var bins = new Uint8Array(this.analyzer.frequencyBinCount);
     // this.analyzer.getByteFrequencyData(bins);
     this.render(bins);
   }

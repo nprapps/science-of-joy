@@ -1,10 +1,12 @@
 var CustomElement = require("../customElement");
+var events = require("../eventBus");
 
 class MediaCollection extends CustomElement {
   constructor() {
     super();
     this.connected = [];
     this.addEventListener("slotchange", this.onSlotChange);
+    events.on("media-play", () => this.onMediaPlay());
   }
 
   static get boundMethods() {
@@ -47,7 +49,7 @@ class MediaCollection extends CustomElement {
     });
   }
 
-  onMediaPlay(e) {
+  onMediaPlay(e = {}) {
     var target = e.target;
     this.connected.forEach(function(item) {
       if (item != target) {
