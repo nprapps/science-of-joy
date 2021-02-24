@@ -89,8 +89,9 @@ var pickRandom = function() {
   // maybe you've seen everything?
   if (!available.length) {
     console.log("All stories visited, resetting history");
-    history = new Set();
-    available = storyPaths;
+    var current = hashUtils.getParams().story;
+    history = new Set([current]);
+    available = storyPaths.filter(s => s != current);
   }
   var selected = available[(Math.random() * available.length) | 0];
   history.add(selected);
