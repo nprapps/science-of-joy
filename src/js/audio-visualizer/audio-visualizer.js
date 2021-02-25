@@ -8,11 +8,9 @@ class AudioVisualizer extends CustomElement {
     this.context = this.elements.canvas.getContext("2d");
     this.blobs = [];
     this.dots = [];
-    this.audioContext = new AudioContext();
-    this.analyzer = this.audioContext.createAnalyser();
-    this.analyzer.fftSize = 256;
     this.source = null;
-    this.tick();
+    this.playing = false;
+    this.detail = 64;
   }
 
   static get template() {
@@ -22,7 +20,8 @@ class AudioVisualizer extends CustomElement {
   static get boundMethods() {
     return [
       "render",
-      "onAudio",
+      "getAnalysis",
+      "onMediaPlayEvent",
       "patch",
       "tick"
     ]
@@ -43,17 +42,54 @@ class AudioVisualizer extends CustomElement {
     }
   }
 
-  onAudio() {
-    var bins = new Uint8Array(this.analyzer.fftSize);
-    this.analyzer.getByteTimeDomainData(bins);
-    // var bins = new Uint8Array(this.analyzer.frequencyBinCount);
-    // this.analyzer.getByteFrequencyData(bins);
+  getAnalysis() {
+    if (this.analyzer) {
+      var bins = new Uint8Array(this.analyzer.fftSize);
+      this.analyzer.getByteTimeDomainData(bins);
+      // console.log(bins);
+    } else {
+      // fake it on iOS or old devices
+      var bins = new Uint8Array(this.detail);
+      var now = Date.now();
+      var volume = Math.cos(now * .1);
+      for (var i = 0; i < bins.length; i++) {
+        var frequencies = [.2, .8, 1.3, 2.3, 5];
+        var amplitudes = [.5, .3, .1, .05, .05];
+        var offsets = [.3, .1, .7, 17, 0]
+        var wave = 0;
+        for (var f = 0; f < frequencies.length; f++) {
+          wave += Math.sin((now + i + offsets[f]) * frequencies[f]) * amplitudes[f] * volume;
+        }
+        bins[i] = (wave * 128 + 128);
+      }
+    }
     this.render(bins);
   }
 
+  onMediaPlayEvent(e) {
+    console.log(e.type);
+    this.playing = this.media && !this.media.paused;
+    if (this.playing) {
+      // iOS doesn't support media streams
+      if (this.media.captureStream) {
+        this.audioContext = new AudioContext();
+        this.analyzer = this.audioContext.createAnalyser();
+        this.analyzer.fftSize = this.detail;
+        this.amp = this.audioContext.createGain();
+        this.amp.gain.value = 5;
+        this.amp.connect(this.analyzer);
+        // this.amp.connect(this.audioContext.destination);
+        this.stream = this.media.captureStream();
+        this.source = this.audioContext.createMediaStreamSource(this.stream);
+        this.source.connect(this.amp);
+      }
+      this.tick();
+    }
+  }
+
   tick() {
-    this.onAudio();
-    requestAnimationFrame(this.tick);
+    this.getAnalysis();
+    if (this.playing) requestAnimationFrame(this.tick);
   }
 
   render(bins) {
@@ -77,18 +113,15 @@ class AudioVisualizer extends CustomElement {
     if (element == this.media) return;
     this.unpatch();
     this.media = element;
-    this.source = this.audioContext.createMediaElementSource(element);
-    var gain = this.audioContext.createGain();
-    this.source.connect(gain);
-    gain.connect(this.analyzer);
-    gain.connect(this.audioContext.destination);
-    gain.gain.value = 1;
-    // element.addEventListener("timeupdate", this.onAudio);
+    var events = "play pause playing ended".split(" ");
+    events.forEach(e => element.addEventListener(e, this.onMediaPlayEvent));
   }
 
   unpatch() {
-    if (!this.media) return;
-    this.source.disconnect();
+    if (this.media) {
+      var events = "play pause playing ended".split(" ");
+      events.forEach(e => this.media.removeEventListener(e, this.onMediaPlayEvent));
+    }
   }
 }
 
