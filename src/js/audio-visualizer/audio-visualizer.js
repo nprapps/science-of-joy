@@ -27,9 +27,17 @@ class AudioVisualizer extends CustomElement {
     ]
   }
 
+  static get mirroredProps() {
+    return [
+      "for",
+      "color"
+    ]
+  }
+
   static get observedAttributes() {
     return [
-      "for"
+      "for",
+      "color"
     ]
   }
 
@@ -88,14 +96,21 @@ class AudioVisualizer extends CustomElement {
   }
 
   tick() {
-    this.getAnalysis();
-    if (this.playing) requestAnimationFrame(this.tick);
+    if (this.playing) {
+      this.getAnalysis();
+      requestAnimationFrame(this.tick);
+    } else {
+      this.context.canvas.width = this.context.canvas.width;
+    }
   }
 
   render(bins) {
     var context = this.context;
     var canvas = context.canvas;
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    // context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = this.color || "black";
     var col = canvas.width / bins.length;
     var mid = col >> 1;
     for (var i = 0; i < bins.length; i++) {
@@ -104,7 +119,7 @@ class AudioVisualizer extends CustomElement {
       var x = i * col + mid;
       var y = (canvas.height - 20) * (1 - offset) + 10;
       context.beginPath();
-      context.arc(x, y, 2, 0, Math.PI * 2);
+      context.arc(x, y, mid / 2, 0, Math.PI * 2);
       context.fill();
     }
   }
@@ -115,6 +130,7 @@ class AudioVisualizer extends CustomElement {
     this.media = element;
     var events = "play pause playing ended".split(" ");
     events.forEach(e => element.addEventListener(e, this.onMediaPlayEvent));
+    this.playing = false;
   }
 
   unpatch() {

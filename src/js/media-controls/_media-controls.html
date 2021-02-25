@@ -59,6 +59,8 @@ button.play-pause {
         <path class="pause icon" as="pauseIcon" style="display: none" d="M11,9 L14,9 L14,23 L11,23 L11,9 M18,9 L21,9 L21,23 L18,23 L18,9" />
       </svg>
     </button>
-    <div class="labels" as="labels"></div>
+    <div class="labels" as="labels">
+      <slot as="slot"></slot>
+    </div>
   </div>
 </div>

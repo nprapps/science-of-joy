@@ -12,7 +12,7 @@ require("./audio-visualizer/audio-visualizer");
 require("./stories");
 
 // story-specific code
-require("./asmr");
+require("./stories/nostalgia");
 
 // autoplay management
 var autoChecks = $("input.autoplay");

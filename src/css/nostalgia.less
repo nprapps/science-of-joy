@@ -1,5 +1,49 @@
 
+@keyframes drift {
+  from { transform: rotate(0turn); }
+  to { transform: rotate(1turn); }
+}
+
 web-story#nostalgia {
   background: #f1dcac;
   transition: background 1s linear;
+
+  .clips {
+    audio-visualizer, svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    svg {
+      background: #555;
+    }
+
+    circle {
+      .define(@index, @direction: normal) {
+        &:nth-child(@{index}) {
+          fill: fade(spin(salmon, @index * 43deg), 20%);
+          animation: drift (30s * @index) linear infinite @direction;
+        }
+      }
+
+      fill: none;
+      .define(1);
+      .define(2, reverse);
+      .define(3, reverse);
+      .define(4);
+      .define(5, reverse);
+      .define(6);
+      .define(7, reverse);
+      .define(8, reverse);
+      .define(9);
+      .define(19, reverse);
+    }
+
+    .top {
+      position: relative;
+    }
+  }
 }

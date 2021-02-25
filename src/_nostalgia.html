@@ -32,14 +32,37 @@
   <% }) %>
   <section data-slug="nostalgia-audio">
     <div class="clips">
-      <h3>I want to revisit the tech of the past</h3>
-      <audio id="nostalgia-typing" src="./assets/ignored/138049__pakasit21__typewriter.mp3.mp3"></audio>
-      <audio-visualizer for="nostalgia-typing"></audio-visualizer>
-      <media-controls for="nostalgia-typing" label="The way we used to work"></media-controls>
-      <h3>I miss visiting with my friends</h3>
-      <media-controls src="./assets/ignored/479964__craigsmith__r19-30-bowling-alley.wav.mp3" label="The social experience"></media-controls>
-      <h3>Remember traveling?</h3>
-      <media-controls src="./assets/ignored/479964__craigsmith__r19-30-bowling-alley.wav.mp3" label="Take me on a journey"></media-controls>
+      <svg class="bokeh" viewBox="0 0 10 10" preserveAspectRatio="xMidYMid slice">
+        <filter id="bokeh-blur">
+          <feGaussianBlur in="SourceGraphic" stdDeviation=.2></feGaussianBlur>
+        </filter>
+        <g filter="url(#bokeh-blur)">
+          <% var to = () => (Math.random() * 2 - 1) * 40 + 50 + "%" %>
+          <% for (var i = 0; i < 10; i++) { %>
+          <circle 
+            cx="<%= (Math.random() * 8 | 0) + 1 %>" 
+            cy="<%= (Math.random() * 8 | 0) + 1 %>" 
+            r="<%= (Math.random() * 3 | 0) + 3 %>"
+            style="
+              transform-origin: <%= to() %> <%= to() %>;
+              animation-delay: -<%= Math.random() * 13 | 0 %>s;
+            "
+          ></circle>
+          <% } %>
+          <rect x=0 y=0 width="100%" height="100%" fill="none"></rect>
+        </g>
+      </svg>
+      <audio-visualizer color="white"></audio-visualizer>
+      <div class="top">
+        <h3>Take me back!</h3>
+        <media-controls>
+          <h4 class="clip-label"></h4>
+          <button class="next">Next soundscape</button>
+        </media-controls>
+        <audio id="soundscape-travel" data-label="Going somewhere?" src="./assets/ignored/soundscape_travel.mp3.mp3"></audio>
+        <audio id="soundscape-home" data-label="Staying home" src="./assets/ignored/soundscape_home.mp3.mp3"></audio>
+        <audio id="soundscape-tech" data-label="Beep!" src="./assets/ignored/soundscape_tech.mp3.mp3"></audio>
+      </div>
     </div>
   </section>
   <section>

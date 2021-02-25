@@ -48,10 +48,6 @@ class MediaControls extends CustomElement {
         if (value) watchSelector(`[id="${value}"]`, this.onWatch)
         break;
 
-      case "label":
-        this.elements.labels.innerHTML = value;
-        break;
-
       case "src":
         var media = document.createElement("audio");
         media.src = value;
