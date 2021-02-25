@@ -51,7 +51,7 @@ class AudioVisualizer extends CustomElement {
       // fake it on iOS or old devices
       var bins = new Uint8Array(this.detail);
       var now = Date.now();
-      var volume = Math.cos(now * .1);
+      var volume = Math.cos(now * .06) * Math.cos(now * .7) * Math.cos(now * 2);
       for (var i = 0; i < bins.length; i++) {
         var frequencies = [.2, .8, 1.3, 2.3, 5];
         var amplitudes = [.5, .3, .1, .05, .05];
@@ -67,9 +67,9 @@ class AudioVisualizer extends CustomElement {
   }
 
   onMediaPlayEvent(e) {
-    console.log(e.type);
+    var wasPlaying = this.playing;
     this.playing = this.media && !this.media.paused;
-    if (this.playing) {
+    if (this.playing && !wasPlaying) {
       // iOS doesn't support media streams
       if (this.media.captureStream) {
         this.audioContext = new AudioContext();
