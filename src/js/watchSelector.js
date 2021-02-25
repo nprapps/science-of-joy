@@ -1,6 +1,7 @@
 /*
 
-Register functions to be notified if a specific selector matches (or stops matching)
+Register functions to be notified if a specific selector matches (or stops
+matching). Used for the for/id relationship of various media control elements.
 
 */
 

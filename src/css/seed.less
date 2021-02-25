@@ -1,4 +1,5 @@
 @import "base";
+@import "story-transitions";
 @import "web-story";
 @import "chooser";
 
@@ -11,41 +12,4 @@
 @import "intro";
 @import "nostalgia";
 
-// story transition styles
-@keyframes fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
 
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes spin-out {
-  from { transform: rotate(0) scale(1); }
-  to { transform: rotate(720deg) scale(2); }
-}
-
-@keyframes spin-in {
-  to { transform: rotate(0) scale(1); }
-  from { transform: rotate(720deg) scale(2); }
-}
-
-@keyframes zoom {
-  from { transform: scale(2); }
-  to { transform: scale(1); }
-}
-
-.exiting {
-  animation-name: fade-out;
-  animation-duration: 400ms;
-  animation-timing-function: linear, ease;
-  animation-fill-mode: both;
-}
-
-.entering {
-  animation-name: fade-in;
-  animation-duration: 400ms;
-  animation-fill-mode: both;
-}

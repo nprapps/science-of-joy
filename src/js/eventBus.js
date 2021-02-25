@@ -1,3 +1,9 @@
+/*
+
+Use this to broadcast events regardless of DOM relationships. Used for things
+like announcing media playback in one place, so that other media can gracefully halt.
+
+*/
 var events = {};
 
 var on = function(e, callback) {

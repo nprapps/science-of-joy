@@ -1,3 +1,9 @@
+/*
+
+Utilities for treating the hash like a URL search parameter interface.
+
+*/
+
 var getParams = function() {
   var hash = window.location.hash.replace(/^#/, "");
   var params = new URLSearchParams(hash);
@@ -12,7 +18,13 @@ var setParams = function(params) {
   window.location.hash = "#" + usp.toString();
 };
 
+var updateParams = function(update) {
+  var params = Object.assign(getParams(), update);
+  setParams(params);
+}
+
 module.exports = {
   getParams,
-  setParams
+  setParams,
+  updateParams
 }
