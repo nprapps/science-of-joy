@@ -10,7 +10,7 @@ class AudioVisualizer extends CustomElement {
     this.dots = [];
     this.source = null;
     this.playing = false;
-    this.detail = 64;
+    this.detail = 128;
   }
 
   static get template() {
@@ -119,7 +119,7 @@ class AudioVisualizer extends CustomElement {
       var x = i * col + mid;
       var y = (canvas.height - 20) * (1 - offset) + 10;
       context.beginPath();
-      context.arc(x, y, mid / 2, 0, Math.PI * 2);
+      context.arc(x, y, Math.max(1, mid / 2), 0, Math.PI * 2);
       context.fill();
     }
   }
