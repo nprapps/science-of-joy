@@ -123,8 +123,10 @@ void main() {
   color = merge(color, vec4(SALMON, ALPHA * c));
 
   vec2 grainRez = u_resolution.xy / vec2(3.0, 5.0);
-  vec2 grain = floor(uv * grainRez) / grainRez;
-  color -= smoothstep(.5, 1.0, random(grain * moment)) * .05;
+  vec2 grainCells = floor(uv * grainRez) / grainRez;
+  float grainTime = mod(moment, 1000.0);
+  float grain = smoothstep(.5, 1.0, random(grainCells * grainTime)) * .05;
+  color -= grain;
 
   gl_FragColor = color;
 }
