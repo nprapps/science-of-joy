@@ -118,8 +118,9 @@ void main() {
   c = blob(uv + vec2(co2, si2 * 2.0), .5, .1);
   color = merge(color, vec4(CADET, .2 * c));
 
-  color += random(uv * u_time * .0001) * .1;
-  // color = mix(color, vec4(.2, .2, .2, 1.0), .5);
+  vec2 grainRez = u_resolution.xy / vec2(3.0, 5.0);
+  vec2 grain = floor(uv * grainRez) / grainRez;
+  color -= smoothstep(.5, 1.0, random(grain * moment)) * .05;
 
   gl_FragColor = color;
 }
