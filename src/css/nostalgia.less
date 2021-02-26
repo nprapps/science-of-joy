@@ -9,7 +9,7 @@ web-story#nostalgia {
   transition: background 1s linear;
 
   .clips {
-    audio-visualizer, svg, shader-box {
+    .pinned() {
       position: absolute;
       top: 0;
       left: 0;
@@ -18,7 +18,19 @@ web-story#nostalgia {
     }
 
     svg, shader-box {
+      .pinned();
       background: #555;
+    }
+
+    audio-visualizer {
+      .pinned();
+
+      @media @portrait {
+        top: 50%;
+        height: 50vh;
+        max-heigh: 400px;
+        transform: translateY(-50%);
+      }
     }
 
     circle {

@@ -59,7 +59,8 @@ class AudioVisualizer extends CustomElement {
       // fake it on iOS or old devices
       var bins = new Uint8Array(this.detail);
       var now = Date.now();
-      var volume = Math.cos(now * .06) * Math.cos(now * .7) * Math.cos(now * 2);
+      var env = Math.sin(this.media.currentTime / this.media.duration * Math.PI);
+      var volume = Math.cos(now * .06) * Math.cos(now * .7) * Math.cos(now * 2) * env;
       for (var i = 0; i < bins.length; i++) {
         var frequencies = [.2, .8, 1.3, 2.3, 5];
         var amplitudes = [.5, .3, .1, .05, .05];
@@ -68,7 +69,7 @@ class AudioVisualizer extends CustomElement {
         for (var f = 0; f < frequencies.length; f++) {
           wave += Math.sin((now + i + offsets[f]) * frequencies[f]) * amplitudes[f] * volume;
         }
-        bins[i] = (wave * 128 + 128);
+        bins[i] = (wave * 64 + 128);
       }
     }
     this.render(bins);

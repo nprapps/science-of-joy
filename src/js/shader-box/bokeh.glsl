@@ -80,7 +80,9 @@ void main() {
   vec3 THISTLE = rgb255(216.0, 191.0, 216.0);
   vec3 WHEAT = rgb255(245.0, 222.0, 179.0);
 
-  vec4 color = vec4(0.2, 0.2, 0.2, 1.0);
+  float ALPHA = .5;
+
+  vec4 color = vec4(0.4, 0.4, 0.4, 1.0);
 
   float moment = u_time * .0001;
   float co = cos(moment);
@@ -89,34 +91,34 @@ void main() {
   float si2 = sin(moment * 1.4);
 
   float c = blob(uv + vec2(si2, co * .3), .5, .05);
-  color = merge(color, vec4(SALMON, .2 * c));
+  color = merge(color, vec4(SALMON, ALPHA * c));
 
   c = blob(uv + vec2(-.8, -.7) + vec2(co * .1, si2 * .4), .3, .05);
-  color = merge(color, vec4(THISTLE, .2 * c));
+  color = merge(color, vec4(THISTLE, ALPHA * c));
 
   c = blob(uv + vec2(.1, .8) + vec2(co * .8, co * .3), .6, .05);
-  color = merge(color, vec4(WHEAT, .2 * c));
+  color = merge(color, vec4(WHEAT, ALPHA * c));
 
   c = blob(uv + vec2(.4, -.3) + vec2(si * .2, si * .2), .6, .05);
-  color = merge(color, vec4(OLIVE, .2 * c));
+  color = merge(color, vec4(OLIVE, ALPHA * c));
 
   c = blob(uv + vec2(0.8, -.3) + vec2(co, si), .5, .1);
-  color = merge(color, vec4(CADET, .2 * c));
+  color = merge(color, vec4(CADET, ALPHA * c));
 
   c = blob(uv + vec2(si, co), .5, .05);
-  color = merge(color, vec4(SALMON, .2 * c));
+  color = merge(color, vec4(SALMON, ALPHA * c));
 
   c = blob(uv + vec2(co2 * .1, si), .3, .05);
-  color = merge(color, vec4(THISTLE, .2 * c));
+  color = merge(color, vec4(THISTLE, ALPHA * c));
 
   c = blob(uv + vec2(co * .1, co2 * .1), .6, .05);
-  color = merge(color, vec4(WHEAT, .2 * c));
+  color = merge(color, vec4(WHEAT, ALPHA * c));
 
   c = blob(uv + vec2(si2 * .6, si2 * .6), .6, .05);
-  color = merge(color, vec4(OLIVE, .2 * c));
+  color = merge(color, vec4(OLIVE, ALPHA * c));
 
   c = blob(uv + vec2(co2, si2 * 2.0), .5, .1);
-  color = merge(color, vec4(CADET, .2 * c));
+  color = merge(color, vec4(CADET, ALPHA * c));
 
   vec2 grainRez = u_resolution.xy / vec2(3.0, 5.0);
   vec2 grain = floor(uv * grainRez) / grainRez;
