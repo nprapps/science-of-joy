@@ -12,7 +12,6 @@ const POLYS = [
 class ShaderBox extends CustomElement {
   constructor() {
     super();
-    var gl = this.gl = this.elements.canvas.getContext("webgl");
     this.observer = new IntersectionObserver(this.onIntersection);
     this.observer.observe(this);
 
@@ -20,6 +19,12 @@ class ShaderBox extends CustomElement {
     this.raf = null;
     this.program = null;
 
+    this.initGL();
+    this.elements.canvas.addEventListener("webglcontextlost", this.recover);
+  }
+
+  initGL() {
+    var gl = this.gl = this.elements.canvas.getContext("webgl");
     var vertex = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vertex, `
     attribute vec2 coord;
@@ -38,7 +43,8 @@ class ShaderBox extends CustomElement {
   static get boundMethods() {
     return [
       "onIntersection",
-      "tick"
+      "tick",
+      "recover"
     ];
   }
 
@@ -75,11 +81,21 @@ class ShaderBox extends CustomElement {
     }
   }
 
+  recover() {
+    var uniforms = this.gl.uniforms;
+    this.initGL();
+    Object.assign(this.gl.uniforms, uniforms);
+    if (this.shaderCache) {
+      this.setShader(this.shaderCache);
+    }
+  }
+
   setShader(shader) {
     var gl = this.gl;
     var fragment = gl.createShader(gl.FRAGMENT_SHADER);
     gl.shaderSource(fragment, shader);
     gl.compileShader(fragment);
+    this.shaderCache = shader;
 
     var error = gl.getShaderInfoLog(fragment);
     if (error) {
@@ -105,7 +121,6 @@ class ShaderBox extends CustomElement {
     };
     for (var u in gl.uniforms) gl.uniforms[u] = gl.getUniformLocation(program, u);
 
-    if (this.raf) cancelAnimationFrame(this.raf);
     this.tick();
   }
 
@@ -121,13 +136,14 @@ class ShaderBox extends CustomElement {
   onIntersection([e]) {
     this.visible = e.isIntersecting;
     if (this.visible) this.tick();
+    // seems to prevent cyan flash on some GPUs
+    this.elements.canvas.style.opacity = this.visible ? 1 : 0;
   }
 
   tick(t) {
     if (!this.visible) return;
-    if (this.gl.program) {
-      this.render(t);
-    }
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.gl.program) this.render(t);
     this.raf = requestAnimationFrame(this.tick);
   }
 
