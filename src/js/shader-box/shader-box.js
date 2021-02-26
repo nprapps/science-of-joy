@@ -30,6 +30,8 @@ class ShaderBox extends CustomElement {
     gl.compileShader(vertex);
     gl.vertex = vertex;
 
+    this.requesting = null;
+
     this.buffer = gl.createBuffer();
   }
 
@@ -38,6 +40,39 @@ class ShaderBox extends CustomElement {
       "onIntersection",
       "tick"
     ];
+  }
+
+  static get observedAttributes() {
+    return [
+      "src"
+    ]
+  }
+
+  static get mirroredProps() {
+    return [
+      "src"
+    ]
+  }
+
+  attributeChangedCallback(attr, was, value) {
+    switch (attr) {
+      case "src":
+        if (was == value) return;
+        if (this.requesting) {
+          this.requesting.abort();
+        }
+        var options = {};
+        if ("AbortController" in window) {
+          this.requesting = new AbortController();
+          options.signal = this.requesting.signal;
+        }
+        fetch(value, options).then(async response => {
+          this.requesting = null;
+          var source = await response.text();
+          this.setShader(source);
+        }).catch(err => {});
+        break;
+    }
   }
 
   setShader(shader) {
