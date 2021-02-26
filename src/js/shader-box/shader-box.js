@@ -109,6 +109,15 @@ class ShaderBox extends CustomElement {
     this.tick();
   }
 
+  setUniform(name, ...values) {
+    var gl = this.gl;
+    if (!gl.uniforms[name]) {
+      gl.uniforms[name] = gl.getUniformLocation(gl.program, name);
+    }
+    var method = `uniform${values.length}f`;
+    gl[method](gl.uniforms[name], ...values);
+  }
+
   onIntersection([e]) {
     this.visible = e.isIntersecting;
     if (this.visible) this.tick();

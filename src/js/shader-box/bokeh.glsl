@@ -2,6 +2,9 @@ precision highp float;
 uniform vec2 u_resolution;
 uniform float u_time;
 
+// custom uniforms
+uniform vec3 u_background;
+
 // generates pseudo-random noise from an x/y value
 // Not really random--calling with the same input
 // returns the same output
@@ -89,6 +92,8 @@ void main() {
   float si2 = sin(moment * 1.4);
 
   vec4 color = vec4(0.4, 0.3, 0.3, 1.0);
+  // vec4 color = vec4(u_background, 1.0);
+
   // gradient fill
   color = mix(color, vec4(0.3, 0.2, 0.1, 1.0), length(uv) * co);
 
