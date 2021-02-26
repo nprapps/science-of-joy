@@ -7,6 +7,7 @@ require("./media-controls/media-controls");
 require("./media-mute/media-mute");
 require("./media-collection/media-collection");
 require("./audio-visualizer/audio-visualizer");
+require("./shader-box/shader-box");
 
 // general story architecture
 require("./stories");

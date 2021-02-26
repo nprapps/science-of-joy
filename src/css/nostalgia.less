@@ -9,7 +9,7 @@ web-story#nostalgia {
   transition: background 1s linear;
 
   .clips {
-    audio-visualizer, svg {
+    audio-visualizer, svg, shader-box {
       position: absolute;
       top: 0;
       left: 0;
@@ -17,7 +17,7 @@ web-story#nostalgia {
       height: 100%;
     }
 
-    svg {
+    svg, shader-box {
       background: #555;
     }
 
@@ -44,6 +44,23 @@ web-story#nostalgia {
 
     .top {
       position: relative;
+    }
+
+    h4 {
+      margin: 0;
+      text-align: center;
+      .gotham();
+    }
+
+    button.next {
+      background: white;
+      color: black;
+      padding: 8px;
+      border: none;
+      border-radius: 8px;
+      .gotham();
+      margin: 4px auto;
+      display: block;
     }
   }
 }

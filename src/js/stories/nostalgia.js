@@ -6,6 +6,10 @@ var nextButton = $soundscapes.one(".next");
 var label = $soundscapes.one(".clip-label");
 var controls = $soundscapes.one("media-controls");
 var viz = $soundscapes.one("audio-visualizer");
+var shaderBox = $soundscapes.one("shader-box");
+
+var fragment = require("../shader-box/bokeh.glsl");
+shaderBox.setShader(fragment);
 
 var index = Math.random() * tracks.length | 0;
 
