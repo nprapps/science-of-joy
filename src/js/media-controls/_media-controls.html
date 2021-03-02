@@ -1,7 +1,7 @@
 <style>
 :host {
   --button-fg: currentColor;
-  --button-bg: none;
+  --button-bg: transparent;
   display: block;
 }
 
@@ -14,6 +14,7 @@
 button.play-pause {
   background: transparent;
   border: none;
+  color: inherit;
 }
 
 .play-pause svg {
@@ -41,7 +42,7 @@ button.play-pause {
 }
 
 .labels {
-  max-width: var(--label-width, 150px);
+  max-width: var(--label-width, auto);
   font-size: 20px;
   font-family: var(--button-face, "Georgia");
   padding: 4px;

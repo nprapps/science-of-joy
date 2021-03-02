@@ -1,6 +1,6 @@
 var $ = require("../lib/qsa");
 
-var $soundscapes = $.within("#nostalgia .clips");
+var $soundscapes = $.within("#nostalgia .soundscapes");
 var tracks = $soundscapes("audio");
 var nextButton = $soundscapes.one(".next");
 var label = $soundscapes.one(".clip-label");
