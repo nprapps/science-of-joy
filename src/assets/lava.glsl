@@ -23,9 +23,9 @@ void main() {
       sin(rand(i + rand(i)) + i + t * rand(i)) * .5 + .5
     );
     float size = i * 0.02;
-    d += smoothstep(.9, .7, distance(center, coord) / size);
+    d += smoothstep(.9, .3, distance(center, coord) / size);
   }
-  float lava = step(d, .4);
+  float lava = step(d, .2);
   float uColorSet = step(0.01, u_color.r + u_color.g + u_color.b);
   vec3 pigment = mix(plastic, u_color, uColorSet);
   vec3 foreground = mix(pigment * (.8 + smoothstep(.1, .9, d) * .2), vec3(1.0), .3 - coord.y * .3);
