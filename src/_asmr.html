@@ -33,7 +33,7 @@ var last = slides.pop();
     </div>
   </section>
   <% }) %>
-  <section>
+  <section data-slug="video-grid">
     <shader-box class="backdrop"></shader-box>
     <div class="wide content">
       <%= last.text %>
@@ -47,8 +47,8 @@ var last = slides.pop();
       </media-collection>
     </div>
   </section>
-  <section>
-    <shader-box class="backdrop" src="./assets/hypnotic.glsl"></shader-box>
+  <section data-slug="asmr-chooser">
+    <shader-box class="chooser backdrop" src="./assets/lava.glsl"></shader-box>
     <%= t.include("_chooser.html") %>
   </section>
 </web-story>

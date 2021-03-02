@@ -25,7 +25,8 @@
     <div class="content"><%= t.renderMarkdown(slide.text) %></div>
   </section>
   <% }) %>
-  <section>
+  <section data-slug="<%= id %>-chooser">
+    <shader-box class="backdrop" src="./assets/lava.glsl"></shader-box>
     <%= t.include("_chooser.html") %>
   </section>
 </web-story>
