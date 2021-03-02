@@ -22,6 +22,7 @@ class MediaMute extends CustomElement {
     return [
       "onWatch",
       "onClickedMute",
+      "onVolumeChange",
       "onPlayEvent"
     ];
   }
@@ -53,6 +54,7 @@ class MediaMute extends CustomElement {
       this.disconnect();
     }
     // subscribe to events
+    element.addEventListener("volumechange", this.onVolumeChange);
     this.media = element;
     if (element) {
       element.muted = true;
@@ -62,12 +64,18 @@ class MediaMute extends CustomElement {
 
   disconnect() {
     if (!this.media) return;
+    this.media.removeEventListener("volumechange", this.onVolumeChange);
     this.media = null;
   }
 
   onWatch(element) {
     if (this.src) return;
     this.connect(element);
+  }
+
+  onVolumeChange() {
+    if (!this.media) return;
+    this.toggleMuted(this.media.muted);    
   }
 
   toggleMuted(update) {
