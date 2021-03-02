@@ -21,6 +21,12 @@ class ShaderBox extends CustomElement {
 
     this.initGL();
     this.elements.canvas.addEventListener("webglcontextlost", this.recover);
+
+    this.mutationObserver = new MutationObserver(this.onMutation);
+    this.mutationObserver.observe(this, {
+      childList: true,
+      attributes: true
+    });
   }
 
   initGL() {
@@ -43,6 +49,7 @@ class ShaderBox extends CustomElement {
   static get boundMethods() {
     return [
       "onIntersection",
+      "onMutation",
       "tick",
       "recover"
     ];
@@ -121,6 +128,8 @@ class ShaderBox extends CustomElement {
     };
     for (var u in gl.uniforms) gl.uniforms[u] = gl.getUniformLocation(program, u);
 
+    this.onMutation();
+
     this.tick();
   }
 
@@ -131,6 +140,15 @@ class ShaderBox extends CustomElement {
     }
     var method = `uniform${values.length}f`;
     gl[method](gl.uniforms[name], ...values);
+  }
+
+  onMutation() {
+    var uniforms = Array.from(this.children).filter(t => t.tagName == "SHADER-UNIFORM");
+    for (var uniform of uniforms) {
+      var name = uniform.getAttribute("name");
+      var values = uniform.getAttribute("values").split(/, */).map(Number);
+      this.setUniform(name, ...values);
+    }
   }
 
   onIntersection([e]) {

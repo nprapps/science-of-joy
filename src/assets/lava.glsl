@@ -2,6 +2,7 @@ precision highp float;
 
 uniform vec2 u_resolution;
 uniform float u_time;
+uniform vec3 u_color;
 const vec3 top = vec3(.8, .7, .7);
 const vec3 bottom = vec3(.9, .7, .7);
 const vec3 plastic = vec3(.8, .2, .1);
@@ -25,8 +26,10 @@ void main() {
     d += smoothstep(.9, .7, distance(center, coord) / size);
   }
   float lava = step(d, .4);
-  vec3 foreground = mix(plastic * (.8 + smoothstep(.1, .9, d) * .2), vec3(1.0), .3 - coord.y * .3);
-  vec3 background = mix(bottom, top, coord.y);
+  float uColorSet = step(0.01, u_color.r + u_color.g + u_color.b);
+  vec3 pigment = mix(plastic, u_color, uColorSet);
+  vec3 foreground = mix(pigment * (.8 + smoothstep(.1, .9, d) * .2), vec3(1.0), .3 - coord.y * .3);
+  vec3 background = mix(pigment * .4 + .5, pigment * .2 + .8, coord.y);
   vec3 color = mix(foreground, background, lava);
   gl_FragColor = vec4(color, 1.0);
 }

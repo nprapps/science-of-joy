@@ -61,7 +61,9 @@
     </div>
   </section>
   <section data-slug="nostalgia-chooser">
-    <shader-box class="backdrop" src="./assets/lava.glsl"></shader-box>
+    <shader-box class="backdrop" src="./assets/lava.glsl">
+      <shader-uniform name="u_color" values=".5,0,.5"></shader-uniform>
+    </shader-box>
     <%= t.include("_chooser.html") %>
   </section>
 </web-story>
