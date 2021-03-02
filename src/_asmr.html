@@ -1,4 +1,9 @@
-<% var section = grunt.data.archieml.text.pages.asmr; %>
+<% 
+var section = grunt.data.archieml.text.pages.asmr; 
+var slides = section.slides.slice();
+var last = slides.pop();
+
+%>
 <web-story id="asmr" class="story-route">
   <% if (section.metadata) { %>
   <section data-slug="title">
@@ -17,7 +22,7 @@
     </div>
   </section>
   <% } %>
-  <% section.slides.forEach(function(slide, index) { %>
+  <% slides.forEach(function(slide, index) { %>
   <section data-slug="<%= slide.slug %>">
     <% if (slide.video) { %>
     <video class="backdrop" id="asmr-bg-<%= index %>" loop autoplay muted data-src="./assets/<%= slide.video %>"></video>
@@ -29,14 +34,18 @@
   </section>
   <% }) %>
   <section>
-    <media-collection class="grid">
-      <!-- <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 4px"> -->
-        <video loop src="./assets/ignored/ASMR-sand-cutting.mp4"></video>
-        <video loop src="./assets/ignored/ASMR-sand-bubbles.mp4"></video>
-        <video loop src="./assets/ignored/ASMR-sand-stir.mp4"></video>
-        <video loop src="./assets/ignored/ASMR-sand-mix.mp4"></video>
-      <!-- </div> -->
-    </media-collection>
+    <shader-box class="backdrop"></shader-box>
+    <div class="wide content">
+      <%= last.text %>
+      <media-collection class="grid">
+        <!-- <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 4px"> -->
+          <video loop src="./assets/ignored/ASMR-sand-cutting.mp4"></video>
+          <video loop src="./assets/ignored/ASMR-sand-bubbles.mp4"></video>
+          <video loop src="./assets/ignored/ASMR-sand-stir.mp4"></video>
+          <video loop src="./assets/ignored/ASMR-sand-mix.mp4"></video>
+        <!-- </div> -->
+      </media-collection>
+    </div>
   </section>
   <section>
     <%= t.include("_chooser.html") %>

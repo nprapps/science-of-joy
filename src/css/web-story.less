@@ -29,6 +29,10 @@ web-story {
     max-width: 400px;
     text-align: left;
 
+    &.wide {
+      max-width: calc(~"100% - 20px");
+    }
+
     h2 {
       font-size: 48px;
       font-family: @handwriting;

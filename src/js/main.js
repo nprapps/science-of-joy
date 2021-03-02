@@ -12,11 +12,9 @@ require("./shader-box/shader-box");
 // general story architecture
 require("./stories");
 
-// intro
-var shaderBox = $.one("#intro shader-box");
-shaderBox.setShader(require("./shader-box/voronoi.glsl"));
-
 // story-specific code
+require("./stories/intro");
+require("./stories/asmr");
 require("./stories/nostalgia");
 
 // autoplay management
