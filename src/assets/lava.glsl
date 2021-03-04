@@ -17,7 +17,7 @@ void main() {
   coord.x *= aspect;
   float t = u_time * .0003;
   float d = 0.0;
-  for (float i = 0.0; i < 12.0; i++) {
+  for (float i = 0.0; i < 16.0; i++) {
     vec2 center = vec2(
       cos(rand(i - rand(i)) + i - t * (rand(i) - .5)) * .5 + .5 * aspect,
       sin(rand(i + rand(i)) + i + t * rand(i)) * .5 + .5

@@ -6,7 +6,7 @@ var events = require("./eventBus");
 var wait = (d = 1000) => new Promise(ok => setTimeout(ok, d));
 
 var history = new Set();
-var storyPaths = $(".story-route:not(#intro)").map(s => s.id);
+var storyPaths = $(".story-route:not(.exclude-random)").map(s => s.id);
 var intro = $("#intro");
 
 var setStory = async function(story) {
