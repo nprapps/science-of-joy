@@ -1,0 +1,26 @@
+<section data-slug="<%= id %>-audio" class="soundscapes">
+
+  <shader-box></shader-box>
+
+  <audio-visualizer color="white"></audio-visualizer>
+
+  <div class="content">
+    <%= t.renderMarkdown(slide.text) %>
+    <div class="clips">
+
+      <div class="top">
+        <media-controls>
+          <h4 class="clip-label"></h4>
+          <button class="next">Next soundscape</button>
+        </media-controls>
+        <% for (var s of slide.soundscapes) { %>
+        <audio 
+          id="soundscape-<%= s.id %>" 
+          data-label="<%= s.label %>" 
+          src="<%= s.audio %>"
+        ></audio>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>

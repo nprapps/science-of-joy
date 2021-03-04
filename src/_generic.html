@@ -1,30 +1,28 @@
-<% var section = grunt.data.archieml.text.pages[id]; %>
+<% 
+  var section = grunt.data.archieml.text.pages[id];
+  var { metadata, slides } = section;
+%>
 <web-story id="<%= id %>" class="story-route">
-  <% if (section.metadata) { %>
+  <% if (metadata) { %>
   <section data-slug="title">
-    <% if (section.metadata.video) { %>
+    <% if (metadata.video) { %>
     <video
       class="backdrop"
       loop autoplay muted
-      data-src="./assets/<%= section.metadata.video %>"
+      data-src="./assets/<%= metadata.video %>"
       id="title-video"
     ></video>
     <% } %>
     <div class="content">
-      <h2><%= section.metadata.title %></h2>
-      <h3><%= section.metadata.subtitle %></h3>
+      <h2><%= metadata.title %></h2>
+      <h3><%= metadata.subtitle %></h3>
       <input type="checkbox" checked class="autoplay"> Autoplay video?
     </div>
   </section>
   <% } %>
-  <% section.slides.forEach(function(slide) { %>
-  <section data-slug="<%= slide.slug %>">
-    <% if (slide.video) { %>
-    <video class="backdrop" loop autoplay muted data-src="./assets/<%= slide.video %>"></video>
-    <% } %>
-    <div class="content"><%= t.renderMarkdown(slide.text) %></div>
-  </section>
-  <% }) %>
+  <% for (var slide of slides) {
+    print(t.include(`slides/_${slide.template || "generic"}.html`, { slide, id })); 
+  } %>
   <section data-slug="<%= id %>-chooser">
     <shader-box class="backdrop" src="./assets/lava.glsl"></shader-box>
     <%= t.include("_chooser.html") %>

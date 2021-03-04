@@ -1,0 +1,6 @@
+<section data-slug="<%= slide.slug %>">
+  <% if (slide.video) { %>
+  <video class="backdrop" loop autoplay muted data-src="./assets/<%= slide.video %>"></video>
+  <% } %>
+  <div class="content"><%= t.renderMarkdown(slide.text) %></div>
+</section>
