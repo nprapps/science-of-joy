@@ -8,6 +8,7 @@ require("./media-mute/media-mute");
 require("./media-collection/media-collection");
 require("./audio-visualizer/audio-visualizer");
 require("./shader-box/shader-box");
+require("./simple-video/simple-video");
 
 // general story architecture
 require("./stories");

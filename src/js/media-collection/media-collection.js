@@ -52,7 +52,7 @@ class MediaCollection extends CustomElement {
   onMediaPlay(e = {}) {
     var target = e.target;
     this.connected.forEach(function(item) {
-      if (item != target) {
+      if (item != target && item.pause) {
         item.pause();
       }
     });
