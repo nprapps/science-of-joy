@@ -1,5 +1,5 @@
-<% 
-var section = grunt.data.archieml.text.pages.asmr; 
+<%
+var section = grunt.data.archieml.text.pages.asmr;
 var slides = section.slides.slice();
 var last = slides.pop();
 
@@ -29,12 +29,12 @@ var last = slides.pop();
     <% } %>
     <div class="content">
       <%= t.renderMarkdown(slide.text) %>
-      <media-mute for="asmr-bg-<%= index %>"></media-mute>  
+      <media-mute for="asmr-bg-<%= index %>"></media-mute>
     </div>
   </section>
   <% }) %>
   <section data-slug="video-grid">
-    <shader-box class="backdrop"></shader-box>
+    <!-- <shader-box class="backdrop"></shader-box> -->
     <div class="wide content">
       <%= last.text %>
       <media-collection class="grid">
