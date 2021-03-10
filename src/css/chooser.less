@@ -61,14 +61,19 @@
     &.random-choice {
       border-radius: 70px 50px 70px 40px;
       margin-bottom: 20px;
-      background: var(--buttons-bg);
+      background: var(--buttons-bg-light);
       position: relative;
+
+      &:hover, &:focus {
+        background: var(--nav-bg);
+        color: var(--buttons-bg);
+      }
 
       &::after {
         content: "";
         display: block;
         position: absolute;
-        border-color: var(--buttons-bg);
+        border-color: var(--buttons-bg-light);
         border-style: solid;
         border-width: 2px 1px 3px 2px;
         top: 0;
@@ -93,8 +98,9 @@
         border: none;
       }
 
-      &:focus::after {
+      &:focus::after, &:hover::after {
         border: 2px dashed var(--buttons-bg);
+        // background: var(--buttons-bg);
       }
     }
   }

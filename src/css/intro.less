@@ -21,42 +21,95 @@
     object-fit: cover;
   }
 
-  & sketch-svg svg {
-    // display: none;
-    position: fixed;
-    pointer-events: none;
-    left: calc(60%);
-    bottom: 50px;
-    height: 100px;
-    width: 100px;
-    stroke-width: 50;
-    transform: rotate(-20deg);
+  & sketch-svg {
 
-    @media @mobile {
-      height: 80px;
-      width: 80px;
-      transform: rotate(0deg);
+    &.arrow svg  {
+      // display: none;
+      position: fixed;
+      pointer-events: none;
+      left: calc(60%);
+      bottom: 50px;
+      height: 150px;
+      width: 150px;
+      stroke-width: 50;
+      transform: rotate(-20deg);
+
+      @media @mobile {
+        height: 80px;
+        width: 80px;
+        left: calc(50%);
+        transform: rotate(10deg);
+        bottom: 80px;
+      }
+    }
+
+    &.surprise svg {
+      position: fixed;
+      pointer-events: none;
+      left: calc(25%);
+      bottom: 200px;
+      height: 100px;
+      width: 100px;
+      stroke-width: 50;
+      transform: rotate(-20deg);
+
+      @media @mobile {
+        height: 50px;
+        width: 50px;
+        left: calc(2%);
+        bottom: 250px;
+      }
+    }
+
+    &.soothe svg {
+      position: fixed;
+      pointer-events: none;
+      left: calc(65% + 50px);
+      bottom: 90px;
+      height: 100px;
+      width: 100px;
+      stroke-width: 50;
+      transform: rotate(20deg);
+
+      @media @mobile {
+        height: 60px;
+        width: 60px;
+        left: calc(70%);
+        bottom: 80px;
+        stroke-width: 25;
+      }
     }
   }
 
   h1 {
-    font-family: @handwriting;
+    font-family: @gotham;
     margin: 10px;
-    font-size: 45px;
+    font-size: 72px;
     text-align: center;
     color: white;
     line-height: 50px;
+    padding-bottom: 33px;
+
+    @media @mobile {
+      font-size: 36px;
+      padding-bottom: 0;
+    }
   }
 
   h2 {
     // font-family: @gotham;
-    font-family: @handwriting;
+    font-family: @gotham;
     // text-transform: uppercase;
     max-width: 300px;
-    font-size: 36px;
+    font-size: 20px;
     text-align: center;
     color: white;
+    font-weight: 350;
     // text-shadow: 0 0 8px #FFA;
+
+    @media @mobile {
+      font-size: 18px;
+    }
   }
 
   p {
@@ -64,17 +117,22 @@
     font-size: 20px;
     color: white;
     margin: 0;
+
+    @media @mobile {
+      font-size: 14px;
+    }
   }
 
   .bubble {
-    border-radius: 160px 130px 160px 120px;
+    // border-radius: 160px 130px 160px 120px;
+    border-radius: 50px; 
     background-color: fade(black, 70%);
     color: white;
     font-family: @gotham;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 14px;
     padding: 50px;
     text-align: center;
 
@@ -89,8 +147,8 @@
 
     &.instruction {
       border-radius: 120px 160px 130px 200px;
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
       // background: fade(@unbiased, 40%);
       background-color: #ffdf61;
       color: black;
@@ -104,26 +162,26 @@
         border-color: var(--buttons-bg);
         border-style: solid;
         border-width: 3px 2px 4px 3px;
-        top: calc(50%);
-        left: calc(50% - 100px);
-        width: 200px;
-        height: 200px;
+        top: calc(50% - 15px);
+        left: calc(50% - 80px);
+        width: 150px;
+        height: 150px;
         transform-origin: center;
         transform: rotate(-50deg);
         border-radius: inherit;
       }
 
       @media @mobile {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
         padding: 20px;
-        font-size: 16px;
+        font-size: 14px;
 
         &::after {
-          width: 150px;
-          height: 150px;
-          top: calc(50% + 10px);
-          left: calc(50% - 80px);
+          width: 120px;
+          height: 120px;
+          top: calc(50% - 5px);
+          left: calc(50% - 60px);
           transform: rotate(-50deg);
         }
       }

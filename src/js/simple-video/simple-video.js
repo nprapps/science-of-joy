@@ -4,7 +4,7 @@ require("../media-controls/media-controls");
 class SimpleVideo extends CustomElement {
   constructor() {
     super();
-    
+
     // proxy video events/methods/properties
     var { video } = this.elements;
     ["timeupdate", "play", "pause", "load", "canplay"].forEach(type => video.addEventListener(type, this.proxyEvent));

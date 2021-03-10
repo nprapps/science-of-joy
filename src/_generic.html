@@ -1,4 +1,4 @@
-<% 
+<%
   var section = grunt.data.archieml.text.pages[id];
   var { metadata, slides } = section;
 %>
@@ -16,13 +16,13 @@
     <div class="content">
       <h2><%= metadata.title %></h2>
       <h3><%= metadata.subtitle %></h3>
-      <input type="checkbox" checked class="autoplay"> Autoplay video?
+      <input type="checkbox" checked class="autoplay"> <span class="autoplay-text">Autoplay video?</span>
     </div>
   </section>
   <% } %>
   <% for (var index = 0; index < slides.length; index++) {
     var slide = slides[index];
-    print(t.include(`slides/_${slide.template || "generic"}.html`, { slide, id, index })); 
+    print(t.include(`slides/_${slide.template || "generic"}.html`, { slide, id, index }));
   } %>
   <section data-slug="<%= id %>-chooser">
     <shader-box class="backdrop" src="./assets/lava.glsl"></shader-box>

@@ -4,6 +4,7 @@ web-story {
   --controls-bg: fade(black, 20%);
   --buttons-bg: #ffdf61;
   --buttons-fg: black;
+  --buttons-bg-light: rgba(255, 223, 97, 0.8);
   --nav-bg: rgba(255, 223, 97, 0);
   --nav-fg: white;
 
@@ -36,17 +37,24 @@ web-story {
 
     h2 {
       font-size: 48px;
-      font-family: @handwriting;
+      font-family: @gotham;
+      font-weight: 350;
       text-transform: uppercase;
     }
 
     h3 {
-      font-family: @handwriting;
+      font-family: @gotham;
+      font-weight: 300;
+      font-size: 20px;
     }
 
     video {
       max-width: 100%;
       display: block;
+    }
+
+    @media @mobile {
+      max-width: 300px;
     }
   }
 
@@ -67,5 +75,10 @@ web-story {
 
   [intangible] {
     pointer-events: none;
+  }
+
+  .autoplay-text {
+    font-size: 12px;
+    font-style: italic;
   }
 }

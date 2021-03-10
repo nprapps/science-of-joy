@@ -13,6 +13,8 @@ button[aria-pressed="true"] {
 }
 
 button[aria-pressed="false"] {
+  color: #ffdf61;
+  background: var(--nav-bg);
   padding: 30px 30px 30px 30px;
 }
 
@@ -20,21 +22,21 @@ button[aria-pressed="true"]::after {
   content: "";
   display: block;
   position: absolute;
-  border-color: black;
+  border-color: #ffdf61;
   border-style: solid;
   border-width: 2px 1px 3px 2px;
   left: calc(50% - 50px);
   bottom: 20px;
   width: 90px;
-  height: 70px;
+  height: 80px;
   transform-origin: center;
-  transform: rotate(-20deg);
+  transform: rotate(-10deg);
   border-radius: inherit;
 }
 
 button[aria-pressed="true"]:focus::after {
   outline: none;
-  border: 2px dashed black;
+  border: 2px dashed #ffdf61;
 }
 
 button[aria-pressed="true"]::before {
@@ -50,7 +52,7 @@ button[aria-pressed="false"]::after {
   content: "";
   display: flex;
   position: absolute;
-  border-color: black;
+  border-color: #ffdf61;
   border-style: solid;
   border-width: 2px 1px 3px 2px;
   left: calc(50% - 50px);
@@ -60,11 +62,12 @@ button[aria-pressed="false"]::after {
   transform-origin: center;
   transform: rotate(-20deg);
   border-radius: inherit;
+  background: var(--nav-bg);
 }
 
 button[aria-pressed="false"]:focus::after {
   outline: none;
-  border: 2px dashed black;
+  border: 2px dashed #ffdf61;
 }
 
 
