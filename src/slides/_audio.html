@@ -1,0 +1,25 @@
+<%
+  var slug = [id, slide.slug, index, "audio"].filter(d => d).join("-");
+%>
+<section data-slug="<%= slug %>" class="audio">
+
+  <shader-box class="backdrop" src="./assets/bokeh.glsl"></shader-box>
+
+  <audio-visualizer class="backdrop" color="white" for="<%= slug %>"></audio-visualizer>
+
+  <div class="content">
+    <%= t.renderMarkdown(slide.text) %>
+    <div class="clips">
+
+      <div class="top">
+        <media-controls for="<%= slug %>">
+          <%= slide.label || "" %>
+        </media-controls>
+        <audio 
+          id="<%= slug %>" 
+          src="<%= slide.audio %>"
+        ></audio>
+      </div>
+    </div>
+  </div>
+</section>
