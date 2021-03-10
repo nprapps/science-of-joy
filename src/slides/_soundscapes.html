@@ -14,9 +14,9 @@
           <button class="next">Next soundscape</button>
         </media-controls>
         <% for (var s of slide.soundscapes) { %>
-        <audio 
-          id="soundscape-<%= s.id %>" 
-          data-label="<%= s.label %>" 
+        <audio
+          id="soundscape-<%= s.id %>"
+          data-label="<%= s.label %>"
           src="<%= s.audio %>"
         ></audio>
         <% } %>

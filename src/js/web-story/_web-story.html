@@ -52,9 +52,9 @@ Set those on the web-story elements via LESS to have them propagate in.
 button {
   cursor: pointer;
   border: none;
-  background: var(--buttons-bg);
+  background: var(--nav-bg);
   opacity: .9;
-  color: var(--buttons-fg);
+  color: var(--nav-fg);
   /* border-radius: 100%; */
   border-radius: 50px 30px 50px 20px;
   padding: 8px;
@@ -73,7 +73,7 @@ button::before {
   height: 100%;
   transform-origin: center;
   transform: rotate(130deg) scale(1.1);
-  background: var(--buttons-bg);
+  background: var(--nav-bg);
   border-radius: inherit;
   z-index: -1;
 }
@@ -87,7 +87,7 @@ button::after {
   width: 100%;
   height: 100%;
   transform-origin: center;
-  border: 2px solid var(--buttons-fg);
+  border: 2px solid var(--nav-fg);
   border-radius: inherit;
   z-index: -1;
 }
@@ -104,10 +104,13 @@ button:hover,
 button:focus {
   /* opacity: 1; */
   outline: none;
+  color: black;
 }
 
-button:focus::after {
-  border: 2px dashed var(--buttons-fg);
+button:hover::after, button:focus::after {
+  border: 2px dashed black;
+  background: white;
+  color: black;
 }
 
 .controls svg {
