@@ -1,4 +1,8 @@
-<section data-slug="<%= slide.slug %>">
+<%
+  var slug = [id, slide.slug, index, "blackout"].filter(d => d).join("-");
+%>
+
+<section data-slug="<%= slug %>">
   <% if (slide.video) { %>
   <video class="backdrop" loop autoplay muted data-src="./assets/<%= slide.video %>"></video>
   <% } %>

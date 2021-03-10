@@ -20,8 +20,9 @@
     </div>
   </section>
   <% } %>
-  <% for (var slide of slides) {
-    print(t.include(`slides/_${slide.template || "generic"}.html`, { slide, id })); 
+  <% for (var index = 0; index < slides.length; index++) {
+    var slide = slides[index];
+    print(t.include(`slides/_${slide.template || "generic"}.html`, { slide, id, index })); 
   } %>
   <section data-slug="<%= id %>-chooser">
     <shader-box class="backdrop" src="./assets/lava.glsl"></shader-box>

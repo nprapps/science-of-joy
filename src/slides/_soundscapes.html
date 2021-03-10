@@ -1,4 +1,7 @@
-<section data-slug="<%= id %>-audio" class="soundscapes">
+<%
+  var slug = [id, slide.slug, index, "soundscapes"].filter(d => d).join("-");
+%>
+<section data-slug="<%= slug %>" class="soundscapes">
 
   <shader-box></shader-box>
 
