@@ -8,6 +8,7 @@ class SimpleVideo extends CustomElement {
     // proxy video events/methods/properties
     var { video } = this.elements;
     ["timeupdate", "play", "pause", "load", "canplay"].forEach(type => video.addEventListener(type, this.proxyEvent));
+    ["timeupdate", "play", "pause", "load", "canplay"].forEach(type => video.addEventListener(type, this.onMediaEvent));
     ["currentTime", "paused"].forEach(p => this.proxyProperty(p));
     ["play", "pause"].forEach(p => this.proxyMethod(p));
 
@@ -15,7 +16,7 @@ class SimpleVideo extends CustomElement {
   }
 
   static get boundMethods() {
-    return ["proxyEvent"]
+    return ["proxyEvent", "onMediaEvent"]
   }
 
   static get observedAttributes() {
@@ -40,6 +41,11 @@ class SimpleVideo extends CustomElement {
     }
   }
 
+  onMediaEvent() {
+    var paused = this.paused;
+    this.elements.screen.style.opacity = paused ? 0.7 : 0;
+  }
+
   proxyEvent(e) {
     var clone = new CustomEvent(e.type);
     this.dispatchEvent(clone);
@@ -62,29 +68,7 @@ class SimpleVideo extends CustomElement {
   }
 
   static get template() {
-    return `
-<style>
-.inner-container {
-  position: relative;
-}
-
-media-controls {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  pointer-events: none;
-}
-
-video {
-  max-width: 100%;
-  max-height: 100%;
-}
-</style>
-<div class="inner-container">
-  <video as="video"></video>
-  <media-controls as="control"></media-controls>
-</div>
-    `
+    return require("./_simple-video.html");
   }
 }
 

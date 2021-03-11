@@ -10,13 +10,13 @@
   <div class="content">
     <%= t.renderMarkdown(slide.text) %>
     <div class="clips">
-
+      <!-- <hr class="divider"> -->
       <div class="top">
         <media-controls for="<%= slug %>">
           <%= slide.label || "" %>
         </media-controls>
-        <audio 
-          id="<%= slug %>" 
+        <audio
+          id="<%= slug %>"
           src="<%= slide.audio %>"
         ></audio>
       </div>

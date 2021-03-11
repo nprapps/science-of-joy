@@ -5,15 +5,36 @@
     padding: 16px;
     gap: 16px;
     align-items: center;
+
+    & > * {
+      width: 100%;
+      height: 100%;
+    }
+
+    @media @mobile {
+      grid-template-columns: repeat(1, 1fr);
+      padding-left: 0;
+      padding-right: 0; 
+    }
   }
 
   #asmr-vids {
-    background-color: #A1CECC;
+    // background: linear-gradient(var(--front), var(--back));
+    // animation: color-shift 4s linear infinite alternate;
+      background: linear-gradient(270deg, #40203e, #02718d);
+      background-size: 400% 400%;
+      animation: colorShift 30s linear infinite alternate;
+
+    @keyframes colorShift {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
 
     .content {
-      background: none;
+      background: var(--nav-bg);
       text-align: center;
-      color: black;
+      color: white;
     }
   }
 }

@@ -3,18 +3,17 @@ button {
   display: flex;
   margin: 0 auto;
   border: none;
-  color: black;
+  color: @unbiased;
   border-radius: 50px 30px 50px 20px;
   padding: 30px 20px 30px 20px;
 }
 
 button[aria-pressed="true"] {
-  background: #ffdf61;
+  background: var(--buttons-bg);
 }
 
 button[aria-pressed="false"] {
-  color: #ffdf61;
-  background: var(--nav-bg);
+  color: black;
   padding: 30px 30px 30px 30px;
 }
 
@@ -22,9 +21,9 @@ button[aria-pressed="true"]::after {
   content: "";
   display: block;
   position: absolute;
-  border-color: #ffdf61;
+  border-color: var(--buttons-bg);
   border-style: solid;
-  border-width: 2px 1px 3px 2px;
+  border-width: 3px 2px 4px 3px;
   left: calc(50% - 50px);
   bottom: 20px;
   width: 90px;
@@ -52,9 +51,9 @@ button[aria-pressed="false"]::after {
   content: "";
   display: flex;
   position: absolute;
-  border-color: #ffdf61;
+  border-color: @unbiased;
   border-style: solid;
-  border-width: 2px 1px 3px 2px;
+  border-width: 3px 2px 4px 3px;
   left: calc(50% - 50px);
   bottom: 20px;
   width: 90px;
@@ -62,12 +61,11 @@ button[aria-pressed="false"]::after {
   transform-origin: center;
   transform: rotate(-20deg);
   border-radius: inherit;
-  background: var(--nav-bg);
 }
 
 button[aria-pressed="false"]:focus::after {
   outline: none;
-  border: 2px dashed #ffdf61;
+  border: 2px dashed @unbiased;
 }
 
 

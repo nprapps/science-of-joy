@@ -125,14 +125,15 @@
 
   .bubble {
     // border-radius: 160px 130px 160px 120px;
-    border-radius: 50px; 
+    border-radius: 50px;
     background-color: fade(black, 70%);
+    // background-color: fade(black, 0%);
     color: white;
     font-family: @gotham;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
+    font-size: 16px;
     padding: 50px;
     text-align: center;
 
@@ -150,8 +151,8 @@
       width: 150px;
       height: 150px;
       // background: fade(@unbiased, 40%);
-      background-color: #ffdf61;
-      color: black;
+      background-color: var(--buttons-bg);
+      color: @unbiased;
       padding: 30px;
       margin-top: -30px;
 
