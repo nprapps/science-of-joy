@@ -98,6 +98,10 @@ class ShaderBox extends CustomElement {
   }
 
   setShader(shader) {
+    if (this.requesting) {
+      this.requesting.abort();
+      this.requesting = null;
+    }
     var gl = this.gl;
     var fragment = gl.createShader(gl.FRAGMENT_SHADER);
     gl.shaderSource(fragment, shader);
