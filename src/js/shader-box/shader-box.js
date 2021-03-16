@@ -27,6 +27,10 @@ class ShaderBox extends CustomElement {
       childList: true,
       attributes: true
     });
+
+    this.elements.canvas.addEventListener("mousedown", this.onMouseMove);
+    this.elements.canvas.addEventListener("mouseup", this.onMouseMove);
+    this.elements.canvas.addEventListener("mousemove", this.onMouseMove);
   }
 
   initGL() {
@@ -50,6 +54,7 @@ class ShaderBox extends CustomElement {
     return [
       "onIntersection",
       "onMutation",
+      "onMouseMove",
       "tick",
       "recover"
     ];
@@ -144,6 +149,13 @@ class ShaderBox extends CustomElement {
     }
     var method = `uniform${values.length}f`;
     gl[method](gl.uniforms[name], ...values);
+  }
+
+  onMouseMove(e) {
+    e.preventDefault();
+    var { offsetX, offsetY, buttons } = e;
+    this.setUniform("u_mouse", offsetX, offsetY);
+    this.setUniform("u_mousebuttons", buttons);
   }
 
   onMutation() {

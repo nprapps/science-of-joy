@@ -3,6 +3,8 @@ precision highp float;
 uniform vec2 u_resolution;
 uniform float u_time;
 uniform vec3 u_color;
+uniform vec2 u_mouse;
+uniform float u_mousebuttons;
 const vec3 top = vec3(.8, .7, .7);
 const vec3 bottom = vec3(.9, .7, .7);
 const vec3 plastic = vec3(.8, .2, .1);
@@ -15,6 +17,9 @@ void main() {
   vec2 coord = gl_FragCoord.xy / u_resolution;
   float aspect = u_resolution.x / u_resolution.y;
   coord.x *= aspect;
+
+  vec2 mouse = u_mouse * aspect;
+  mouse = vec2(mouse.x, u_resolution.y - u_mouse.y) / u_resolution;
   float t = u_time * .0003;
   float d = 0.0;
   for (float i = 0.0; i < 16.0; i++) {
@@ -22,9 +27,10 @@ void main() {
       cos(rand(i - rand(i)) + i - t * (rand(i) - .5)) * .5 + .5 * aspect,
       sin(rand(i + rand(i)) + i + t * rand(i)) * .5 + .5
     );
-    float size = i * 0.02;
+    float size = (i + 1.0) * 0.02;
     d += smoothstep(.9, .3, distance(center, coord) / size);
   }
+  d += smoothstep(.9, .3, distance(mouse, coord) / (u_mousebuttons * .1));
   float lava = step(d, .2);
   float uColorSet = step(0.01, u_color.r + u_color.g + u_color.b);
   vec3 pigment = mix(plastic, u_color, uColorSet);
