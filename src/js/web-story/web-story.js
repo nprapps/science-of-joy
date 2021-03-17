@@ -100,6 +100,8 @@ class WebStory extends CustomElement {
       var isTakeover = "takeover" in chosen.dataset;
       this.elements.controls.style.display = isTakeover ? "none" : "";
       // trigger lazy-load for this page and the next page
+      this.elements.previous.classList.toggle("inert", index == 0);
+      this.elements.next.classList.toggle("inert", index == sections.length - 1);
       this.loadLazy(chosen);
       var nextUp = sections[index + 1];
       if (nextUp) {
