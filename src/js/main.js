@@ -19,7 +19,7 @@ require("./stories/asmr");
 require("./stories/nostalgia");
 
 // autoplay management
-var autoChecks = $("input.autoplay");
+var autoChecks = $(".autoplay input");
 var autoVideo = $("video[autoplay]");
 
 var updateAutoplay = function(enable) {

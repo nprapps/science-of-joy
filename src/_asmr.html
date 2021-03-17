@@ -18,7 +18,10 @@ var last = slides.pop();
     <div class="content">
       <h2><%= section.metadata.title %></h2>
       <h3><%= section.metadata.subtitle %></h3>
-      <input type="checkbox" checked class="autoplay"> <span class="autoplay-text">Autoplay video?</span>
+      <div class="autoplay">
+        <input type="checkbox" checked id="autoplay-vid-asmr">
+        <label for="autoplay-vid-asmr">Autoplay video?</label>
+      </div>
     </div>
   </section>
   <% } %>
@@ -38,10 +41,10 @@ var last = slides.pop();
     <div class="wide content">
       <%= last.text %>
       <media-collection class="grid">
-        <simple-video controls loop src="./assets/ignored/ASMR-sand-mix.mp4"></simple-video>
-        <simple-video controls loop src="./assets/ignored/ASMR-garlic.mp4"></simple-video>
-        <simple-video controls loop src="./assets/ignored/ASMR-rice.mp4"></simple-video>
-        <simple-video controls loop src="./assets/ignored/ASMR-sand-mix.mp4"></simple-video>
+        <simple-video controls loop stretched src="./assets/ignored/ASMR-sand-mix.mp4"></simple-video>
+        <simple-video controls loop stretched src="./assets/ignored/ASMR-garlic.mp4"></simple-video>
+        <simple-video controls loop stretched src="./assets/ignored/ASMR-rice.mp4"></simple-video>
+        <simple-video controls loop stretched src="./assets/ignored/ASMR-sand-mix.mp4"></simple-video>
       </media-collection>
     </div>
   </section>

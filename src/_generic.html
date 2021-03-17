@@ -16,7 +16,10 @@
     <div class="content">
       <h2><%= metadata.title %></h2>
       <h3><%= metadata.subtitle %></h3>
-      <input type="checkbox" checked class="autoplay"> <span class="autoplay-text">Autoplay video?</span>
+      <div class="autoplay">
+        <input type="checkbox" checked id="autoplay-vid-<%= id %>">
+        <label for="autoplay-vid-<%= id %>">Autoplay video?</label>
+      </div>
     </div>
   </section>
   <% } %>
