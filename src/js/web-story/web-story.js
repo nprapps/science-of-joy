@@ -85,6 +85,7 @@ class WebStory extends CustomElement {
       }
     }
     if (chosen) {
+      if (chosen == this.selectedSection) return;
       if (chosen.dataset.goto) {
         return this.broadcast("webstorygoto", { story: chosen.dataset.goto });
       }

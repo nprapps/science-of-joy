@@ -11,21 +11,22 @@ var intro = $("#intro");
 
 var setStory = async function(story) {
   var current = $.one(".story-route.active");
+  var activated = $.one("#" + story);
+  if (!activated) activated = intro;
+  if (current == activated) return;
   if (current) {
     current.classList.remove("entering");
     current.classList.add("exiting");
     await wait(500);
     current.classList.remove("active");
   }
-  var activated = $.one("#" + story);
-  if (!activated) activated = $("#intro");
   activated.classList.remove("exiting");
   if (history.size) {
     activated.classList.add("entering");
   }
   activated.classList.add("active");
   var storyElement = activated.tagName == "WEB-STORY" ? activated : $.one("web-story", activated);
-  if (storyElement != intro) storyElement.setPage(0);
+  if (storyElement && storyElement != intro) storyElement.setPage(0);
   hashUtils.setParams({ story });
   history.add(story);
   return activated;
@@ -45,6 +46,7 @@ var hashRoute = async function() {
 };
 
 hashRoute();
+window.addEventListener("hashchange", hashRoute);
 
 // handle internal story link clicks
 document.body.addEventListener("click", function(e) {
