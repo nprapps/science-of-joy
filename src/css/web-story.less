@@ -42,7 +42,7 @@ web-story {
       text-transform: uppercase;
 
       @media @mobile {
-        font-size: 38px; 
+        font-size: 38px;
       }
     }
 
@@ -92,24 +92,25 @@ web-story {
       font-family: @gotham;
       font-size: 12px;
       font-style: italic;
-      padding: 5px 10px 5px 15px;
-      border: 2px solid @unbiased;
-      border-radius: 10px;
-      color: @unbiased;
-      background-color: white;
+      padding: 5px 8px 5px 10px;
+      border: 2px solid white;
+      border-radius: 20px;
+      color: white;
+      background-color: transparent;
       white-space: nowrap;
       cursor: pointer;
     }
 
     label::before {
-      content: '';
+      content: "✘";
       display: inline-block;
-      width: 7px;
-      height: 7px;
-      border: 2px solid @unbiased;
+      width: 15px;
+      height: 15px;
+      border: 2px solid white;
       border-radius: 100px;
       transition: background-color .2s;
       margin-right: 10px;
+      margin-top: 10px;
     }
 
     input:checked + label {
@@ -119,8 +120,10 @@ web-story {
     }
 
     input:checked + label::before {
+      content: "✔";
       background-color: white;
       border-color: white;
+      color: @unbiased;
     }
   }
 
