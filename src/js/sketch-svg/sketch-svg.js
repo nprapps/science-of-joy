@@ -18,9 +18,11 @@ class SketchSVG extends HTMLElement {
 
   sketch() {
     var paths = this.querySelectorAll("path");
-    var lastDuration = 0;
+    var lastDuration = 10;
+    var speed = this.getAttribute("speed") || 1;
+    speed = 1 / speed;
     paths.forEach(function(p, i) {
-      p.setAttribute("vector-effect", "non-scaling-stroke");
+      // p.setAttribute("vector-effect", "non-scaling-stroke");
       // bail for old Safari
       if (!p.animate) return;
       // cancel running animations
@@ -28,7 +30,7 @@ class SketchSVG extends HTMLElement {
       current.forEach(c => c.finish());
       var length = p.getTotalLength();
       p.style.strokeDasharray = [length, length].join(" ");
-      var duration = length * 3;
+      var duration = length * (speed * 3);
       var delay = lastDuration;
       lastDuration += duration;
       var animation = p.animate([
