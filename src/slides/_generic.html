@@ -3,7 +3,12 @@
 %>
 <section data-slug="<%= slug %>">
   <% if (slide.video) { %>
-  <video class="backdrop" loop autoplay muted data-src="./assets/<%= slide.video %>"></video>
+  <video id="<%= slug %>-video-backdrop" class="backdrop" loop autoplay muted data-src="./assets/<%= slide.video %>"></video>
   <% } %>
-  <div class="content"><%= t.renderMarkdown(slide.text) %></div>
+  <div class="content">
+    <%= t.renderMarkdown(slide.text) %>
+    <% if (slide.muted) { %>
+    <media-mute for="<%= slug %>-video-backdrop"></media-mute>
+    <% } %>
+  </div>
 </section>

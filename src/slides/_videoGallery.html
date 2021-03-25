@@ -1,0 +1,13 @@
+<%
+  var slug = [id, slide.slug, index, "video-gallery"].filter(d => d).join("-");
+%>
+<section data-slug="<%= slug %>" class="video-gallery">
+  <div class="wide content">
+    <%= slide.text %>
+    <media-collection class="grid">
+      <% slide.videos.split(/[,;\/]\s*/g).forEach(function(v) { %>
+      <simple-video controls loop stretched src="./assets/ignored/<%= v %>"></simple-video>
+      <% }) %>
+    </media-collection>
+  </div>
+</section>
