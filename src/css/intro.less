@@ -42,36 +42,6 @@
         bottom: 80px;
       }
     }
-
-    &.surprise svg {
-      position: fixed;
-      pointer-events: none;
-      left: calc(25%);
-      bottom: 200px;
-      height: 100px;
-      width: 100px;
-      stroke-width: 50;
-      transform: rotate(-20deg);
-
-      @media @mobile {
-        display: none;
-      }
-    }
-
-    &.soothe svg {
-      position: fixed;
-      pointer-events: none;
-      left: calc(65% + 50px);
-      bottom: 90px;
-      height: 100px;
-      width: 100px;
-      stroke-width: 50;
-      transform: rotate(20deg);
-
-      @media @mobile {
-        display: none;
-      }
-    }
   }
 
   h1 {
@@ -88,6 +58,24 @@
       padding-bottom: 0;
     }
   }
+
+  // .underline {
+  //   position: relative;
+  //   width:
+  //
+  //   &::after {
+  //     content: '';
+  //     position: absolute;
+  //     bottom: -0.125rem;
+  //     left: -0.5rem;
+  //     right: -0.5rem;
+  //     height: 0.75rem;
+  //     z-index: -1;
+  //     background-image: url("../../assets/underline.svg");
+  //     background-repeat: no-repeat;
+  //     background-size: cover;
+  //   }
+  // }
 
   h2 {
     // font-family: @gotham;
@@ -190,6 +178,52 @@
 
       img {
         max-width: 80px;
+      }
+
+      .title-anno {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        margin-top: 30px;
+        margin-bottom: 10px;
+
+        h1 {
+          line-height: 20px;
+          margin-top: 5;
+          margin-bottom: 5;
+          max-height: 80px;
+
+          @media @mobile {
+            line-height: 15px;
+            max-height: 30px;
+          }
+        }
+
+        sketch-svg {
+          position: relative;
+          width: 100%;
+          z-index: 100;
+          line-height: 10px;
+
+          &.squiggle {
+            stroke: var(--buttons-bg);
+            stroke-width: 3;
+          }
+
+          &.circle {
+            bottom: 80px;
+
+            @media @mobile {
+              bottom: 40px; 
+            }
+          }
+        }
+
+        @media @mobile {
+          margin-top: 10px;
+          margin-bottom: 20px;
+        }
       }
     }
   }

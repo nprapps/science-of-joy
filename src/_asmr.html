@@ -1,0 +1,55 @@
+<%
+var section = grunt.data.archieml.text.pages.asmr;
+var slides = section.slides.slice();
+var last = slides.pop();
+
+%>
+<web-story id="asmr" class="story-route">
+  <% if (section.metadata) { %>
+  <section data-slug="title">
+    <% if (section.metadata.video) { %>
+    <video
+      class="backdrop"
+      loop autoplay muted
+      data-src="./assets/<%= section.metadata.video %>"
+      id="title-video"
+    ></video>
+    <% } %>
+    <div class="content">
+      <h2><%= section.metadata.title %></h2>
+      <h3><%= section.metadata.subtitle %></h3>
+      <div class="autoplay">
+        <input type="checkbox" checked id="autoplay-vid-asmr">
+        <label for="autoplay-vid-asmr">Autoplay video?</label>
+      </div>
+    </div>
+  </section>
+  <% } %>
+  <% slides.forEach(function(slide, index) { %>
+  <section data-slug="<%= slide.slug %>">
+    <% if (slide.video) { %>
+    <video class="backdrop" id="asmr-bg-<%= index %>" loop autoplay muted data-src="./assets/<%= slide.video %>"></video>
+    <% } %>
+    <div class="content">
+      <%= t.renderMarkdown(slide.text) %>
+      <media-mute for="asmr-bg-<%= index %>"></media-mute>
+    </div>
+  </section>
+  <% }) %>
+  <section data-slug="video-grid" id="asmr-vids">
+    <!-- <shader-box class="backdrop"></shader-box> -->
+    <div class="wide content">
+      <%= last.text %>
+      <media-collection class="grid">
+        <simple-video controls loop stretched src="./assets/ignored/ASMR-sand-mix.mp4"></simple-video>
+        <simple-video controls loop stretched src="./assets/ignored/ASMR-garlic.mp4"></simple-video>
+        <simple-video controls loop stretched src="./assets/ignored/ASMR-rice.mp4"></simple-video>
+        <simple-video controls loop stretched src="./assets/ignored/ASMR-sand-mix.mp4"></simple-video>
+      </media-collection>
+    </div>
+  </section>
+  <section data-slug="asmr-chooser">
+    <shader-box class="chooser backdrop" src="./assets/lava.glsl"></shader-box>
+    <%= t.include("_chooser.html") %>
+  </section>
+</web-story>

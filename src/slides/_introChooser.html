@@ -1,7 +1,20 @@
 <section>
   <div class="title bubble">
     <img src="assets/npr-logo.png" alt="NPR logo">
-    <h1>Joy Generator</h1>
+    <div class="title-anno">
+      <h1>
+        Joy
+        <sketch-svg class="underline circle" speed=0.4>
+          <%= t.include("assets/circle.svg") %>
+        </sketch-svg>
+      </h1>
+      <h1>
+        Generator
+        <sketch-svg class="underline squiggle" speed=0.3>
+          <%= t.include("assets/squiggle.svg") %>
+        </sketch-svg>
+      </h1>
+    </div>
     <%= t.renderMarkdown(slide.text) %>
   </div>
     <%= t.include("_chooser.html") %>
