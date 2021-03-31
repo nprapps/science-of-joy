@@ -18,9 +18,9 @@ class SketchSVG extends HTMLElement {
 
   sketch() {
     var paths = this.querySelectorAll("path");
-    var lastDuration = 10;
     var speed = this.getAttribute("speed") || 1;
     speed = 1 / speed;
+    var lastDuration = this.getAttribute("delay") || 10;
     paths.forEach(function(p, i) {
       // p.setAttribute("vector-effect", "non-scaling-stroke");
       // bail for old Safari
