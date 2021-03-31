@@ -118,7 +118,15 @@ button.inert {
   pointer-events: none;
 }
 
-.controls svg {
+button .tutorial {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 500%;
+  height: 500%;
+}
+
+.controls svg:not(.tutorial) {
   display: block;
   width: 32px;
   height: 32px;

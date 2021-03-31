@@ -6,7 +6,7 @@
     <source data-possible="./assets/ignored/painting-x.mp4">
   </video>
   <web-story hidecontrols="previous filmstrip close">
-    <% 
+    <%
       for (var slide of slides) {
         print(t.include(`slides/_${slide.template}.html`, { slide }));
       }
