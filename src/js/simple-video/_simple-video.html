@@ -2,6 +2,7 @@
 .inner-container {
   position: relative;
   height: 100%;
+  overflow: hidden;
 }
 
 media-controls {
@@ -14,6 +15,7 @@ media-controls {
 video {
   max-width: 100%;
   max-height: 100%;
+  display: block;
 }
 
 :host([stretched]) video {
@@ -26,15 +28,26 @@ video {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 102%;
+  height: 102%;
   background: black;
   transition: opacity 0.2s linear;
   pointer-events: none;
 }
+
+.screen slot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
 <div class="inner-container">
   <video as="video"></video>
-  <div class="screen" as="screen"></div>
+  <div class="screen" as="screen"><slot></slot></div>
   <media-controls as="control"></media-controls>
 </div>
