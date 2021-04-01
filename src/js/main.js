@@ -17,6 +17,7 @@ require("./stories");
 require("./stories/intro");
 require("./stories/asmr");
 require("./stories/nostalgia");
+require("./stories/poetry");
 
 // autoplay management
 var autoChecks = $(".autoplay input");

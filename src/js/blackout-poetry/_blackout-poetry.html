@@ -1,0 +1,34 @@
+<style>
+:host {
+  display: block;
+  position: relative;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.column {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+canvas {
+  display: block;
+  flex: 1;
+}
+</style>
+<div class="column">
+  <canvas as="canvas"></canvas>
+  <div class="buttons">
+    <button class="reset" as="reset">New page</button>
+    <button class="share" as="save">Save</button>
+  </div>
+</div>
+<a download="poetry.jpg" style="display: none" as="download"></a>
