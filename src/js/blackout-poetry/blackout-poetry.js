@@ -34,6 +34,8 @@ class BlackoutPoetry extends CustomElement {
     var context = this.context;
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
+    context.fillStyle = "white";
+    context.fillRect(0, 0, canvas.width, canvas.height);
     context.font = "bold 20px courier";
     context.fillStyle = "black";
     var en = context.measureText("N");
