@@ -23,11 +23,35 @@ canvas {
   display: block;
   flex: 1;
 }
+
+.buttons {
+  padding: 16px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons button {
+  padding: 8px 16px;
+  border-radius: 2px;
+  border: dashed 2px black;
+  font-family: var(--knockout);
+  background: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.buttons button:hover,
+.buttons button:focus {
+  border: solid 2px black;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+}
 </style>
 <div class="column">
   <canvas as="canvas"></canvas>
   <div class="buttons">
-    <button class="reset" as="reset">New page</button>
+    <button class="reset" as="reset">Reset</button>
+    <button class="new" as="newPage">New page</button>
     <button class="share" as="save">Save</button>
   </div>
 </div>

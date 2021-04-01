@@ -2,6 +2,7 @@
 @import "story-transitions";
 @import "web-story";
 @import "chooser";
+@import "ui";
 
 .story-route:not(.active) {
   display: none;
@@ -13,3 +14,13 @@
 @import "nostalgia";
 @import "poetry";
 
+// export LESS to CSS
+:root {
+  --gotham: @gotham;
+  --knockout: @knockout;
+  --sans: @sans;
+  --serif: @serif;
+  --handwriting: @handwriting;
+  --accent-dark: @accent-dark;
+  --accent-light: @accent-light;
+}

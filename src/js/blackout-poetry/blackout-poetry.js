@@ -34,7 +34,7 @@ class BlackoutPoetry extends CustomElement {
     var context = this.context;
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
-    context.font = "bold 24px courier";
+    context.font = "bold 20px courier";
     context.fillStyle = "black";
     var en = context.measureText("N");
     var enHeight = en.actualBoundingBoxAscent;
@@ -132,6 +132,6 @@ Mr. Bennet made no answer.
 This was invitation enough.
 
 “Why, my dear, you must know, Mrs. Long says that Netherfield is taken by a young man of large fortune from the north of England; that he came down on Monday in a chaise and four to see the place, and was so much delighted with it, that he agreed with Mr. Morris immediately; that he is to take possession before Michaelmas, and some of his servants are to be in the house by the end of next week.” 
-`
+`;
 
 BlackoutPoetry.define("blackout-poetry");
