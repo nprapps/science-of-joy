@@ -175,6 +175,12 @@ button .tutorial {
   display: none;
 }
 
+.tutorial text {
+  font-size: 70px;
+  font-family: 'Gotham SSm', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
 </style>
 <!-- the backdrop gets events, can be swipeable -->
 <div as="backdrop" class="touch-panel"></div>
@@ -207,6 +213,22 @@ button .tutorial {
   <div class="filmstrip" as="filmstrip"></div>
 
   <button class="next pager" as="next" data-shift="1">
+    <svg class="tutorial" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+        <path fill="none" stroke="#ffdf61" stroke-width="5px" vector-effect="non-scaling-stroke" d="M2.49.27s51,464,408,472l-59-117,47,109-79,49"/>
+        <!-- <path fill="#ffdf61" d="M50.5,-16.7C55.9,0.2,44.1,22.3,24,38.1C3.9,53.9,-24.5,63.4,-44.3,51.3C-64.1,39.2,-75.2,5.6,-66.4,-16C-57.6,-37.6,-28.8,-47.2,-3.1,-46.2C22.6,-45.2,45.1,-33.6,50.5,-16.7Z" transform="translate(100 100)" /> -->
+        <ellipse fill="#ffdf61" cx="720" cy="720" rx="260" ry="280" />
+        <ellipse stroke="#ffdf61" stroke-width="10px" fill="none" cx="710" cy="680" rx="280" ry="220" />
+        <text x="60%" y="60%" dominant-baseline="middle" text-anchor="middle">
+          <tspan x="72%" dy=".6em">Click here </tspan>
+          <tspan x="72%" dy="1.2em">to continue!</tspan>
+        </text>
+        <path
+          d="M700,900 L750,850 700,800"
+          vector-effect="non-scaling-stroke"
+          fill="none"
+          stroke="black"
+          stroke-width=3 />
+    </svg>
     <svg viewBox="0 0 4 2" preserveAspectRatio="none">
       <path
         d="M1,0 L3.5,1 1,2"
