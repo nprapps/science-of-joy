@@ -10,7 +10,7 @@ var last = slides.pop();
     <% if (section.metadata.video) { %>
     <video
       class="backdrop"
-      loop autoplay muted
+      loop autoplay muted playsinline
       data-src="./assets/<%= section.metadata.video %>"
       id="title-video"
     ></video>
@@ -28,7 +28,7 @@ var last = slides.pop();
   <% slides.forEach(function(slide, index) { %>
   <section data-slug="<%= slide.slug %>">
     <% if (slide.video) { %>
-    <video class="backdrop" id="asmr-bg-<%= index %>" loop autoplay muted data-src="./assets/<%= slide.video %>"></video>
+    <video class="backdrop" id="asmr-bg-<%= index %>" loop autoplay muted playsinline data-src="./assets/<%= slide.video %>"></video>
     <% } %>
     <div class="content">
       <%= t.renderMarkdown(slide.text) %>
