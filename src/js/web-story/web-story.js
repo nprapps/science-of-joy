@@ -98,8 +98,11 @@ class WebStory extends CustomElement {
       this.setAttribute("slug", chosen.dataset.slug);
       this.selectedSection = chosen;
       this.selectedIndex = index;
+      // handle special section attributes
       var isTakeover = "takeover" in chosen.dataset;
       this.elements.controls.style.display = isTakeover ? "none" : "";
+      var isTutorial = "tutorial" in chosen.dataset;
+      this.elements.next.classList.toggle("tutorialized", isTutorial);
       // trigger lazy-load for this page and the next page
       this.elements.previous.classList.toggle("inert", index == 0);
       this.elements.next.classList.toggle("inert", index == sections.length - 1);
