@@ -85,35 +85,38 @@ class WebStory extends CustomElement {
       }
     }
     if (chosen) {
-      if (chosen == this.selectedSection) return;
-      if (chosen.dataset.goto) {
-        return this.broadcast("webstorygoto", { story: chosen.dataset.goto });
+      // only formally change page if it's a new page
+      if (chosen != this.selectedSection) {
+        if (chosen.dataset.goto) {
+          return this.broadcast("webstorygoto", { story: chosen.dataset.goto });
+        }
+        var cursor = $.one("[data-focus]", chosen) || chosen;
+        if (!cursor.hasAttribute("tabindex")) {
+          cursor.setAttribute("tabindex", -1);
+        }
+        cursor.focus();
+        this.activatePage(chosen);
+        this.setAttribute("slug", chosen.dataset.slug);
+        this.selectedSection = chosen;
+        this.selectedIndex = index;
+        // trigger lazy-load for this page and the next page
+        this.elements.previous.classList.toggle("inert", index == 0);
+        this.elements.next.classList.toggle("inert", index == sections.length - 1);
+        this.loadLazy(chosen);
+        var nextUp = sections[index + 1];
+        if (nextUp) {
+          this.loadLazy(nextUp);
+        }
+        this.setNav();
+        this.broadcast("webstorypage", { page: this.selectedIndex });
       }
-      var cursor = $.one("[data-focus]", chosen) || chosen;
-      if (!cursor.hasAttribute("tabindex")) {
-        cursor.setAttribute("tabindex", -1);
-      }
-      cursor.focus();
-      this.activatePage(chosen);
-      this.setAttribute("slug", chosen.dataset.slug);
-      this.selectedSection = chosen;
-      this.selectedIndex = index;
+
       // handle special section attributes
       var isTakeover = "takeover" in chosen.dataset;
       this.elements.controls.style.display = isTakeover ? "none" : "";
       var isTutorial = "tutorial" in chosen.dataset;
       this.elements.next.classList.toggle("tutorialized", isTutorial);
-      // trigger lazy-load for this page and the next page
-      this.elements.previous.classList.toggle("inert", index == 0);
-      this.elements.next.classList.toggle("inert", index == sections.length - 1);
-      this.loadLazy(chosen);
-      var nextUp = sections[index + 1];
-      if (nextUp) {
-        this.loadLazy(nextUp);
-      }
     }
-    this.setNav();
-    this.broadcast("webstorypage", { page: this.selectedIndex });
   }
 
   activatePage(page) {

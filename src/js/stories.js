@@ -4,10 +4,12 @@ var hashUtils = require("./hashUtils");
 var events = require("./eventBus");
 
 var wait = (d = 1000) => new Promise(ok => setTimeout(ok, d));
+var nextTick = () => new Promise(ok => requestAnimationFrame(ok));
 
 var history = new Set();
 var storyPaths = $(".story-route:not(.exclude-random)").map(s => s.id);
 var intro = $("#intro");
+var first = true;
 
 var setStory = async function(story) {
   var current = $.one(".story-route.active");
@@ -36,6 +38,12 @@ var hashRoute = async function() {
   var params = hashUtils.getParams();
   var story = params.story || "intro";
   var page = params.page;
+  if (first) {
+    $.one(`#${story} section`).setAttribute("data-tutorial", "true");
+    first = false;
+  } else {
+    $("[data-tutorial]").forEach(t => t.removeAttribute("data-tutorial"));
+  }
   var current = await setStory(story);
   if (current && page) {
     var webstory = current.tagName == "WEB-STORY" ? current : $.one("web-story", current);
