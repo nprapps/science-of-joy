@@ -11,12 +11,11 @@ var storyPaths = $(".story-route:not(.exclude-random)").map(s => s.id);
 var intro = $("#intro");
 var first = true;
 
-var setStory = async function(story) {
+var setStory = async function(story, page = 0) {
   var current = $.one(".story-route.active");
   var activated = $.one("#" + story);
   if (!activated) activated = intro;
-  if (current == activated) return;
-  if (current) {
+  if (current && current != activated) {
     current.classList.remove("entering");
     current.classList.add("exiting");
     await wait(500);
@@ -28,8 +27,8 @@ var setStory = async function(story) {
   }
   activated.classList.add("active");
   var storyElement = activated.tagName == "WEB-STORY" ? activated : $.one("web-story", activated);
-  if (storyElement && storyElement != intro) storyElement.setPage(0);
-  hashUtils.setParams({ story });
+  if (storyElement && storyElement != intro) storyElement.setPage(page);
+  hashUtils.setParams({ story, page });
   history.add(story);
   return activated;
 }
@@ -44,13 +43,7 @@ var hashRoute = async function() {
   } else {
     $("[data-tutorial]").forEach(t => t.removeAttribute("data-tutorial"));
   }
-  var current = await setStory(story);
-  if (current && page) {
-    var webstory = current.tagName == "WEB-STORY" ? current : $.one("web-story", current);
-    if (webstory.setPage) {
-      webstory.setPage(page);
-    }
-  }
+  var current = await setStory(story, page);
 };
 
 hashRoute();
