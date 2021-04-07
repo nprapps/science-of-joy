@@ -14,7 +14,6 @@ require("./simple-video/simple-video");
 require("./stories");
 
 // story-specific code
-require("./stories/intro");
 require("./stories/asmr");
 require("./stories/nostalgia");
 require("./stories/poetry");
@@ -37,3 +36,10 @@ var updateAutoplay = function(enable) {
 }
 
 autoChecks.forEach(c => c.addEventListener("change", () => updateAutoplay(c.checked)));
+
+// handle randomized video tags
+$("video.randomized").forEach(function(video) {
+  var sources = $("source", video);
+  var choice = sources[Math.random() * sources.length | 0];
+  video.setAttribute("src", choice.dataset.possible);
+});

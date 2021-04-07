@@ -28,7 +28,11 @@
     print(t.include(`slides/_${slide.template || "generic"}.html`, { slide, id, index }));
   } %>
   <section data-slug="<%= id %>-chooser">
-    <shader-box class="backdrop" src="./assets/lava.glsl"></shader-box>
+    <video class="randomized backdrop" autoplay loop muted playsinline>
+      <source data-possible="./assets/ignored/blue-paint-swirl.mp4">
+      <source data-possible="./assets/ignored/seafoam-bounce.mp4">
+      <source data-possible="./assets/ignored/timelapse.mp4">
+    </video>
     <%= t.include("_chooser.html") %>
   </section>
 </web-story>
