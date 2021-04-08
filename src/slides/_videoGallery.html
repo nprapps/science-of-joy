@@ -5,8 +5,10 @@
   <div class="wide content">
     <%= slide.text %>
     <media-collection class="grid">
-      <% slide.videos.split(/[,;\/]\s*/g).forEach(function(v) { %>
-      <simple-video controls loop stretched src="./assets/ignored/<%= v %>">TEST CAPTION</simple-video>
+      <% slide.videos.forEach(function(v) { %>
+      <simple-video controls loop stretched src="./assets/synced/<%= v.file %>">
+        <%= v.label %>
+      </simple-video>
       <% }) %>
     </media-collection>
   </div>

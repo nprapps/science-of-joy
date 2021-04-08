@@ -19,7 +19,10 @@
     </div>
     <%= t.renderMarkdown(slide.text) %>
   </div>
-    <%= t.include("_chooser.html") %>
+    <div class="chooser collapsed">
+      <button class="random-choice">Surprise me!</button>
+      <button class="random-choice">Soothe me!</button>
+    </div>
   <!-- <sketch-svg class="surprise">
     <%= t.include("assets/surprise.svg") %>
   </sketch-svg>
