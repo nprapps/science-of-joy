@@ -1,11 +1,14 @@
 var CustomElement = require("../customElement");
+var excerpts = require("./excerpts.txt").split("===").map(t => t.trim());
+var index = (Math.random() * excerpts.length) | 0;
 
+const FONT_SCALE = 20;
 const PADDING = 16;
 
 class BlackoutPoetry extends CustomElement {
   constructor() {
     super();
-    var { canvas, reset, save } = this.elements;
+    var { canvas, reset, save, newPage } = this.elements;
     this.context = canvas.getContext("2d");
     this.painting = false;
     canvas.addEventListener("touchstart", this.onPointerContact);
@@ -17,10 +20,12 @@ class BlackoutPoetry extends CustomElement {
 
     reset.addEventListener("click", this.typeset);
     save.addEventListener("click", this.download);
+    newPage.addEventListener("click", this.turnPage);
   }
 
   static get boundMethods() {
     return [
+      "turnPage",
       "typeset",
       "onPointerContact",
       "onPointerMove",
@@ -28,15 +33,22 @@ class BlackoutPoetry extends CustomElement {
     ];
   }
 
+  turnPage() {
+    index++;
+    this.typeset();
+  }
+
   typeset() {
-    var words = sample.trim().split(/[\n\r]+/).join(" \n ").split(/ /).filter(w => w);
+    var content = excerpts[index % excerpts.length];
+    var words = content.split(/[\n\r]+/).join(" \n ").split(/ /).filter(w => w);
     var { canvas } = this.elements;
     var context = this.context;
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
     context.fillStyle = "white";
     context.fillRect(0, 0, canvas.width, canvas.height);
-    context.font = "bold 20px courier";
+    var fontSize = (canvas.width / FONT_SCALE) | 0;
+    context.font = `bold ${fontSize}px courier`;
     context.fillStyle = "black";
     var en = context.measureText("N");
     var enHeight = en.actualBoundingBoxAscent;
@@ -86,14 +98,16 @@ class BlackoutPoetry extends CustomElement {
     var bounds = this.elements.canvas.getBoundingClientRect();
     var x = clientX - bounds.left;
     var y = clientY - bounds.top;
-    this.context.fillStyle = "#000C";
+    this.context.fillStyle = "#0006";
     this.context.beginPath();
-    this.context.arc(x, y, 10, 0, Math.PI * 2);
+    var r = FONT_SCALE * .6;
+    var d = r * 2;
+    this.context.arc(x, y, r, 0, Math.PI * 2);
     for (var i = 0; i < 12; i++) {
-      var dx = Math.random() * 20 - 10;
-      var dy = Math.random() * 20 - 10;
-      var r = Math.random() * 3 + 1;
-      this.context.arc(x + dx, y + dy, r, 0, Math.PI * 2);
+      var dx = Math.random() * d - r;
+      var dy = Math.random() * d - r;
+      var dr = Math.random() * 3 + 1;
+      this.context.arc(x + dx, y + dy, dr, 0, Math.PI * 2);
     }
     this.context.fill();
   }
@@ -113,27 +127,5 @@ class BlackoutPoetry extends CustomElement {
     return require("./_blackout-poetry.html");
   }
 }
-
-var sample = `
-It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.
-
-However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.
-
-“My dear Mr. Bennet,” said his lady to him one day, “have you heard that Netherfield Park is let at last?”
-
-Mr. Bennet replied that he had not.
-
-“But it is,” returned she; “for Mrs. Long has just been here, and she told me all about it.”
-
-Mr. Bennet made no answer.
-
-“Do you not want to know who has taken it?” cried his wife impatiently.
-
-“You want to tell me, and I have no objection to hearing it.”
-
-This was invitation enough.
-
-“Why, my dear, you must know, Mrs. Long says that Netherfield is taken by a young man of large fortune from the north of England; that he came down on Monday in a chaise and four to see the place, and was so much delighted with it, that he agreed with Mr. Morris immediately; that he is to take possession before Michaelmas, and some of his servants are to be in the house by the end of next week.” 
-`;
 
 BlackoutPoetry.define("blackout-poetry");
