@@ -7,6 +7,7 @@ class MediaControls extends CustomElement {
     super();
     this.media = null;
     this.elements.playButton.addEventListener("click", this.onClickedPlay);
+    this.elements.slot.addEventListener("slotchange", this.onSlotChange);
     events.on("media-play", this.onPlayEvent);
   }
 
@@ -23,7 +24,8 @@ class MediaControls extends CustomElement {
       "onWatch",
       "onMediaUpdate",
       "onClickedPlay",
-      "onPlayEvent"
+      "onPlayEvent",
+      "onSlotChange"
     ];
   }
 
@@ -120,6 +122,11 @@ class MediaControls extends CustomElement {
 
   onPlayEvent(element) {
     if (this.media != element) this.media.pause();
+  }
+
+  onSlotChange() {
+    var assigned = this.elements.slot.assignedElements();
+    this.elements.labels.style.display = assigned.length ? "" : "none";
   }
 
   static get template() {
