@@ -8,7 +8,6 @@ class WebStory extends CustomElement {
     this.elements.previous.addEventListener("click", this.onClickPager);
     this.elements.next.addEventListener("click", this.onClickPager);
     this.elements.backdrop.addEventListener("click", () => this.shiftPage(1));
-    this.elements.close.addEventListener("click", this.onClose);
 
     var observer = new MutationObserver(this.setNav);
     observer.observe(this, { childList: true });
@@ -19,7 +18,6 @@ class WebStory extends CustomElement {
   static get boundMethods() {
     return [
       "onClickPager",
-      "onClose",
       "setNav"
     ];
   }
@@ -49,10 +47,6 @@ class WebStory extends CustomElement {
     var target = e.currentTarget;
     var shift = target.dataset.shift * 1;
     this.shiftPage(shift);
-  }
-
-  onClose() {
-    this.broadcast("webstoryclose");
   }
 
   shiftPage(shift = 1) {

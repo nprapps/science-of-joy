@@ -43,3 +43,20 @@ $("video.randomized").forEach(function(video) {
   var choice = sources[Math.random() * sources.length | 0];
   video.setAttribute("src", choice.dataset.possible);
 });
+
+// handle the share button
+var shareButton = $.one("button.share");
+if ("share" in navigator) {
+  shareButton.addEventListener("click", function() {
+    var params = new URLSearchParams(window.location.hash.replace("#", ""));
+    var story = params.get("story");
+    var url = new URL(window.location.pathname, window.location.href);
+    if (story) url.hash = `story=${story}`;
+    console.log(url.toString());
+    var shared = navigator.share({
+      url
+    });
+  })
+} else {
+  shareButton.style.display = "none";
+}

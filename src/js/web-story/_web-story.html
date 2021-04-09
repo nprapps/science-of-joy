@@ -24,19 +24,6 @@ Set those on the web-story elements via LESS to have them propagate in.
   height: 100%;
 }
 
-.close {
-  position: fixed;
-  top: 8px;
-  right: 8px;
-  padding: 8px;
-}
-
-.close svg {
-  width: 32px;
-  height: 32px;
-  display: block;
-}
-
 .controls {
   position: fixed;
   left: 0;
@@ -171,10 +158,6 @@ button .tutorial {
   pointer-events: none;
 }
 
-:host([hidecontrols~=close]) .close {
-  display: none;
-}
-
 .tutorial {
   display: none;
 }
@@ -200,22 +183,13 @@ button .tutorial {
 }
 
 </style>
+
 <!-- the backdrop gets events, can be swipeable -->
 <div as="backdrop" class="touch-panel"></div>
+
 <!-- child elements are placed here -->
 <slot as="slot"></slot>
-<!-- top-level UI -->
-<button as="close" class="close">
-  <svg viewBox="0 0 1 1" preserveAspectRatio="none">
-    <path
-      d="M0,0 L1,1 M0,1 L1,0"
-      vector-effect="non-scaling-stroke"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="3"
-    />
-  </svg>
-</button>
+
 <div as="controls" class="controls">
 
   <button class="previous pager" as="previous" data-shift="-1">

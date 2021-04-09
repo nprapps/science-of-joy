@@ -1,0 +1,43 @@
+nav.top-bar {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: fade(black, 50%);
+  display: flex;
+  padding: 4px;
+  justify-content: space-between;
+  align-items: center;
+  font-family: @gotham;
+  color: white;
+
+  .logo {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    text-transform: lowercase;
+
+    img {
+      height: 32px;
+      vertical-align: middle;
+    }
+  }
+
+  a, button {
+    display: block;
+    background: transparent;
+    border: 1px solid white;
+    padding: 4px;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover, &:focus {
+      color: black;
+      background: white;
+    }
+  }
+}
