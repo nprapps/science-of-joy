@@ -21,9 +21,18 @@ class ClosedCaptions extends CustomElement {
     ]
   }
 
+  connectedCallback() {
+    document.body.addEventListener("webstorypage", this.onEnded);
+  }
+
+  disconnectedCallback() {
+    document.body.removeEventListener("webstorypage", this.onEnded);
+  }
+
   connectTrack(t) {
     t.addEventListener("cuechange", this.onCueChange);
     t.addEventListener("ended", this.onEnded);
+    // monkeypatch ended events onto the track
     var closest = t.closest("audio, video");
     if (closest && !closest.onended) {
       closest.onended = function() {
