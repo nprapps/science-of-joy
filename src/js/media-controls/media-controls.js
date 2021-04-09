@@ -106,6 +106,9 @@ class MediaControls extends CustomElement {
     } catch (err) {
       // SVG code will fail if the button isn't immediately visible, it's fine.
     }
+    if (e.type == "ended") {
+      events.fire("media-ended", this.media);
+    }
   }
 
   onClickedPlay() {

@@ -18,7 +18,11 @@
         <audio
           id="<%= slug %>"
           src="./assets/synced/audio/<%= slide.audio %>"
-        ></audio>
+        >
+          <% if (slide.captions) { %>
+          <track default kind="captions" src="./assets/synced/audio/<%= slide.captions %>"></track>
+          <% } %>
+        </audio>
       </div>
     </div>
   </div>
