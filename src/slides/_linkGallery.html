@@ -1,0 +1,16 @@
+<%
+  var slug = [id, slide.slug, index, "link-gallery"].filter(d => d).join("-");
+%>
+<section data-slug="<%= slug %>" class="link-gallery">
+  <div class="wide content">
+    <%= slide.text %>
+    <ul>
+      <% slide.links.forEach(function(v) { %>
+      <li>
+        <a href="<%= v.url %>" style="background: <%= v.thumb %>" target="_blank">
+          <%= v.label %>
+        </a>
+      <% }) %>
+    </ul>
+  </div>
+</section>

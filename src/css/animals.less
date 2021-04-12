@@ -1,0 +1,28 @@
+#animals {
+  .link-gallery {
+
+    ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 24px 0;
+      margin: 0;
+      gap: 24px;
+
+      li {
+        display: block;
+      }
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30% 0;
+      background-image: linear-gradient(to bottom, darken(@accent-dark, 20%), @accent-dark);
+      text-decoration: none;
+      color: white;
+      border-radius: 20px;
+      box-shadow: inset 4px 4px 16px fade(black, 20%);
+    }
+  }
+}
