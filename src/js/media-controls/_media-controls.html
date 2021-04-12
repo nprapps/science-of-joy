@@ -4,7 +4,7 @@
   --button-bg: transparent;
   display: block;
   font-family: inherit;
-  width: auto;f
+  width: auto;
 }
 
 .row {
@@ -15,8 +15,22 @@
 
 button.play-pause {
   background: transparent;
+  color: var(--buttons-bg);
+  cursor: pointer;
   border: none;
-  color: inherit;
+}
+
+.play-pause:focus {
+  outline: none;
+}
+
+.play-pause:focus-visible {
+  outline: 1px dashed var(--buttons-bg);
+  border-radius: 30px;
+}
+
+.play-pause:hover {
+  color: white;
 }
 
 .play-pause svg {
@@ -24,23 +38,11 @@ button.play-pause {
   height: 64px;
 }
 
-.border {
-  fill: var(--buttons-bg-light);
-  stroke: var(--buttons-bg-light);
-  stroke-width: 1px;
-  stroke-dasharray: 1 2;
-}
-
 .play-pause .progress {
   fill: none;
-  stroke: var(--buttons-bg);
   stroke-width: 2px;
   transform-origin: center;
   transform: rotate(-90deg);
-}
-
-.play-pause .icon {
-  fill: var(--buttons-bg);
 }
 
 .labels {
@@ -55,24 +57,10 @@ button.play-pause {
 <div class="player">
   <div class="row">
     <button class="play-pause" as="playButton">
-      <svg class="play-pause" viewBox="0 0 32 32" width="32" height="32">
-        <!-- <circle cx=16 cy=16 r=15 class="border" /> -->
-        <!-- <path class="border" d="
-             M 16, 16
-             m -15, -1
-             a 15,13 0 1,0 29,0
-             a 14,11 0 1,0 -29,0
-         "/> -->
-         <ellipse cx="16" cy="16" rx="15" ry="13" class="progress" as="progress"/>
-         <!-- <path class="progress" as="progress" d="
-              M 16, 16
-              m -15, -1
-              a 15,13 0 1,0 29,0
-              a 14,11 0 1,0 -29,0
-          "/> -->
-        <!-- <circle cx=16 cy=16 r=15 class="progress" as="progress" /> -->
-        <path class="play icon" as="playIcon" d="M10,9 L23,14 L13,23 Z" />
-        <path class="pause icon" as="pauseIcon" style="display: none" d="M11,7 L14,7 L14,20 L11,20 L11,9 M18,8 L21,8 L21,22 L18,22 L18,9" />
+      <svg viewBox="0 0 32 32" width="32" height="32">
+        <ellipse cx="16" cy="16" stroke="currentColor" rx="15" ry="13" class="progress" as="progress"/>
+        <path class="play icon" fill="currentColor" as="playIcon" d="M10,9 L23,14 L13,23 Z" />
+        <path class="pause icon" fill="currentColor" as="pauseIcon" style="display: none" d="M11,7 L14,7 L14,20 L11,20 L11,9 M18,8 L21,8 L21,22 L18,22 L18,9" />
       </svg>
     </button>
     <div class="labels" as="labels">
