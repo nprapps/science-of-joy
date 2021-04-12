@@ -1,0 +1,17 @@
+<%
+  var slug = [id, slide.slug, index, "audio-mixer"].filter(d => d).join("-");
+%>
+<section data-slug="<%= slug %>" class="audio-mixer">
+  <div class="content">
+    <%= slide.text %>
+    <div class="mixer-elements">
+      <% slide.audios.forEach(function(v) { %>
+      <div class="mixer-element">
+      <mix-channel loop src="./assets/synced/<%= v.file %>">
+        <%= v.label %>
+      </mix-channel>
+    </div>
+      <% }) %>
+    </div>
+  </div>
+</section>

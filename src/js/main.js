@@ -10,6 +10,7 @@ require("./audio-visualizer/audio-visualizer");
 require("./shader-box/shader-box");
 require("./simple-video/simple-video");
 require("./closed-captions/closed-captions");
+require("./mix-channel/mix-channel");
 
 // general story architecture
 require("./stories");

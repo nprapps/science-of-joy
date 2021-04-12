@@ -1,0 +1,17 @@
+<style>
+
+button {
+  background:red;
+}
+
+button[aria-pressed='true'] {
+  background:green;
+}
+
+</style>
+
+<audio as="audio" loop></audio>
+<button as="play">
+	<slot>Play</slot>
+</button>
+<input type="range" as="slider" min="0" max="1" step="0.1" value="1"></input>
