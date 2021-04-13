@@ -70,6 +70,7 @@ class WebStory extends CustomElement {
   }
 
   setPage(index) {
+    index = index * 1;
     var sections = Array.from(this.elements.slot.assignedElements());
     var chosen = sections[index];
     for (var s of sections) {
@@ -103,10 +104,8 @@ class WebStory extends CustomElement {
           this.loadLazy(nextUp);
         }
         this.setNav();
+        this.broadcast("webstorypage", { page: this.selectedIndex, element: chosen });
       }
-      // always broadcast, whether the page changed or not
-      // necessary for ASMR
-      this.broadcast("webstorypage", { page: this.selectedIndex, element: chosen });
 
       // handle special section attributes
       var isTakeover = "takeover" in chosen.dataset;

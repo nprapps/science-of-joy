@@ -2,7 +2,8 @@
   var section = grunt.data.archieml.text.pages[id];
   var { metadata, slides } = section;
 %>
-<web-story id="<%= id %>" class="story-route">
+<web-story id="<%= id %>"
+  class="story-route <%= typeof suppress != "undefined" ? "exclude-random" : "" %>">
   <% if (metadata) { %>
   <section data-slug="title">
     <% if (metadata.video) { %>
