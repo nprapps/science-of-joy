@@ -1,4 +1,23 @@
 #asmr {
+  position: relative;
+  background: #888;
+  background-image: linear-gradient(to bottom, #888, #777);
+
+  video.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: .1;
+    transition: .4s opacity;
+
+    &.playing {
+      opacity: 1;
+    }
+  }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

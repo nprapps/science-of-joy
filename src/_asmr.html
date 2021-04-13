@@ -1,0 +1,54 @@
+<%
+  var section = grunt.data.archieml.text.pages.asmr;
+  var { metadata, slides } = section;
+  var id = "asmr";
+%>
+<div id="asmr" class="story-route">
+  <video
+    class="shared backdrop"
+    id="asmr-video-backdrop"
+    muted loop autoplay playsinline
+  ></video>
+  <web-story>
+    <% if (metadata) { %>
+    <section data-slug="title" data-video="./assets/synced/<%= metadata.video || "" %>">
+      <div class="content">
+        <h2><%= metadata.title %></h2>
+        <h3><%= metadata.subtitle %></h3>
+        <div class="autoplay">
+          <input type="checkbox" checked id="autoplay-vid-<%= id %>">
+          <label for="autoplay-vid-<%= id %>">Autoplay video?</label>
+        </div>
+      </div>
+    </section>
+    <% } %>
+    <% for (var index = 0; index < slides.length; index++) {
+        var slide = slides[index];
+        var slug = [id, slide.slug, index, "slide"].filter(d => d).join("-");
+        if (slide.template) {
+          print(t.include(`slides/_${slide.template || "generic"}.html`, { slide, id, index }));
+        } else {
+      %>
+      <section data-slug="<%= slug %>" data-video="./assets/synced/<%= slide.video %>">
+        <div class="content">
+          <%= t.renderMarkdown(slide.text) %>
+          <% if (slide.muted) { %>
+          <media-mute persistent for="asmr-video-backdrop"></media-mute>
+          <% } %>
+        </div>
+      </section>
+    <%  } 
+      } %>
+    <section data-slug="<%= id %>-chooser">
+      <video class="randomized backdrop" autoplay loop muted playsinline>
+        <source data-possible="./assets/synced/silent/blue-paint-swirl.mp4">
+        <source data-possible="./assets/synced/silent/seafoam-bounce.mp4">
+        <source data-possible="./assets/synced/silent/timelapse.mp4">
+      </video>
+      <div class="chooser collapsed">
+        <button class="random-choice">Surprise me!</button>
+        <button class="random-choice">Soothe me!</button>
+      </div>
+    </section>
+  </web-story>
+</div>

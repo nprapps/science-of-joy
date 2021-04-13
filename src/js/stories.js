@@ -8,8 +8,13 @@ var nextTick = () => new Promise(ok => requestAnimationFrame(ok));
 
 var history = new Set();
 var storyPaths = $(".story-route:not(.exclude-random)").map(s => s.id);
-var intro = $("#intro");
+var intro = $.one("#intro");
 var first = true;
+
+var getStoryElement = function(container) {
+  if (!container) return null;
+  return container.tagName == "WEB-STORY" ? container : $.one("web-story", container);
+};
 
 var setStory = async function(story, page = 0) {
   var current = $.one(".story-route.active");
@@ -20,14 +25,18 @@ var setStory = async function(story, page = 0) {
     current.classList.add("exiting");
     await wait(500);
     current.classList.remove("active");
+    // completely deactivate the previous story
+    var previousStory = getStoryElement(current);
+    if (previousStory) previousStory.reset();
   }
   activated.classList.remove("exiting");
   if (history.size) {
     activated.classList.add("entering");
   }
+  // activate the new story
   activated.classList.add("active");
-  var storyElement = activated.tagName == "WEB-STORY" ? activated : $.one("web-story", activated);
-  if (storyElement && storyElement != intro) storyElement.setPage(page);
+  var storyElement = getStoryElement(activated);
+  if (storyElement) storyElement.setPage(page);
   hashUtils.setParams({ story, page });
   history.add(story);
   return activated;
@@ -38,7 +47,8 @@ var hashRoute = async function() {
   var story = params.story || "intro";
   var page = params.page;
   if (first) {
-    $.one(`#${story} section`).setAttribute("data-tutorial", "true");
+    var section = $.one(`#${story} section`);
+    if (section) section.setAttribute("data-tutorial", "true");
     first = false;
   } else {
     $("[data-tutorial]").forEach(t => t.removeAttribute("data-tutorial"));

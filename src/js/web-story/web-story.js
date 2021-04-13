@@ -28,8 +28,9 @@ class WebStory extends CustomElement {
 
   reset() {
     this.selectedSection = null;
-    this.selectedIndex = 0;
-    this.setPage(0);
+    // init at -1 so that the first page triggers an event
+    this.selectedIndex = -1;
+    this.setPage(-1);
   }
 
   connectedCallback() {
@@ -102,8 +103,10 @@ class WebStory extends CustomElement {
           this.loadLazy(nextUp);
         }
         this.setNav();
-        this.broadcast("webstorypage", { page: this.selectedIndex });
       }
+      // always broadcast, whether the page changed or not
+      // necessary for ASMR
+      this.broadcast("webstorypage", { page: this.selectedIndex, element: chosen });
 
       // handle special section attributes
       var isTakeover = "takeover" in chosen.dataset;

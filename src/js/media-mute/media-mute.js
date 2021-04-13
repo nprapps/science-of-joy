@@ -75,7 +75,7 @@ class MediaMute extends CustomElement {
 
   onVolumeChange() {
     if (!this.media) return;
-    this.toggleMuted(this.media.muted);    
+    this.toggleMuted(this.media.muted); 
   }
 
   toggleMuted(update) {
@@ -92,6 +92,7 @@ class MediaMute extends CustomElement {
   }
 
   onPlayEvent(element) {
+    if (this.hasAttribute("persistent")) return;
     if (this.media != element) this.toggleMuted(true);
   }
 
