@@ -1,17 +1,115 @@
 <style>
 
+/*@riverHover: invert(74%) sepia(85%) saturate(2008%) hue-rotate(183deg) brightness(84%) contrast(92%);*/
+
 button {
-  background:red;
+    cursor: pointer;
+    background: transparent;
+    opacity: 1;
+    color: var(--nav-fg);
+    /*border-radius: 50px 30px 50px 20px;*/
+    padding: 0px 20px 0px 0px;
+    margin: 0;
+    border: none;
+    fill:var(--nav-fg);
+    position: relative;
+    filter:brightness(0) invert(0.85);
+    width:30%;
 }
 
+button:hover {
+  filter:sepia(50%);
+}
+
+/*button:hover {
+  filter:invert(74%) sepia(85%)  hue-rotate(183deg) brightness(84%) contrast(92%);
+}*/
+
+/*button:nth-child(1) {
+  filter:@riverHover;
+}*/
+
+button:focus {
+  oultine:none;
+}
+
+img {
+  opacity:0.5;
+}
+
+
+
+.audio-mixer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:0px 0px 0px 0px;
+  max-width:90%;
+  width:300px;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+input[type="range"]{
+  -webkit-appearance: none; 
+  appearance: none;
+  height: 1px;
+  border-radius: 5px; 
+  background: #303030;  /* Grey #d3d3d3; background */
+  outline: none; /* Remove outline */
+  opacity: 0.8; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  width: 70%;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%; 
+  background:white;
+  /*background: #7da644;/*var(--buttons-bg);*/
+  cursor: pointer;
+}
+
+
+/*.play-pause:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.play-pause:focus-visible {
+  outline: 1px dashed var(--buttons-bg);
+  border-radius: 30px;
+}
+
+.play-pause:hover {
+  color: white;
+}*/
+/*
+img {
+  outline: none!important;
+}*/
+
+/*svg {
+  fill:black;
+  color:black;
+}*/
+
 button[aria-pressed='true'] {
-  background:green;
+  /*background:none;*/
+  /*background:var(--buttons-bg);*/
+  filter:none;/*invert(62%) sepia(25%) saturate(851%) hue-rotate(43deg) brightness(91%) contrast(89%);
+   */
 }
 
 </style>
 
+<div class="audio-mixer">
 <audio as="audio" loop></audio>
-<button as="play">
+<button as="play" class="play-pause">
 	<slot>Play</slot>
 </button>
 <input type="range" as="slider" min="0" max="1" step="0.1" value="1"></input>
+</div>

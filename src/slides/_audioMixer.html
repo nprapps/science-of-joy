@@ -6,10 +6,14 @@
     <%= slide.text %>
     <div class="mixer-elements">
       <% slide.audios.forEach(function(v) { %>
-      <div class="mixer-element">
+      <div id="<%=v.label %>" class="mixer-element">
+        
       <mix-channel loop src="./assets/synced/<%= v.file %>">
-        <%= v.label %>
+        <img alt="play button" id="<%=v.label %>" height="48" width="48" src="./assets/<%=v.icon %>">
+        <h4 class="mixer-label"><%=v.label %></h4>
       </mix-channel>
+      
+      
     </div>
       <% }) %>
     </div>
