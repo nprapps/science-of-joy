@@ -10,6 +10,7 @@ container.addEventListener("webstorypage", function(e) {
   var isMuted = backdrop.muted;
   backdrop.classList.remove("playing");
   backdrop.src = element.dataset.video;
+  backdrop.setAttribute("poster", element.dataset.video + ".jpg");
 });
 
 // shut down the video when we leave the story

@@ -9,6 +9,7 @@ cd originals
 # handle silenced video
 mkdir -p ../synced/silent
 for video in silent/*.mp4; do
+  # create the videos
   ffmpeg -n \
   -i $video \
   -an \
@@ -19,9 +20,20 @@ for video in silent/*.mp4; do
   -crf 30 \
   -vf scale=640:-2 \
   ../synced/$video
+
+  # create posters
+  ffmpeg -n \
+  -i $video \
+  -ss 5 \
+  -qscale:v 4 \
+  -frames:v 1 \
+  ../synced/$video.jpg
+
 done
 
-# # transcode video with sound
+
+
+# transcode video with sound
 mkdir -p ../synced/video
 for video in video/*.mp4; do
   ffmpeg -n \
@@ -33,6 +45,13 @@ for video in video/*.mp4; do
   -crf 30 \
   -vf scale=640:-2 \
   ../synced/$video
+
+  # create posters
+  ffmpeg -n \
+  -i $video \
+  -qscale:v 4 \
+  -frames:v 1 \
+  ../synced/$video.jpg
 done
 
 # processing audio into MP3
