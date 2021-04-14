@@ -1,43 +1,36 @@
-.chooser {
-  min-width: 300px;
-  // border-radius: 20px;
-  // background-image: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0, 0, 0, 0) 100%);
+.chooser-slide {
 
-  .block {
-    background: fade(black, 30%);
-    border: 2px solid var(--buttons-fg);
-    padding: 20px;
-    list-style-type: none;
-    margin: 0 0 20px;
-    border-radius: 8px;
-  }
+  .contents {
+    margin: auto;
+    max-width: 300px;
+    position: relative;
+    z-index: 9;
 
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+    .text {
+      margin-top: 24px;
+      background: fade(black, 50%);
+      text-align: left;
+      color: white;
+      padding: 20px;
+    }
 
-    li {
-      display: block;
-      margin-bottom: 12px;
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
 
-      &:last-child {
-        margin-bottom: 0;
+      li {
+        display: block;
+        margin-bottom: 12px;
       }
     }
-  }
 
-  &.collapsed {
-    li:nth-child(n + 4) {
-      display: none;
-    }
-
-    .expander {
-      display: block;
+    a {
+      color: inherit;
     }
   }
 
-  button, a {
+  .choices button {
     display: block;
     background: fade(white, 80%);
     color: @unbiased;

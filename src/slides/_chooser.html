@@ -1,11 +1,24 @@
-<section data-slug="<%= id %>-chooser" class="chooser">
+<section data-slug="<%= id %>-chooser" class="chooser-slide">
   <video class="randomized backdrop" autoplay loop muted playsinline>
     <source data-possible="./assets/synced/silent/blue-paint-swirl.mp4">
     <source data-possible="./assets/synced/silent/seafoam-bounce.mp4">
     <source data-possible="./assets/synced/silent/timelapse.mp4">
   </video>
-  <div class="chooser collapsed">
-    <button class="random-choice">Surprise me!</button>
-    <button class="random-choice">Soothe me!</button>
+  <div class="contents">
+    <div class="choices">
+      <button class="random-choice">Surprise me!</button>
+      <button class="random-choice">Soothe me!</button>
+    </div>
+
+    <% if (metadata.refs) { %>
+    <div class="text">
+      <h3>References</h3>
+      <ul class="refs">
+        <% metadata.refs.forEach(function(r) { %>
+        <li> <a href="<%= r.url %>"><%= r.title %></a>
+        <% }) %>
+      </ul>
+    </div>
+    <% } %>
   </div>
 </section>
