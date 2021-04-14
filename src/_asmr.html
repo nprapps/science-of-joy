@@ -10,18 +10,9 @@
     muted loop autoplay playsinline
   ></video>
   <web-story>
-    <% if (metadata) { %>
-    <section data-slug="title" data-video="./assets/synced/<%= metadata.video || "" %>">
-      <div class="content">
-        <h2><%= metadata.title %></h2>
-        <h3><%= metadata.subtitle %></h3>
-        <div class="autoplay">
-          <input type="checkbox" checked id="autoplay-vid-<%= id %>">
-          <label for="autoplay-vid-<%= id %>">Autoplay video?</label>
-        </div>
-      </div>
-    </section>
-    <% } %>
+    <% if (metadata) {
+      print(t.include("slides/_title.html", { metadata, id }));
+    } %>
     <% for (var index = 0; index < slides.length; index++) {
         var slide = slides[index];
         var slug = [id, slide.slug, index, "slide"].filter(d => d).join("-");
@@ -39,16 +30,5 @@
       </section>
     <%  } 
       } %>
-    <section data-slug="<%= id %>-chooser">
-      <video class="randomized backdrop" autoplay loop muted playsinline>
-        <source data-possible="./assets/synced/silent/blue-paint-swirl.mp4">
-        <source data-possible="./assets/synced/silent/seafoam-bounce.mp4">
-        <source data-possible="./assets/synced/silent/timelapse.mp4">
-      </video>
-      <div class="chooser collapsed">
-        <button class="random-choice">Surprise me!</button>
-        <button class="random-choice">Soothe me!</button>
-      </div>
-    </section>
-  </web-story>
+  <%= t.include("slides/_chooser.html", { id, metadata }) %>
 </div>

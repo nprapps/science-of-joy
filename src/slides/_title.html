@@ -1,0 +1,19 @@
+<section class="title-slide" data-slug="title">
+  <% if (metadata.video) { %>
+  <video
+    class="backdrop"
+    loop autoplay muted playsinline
+    data-src="./assets/synced/<%= metadata.video %>"
+    poster="./assets/synced/<%= metadata.video %>.jpg"
+    id="title-video"
+  ></video>
+  <% } %>
+  <div class="content">
+    <h2><%= metadata.title %></h2>
+    <h3><%= metadata.subtitle %></h3>
+    <div class="autoplay">
+      <input type="checkbox" checked id="autoplay-vid-<%= id %>">
+      <label for="autoplay-vid-<%= id %>">Autoplay video?</label>
+    </div>
+  </div>
+</section>

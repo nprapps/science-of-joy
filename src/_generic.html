@@ -4,40 +4,12 @@
 %>
 <web-story id="<%= id %>"
   class="story-route <%= typeof suppress != "undefined" ? "exclude-random" : "" %>">
-  <% if (metadata) { %>
-  <section data-slug="title">
-    <% if (metadata.video) { %>
-    <video
-      class="backdrop"
-      loop autoplay muted playsinline
-      data-src="./assets/synced/<%= metadata.video %>"
-      poster="./assets/synced/<%= metadata.video %>.jpg"
-      id="title-video"
-    ></video>
-    <% } %>
-    <div class="content">
-      <h2><%= metadata.title %></h2>
-      <h3><%= metadata.subtitle %></h3>
-      <div class="autoplay">
-        <input type="checkbox" checked id="autoplay-vid-<%= id %>">
-        <label for="autoplay-vid-<%= id %>">Autoplay video?</label>
-      </div>
-    </div>
-  </section>
-  <% } %>
+  <% if (metadata) {
+    print(t.include("slides/_title.html", { metadata, id }));
+  } %>
   <% for (var index = 0; index < slides.length; index++) {
     var slide = slides[index];
     print(t.include(`slides/_${slide.template || "generic"}.html`, { slide, id, index }));
   } %>
-  <section data-slug="<%= id %>-chooser">
-    <video class="randomized backdrop" autoplay loop muted playsinline>
-      <source data-possible="./assets/synced/silent/blue-paint-swirl.mp4">
-      <source data-possible="./assets/synced/silent/seafoam-bounce.mp4">
-      <source data-possible="./assets/synced/silent/timelapse.mp4">
-    </video>
-    <div class="chooser collapsed">
-      <button class="random-choice">Surprise me!</button>
-      <button class="random-choice">Soothe me!</button>
-    </div>
-  </section>
+  <%= t.include("slides/_chooser.html", { id, metadata }) %>
 </web-story>
