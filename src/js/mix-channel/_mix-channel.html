@@ -17,8 +17,9 @@ button {
     width:30%;
 }
 
-button:hover {
-  filter:sepia(50%);
+button:hover, button[aria-pressed='true']:hover {
+  /*filter:sepia(50%);*/
+  filter:grayscale(0.5);
 }
 
 /*button:hover {
@@ -29,8 +30,15 @@ button:hover {
   filter:@riverHover;
 }*/
 
-button:focus {
-  oultine:none;
+button:focus,button[aria-pressed='true']:focus {
+  outline:none;
+}
+
+button[aria-pressed='true'] {
+  /*background:none;*/
+  /*background:var(--buttons-bg);*/
+  filter:none;/*invert(62%) sepia(25%) saturate(851%) hue-rotate(43deg) brightness(91%) contrast(89%);
+   */
 }
 
 img {
@@ -55,9 +63,9 @@ input[type="range"]{
   appearance: none;
   height: 1px;
   border-radius: 5px; 
-  background: #303030;  /* Grey #d3d3d3; background */
+  background: #4f4f4f;  /* Grey #d3d3d3; background */
   outline: none; /* Remove outline */
-  opacity: 0.8; /* Set transparency (for mouse-over effects on hover) */
+  opacity: 0.4; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
   width: 70%;
@@ -73,6 +81,10 @@ input[type="range"]::-webkit-slider-thumb {
   /*background: #7da644;/*var(--buttons-bg);*/
   cursor: pointer;
 }
+
+/*input[type="range"]::-webkit-slider-thumb {
+  background:black;
+}*/
 
 
 /*.play-pause:focus:not(:focus-visible) {
@@ -97,19 +109,12 @@ img {
   color:black;
 }*/
 
-button[aria-pressed='true'] {
-  /*background:none;*/
-  /*background:var(--buttons-bg);*/
-  filter:none;/*invert(62%) sepia(25%) saturate(851%) hue-rotate(43deg) brightness(91%) contrast(89%);
-   */
-}
-
 </style>
 
 <div class="audio-mixer">
 <audio as="audio" loop></audio>
 <button as="play" class="play-pause">
-	<slot>Play</slot>
+	<slot></slot>
 </button>
 <input type="range" as="slider" min="0" max="1" step="0.1" value="1"></input>
 </div>

@@ -30,18 +30,29 @@ class MixChannel extends CustomElement {
 
 	onSlide(){
 		var { audio, slider } = this.elements;
+		//console.log(slider.style)
+		//slider.style.opacity = (slider.value < 0.3 ? 0.3 : slider.value)
+		//console.log(slider.input)
+
 		audio.volume = slider.value;
 	}
 
 	onPlay(){
-		var { audio, play } = this.elements;
+		var { audio, play, slider } = this.elements;
 		if (audio.paused){
 				audio.play();
 				play.setAttribute("aria-pressed",'true')
+				//slider.setAttribute("disabled",'false');
+				slider.style.opacity = 1
+				//console.log(slider.disabled)
+				
 			}
 			else {
 				audio.pause();
 				play.setAttribute("aria-pressed",'false')
+				slider.style.opacity = 0.4
+				//slider.setAttribute("disabled",'true');
+				//console.log(slider.disabled)
 			}
 	}
 
