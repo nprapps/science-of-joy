@@ -4,15 +4,21 @@
   hidecontrols="next previous filmstrip">
   <section>
     <h1>MENU</h1>
+    <div class="grid-container">
     <% Object.keys(archieml.text.pages).forEach(a => { %>
-    <% var page = archieml.text.pages[a]; %>
-    <br>
+      <% var page = archieml.text.pages[a]; %>
+    <div class="grid-item">
+    <!--<br>-->
     <a href="#story=<%= a %>">
       <%= page.metadata ? page.metadata.title : a %>
     </a>
-    <span class="subtitle">
+    <!--<span class="subtitle">
       <%= page.metadata ? page.metadata.subtitle : a %>
-    </span>
+    </span>-->
+    
+
+    </div>
     <% }) %>
+    </div>
   </section>
 </web-story>
