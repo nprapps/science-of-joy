@@ -5,24 +5,35 @@
 @colorOdd: #F0F0F0;
 @colorEven: #F5F5F5;
 
+:root{
+  --radius-1: 70%;
+  --radius-2: 30%;
+  --radius-3: 30%;
+  --radius-4: 70%;
+  --radius-5: 73%;
+  --radius-6: 40%;
+  --radius-7: 70%;
+  --radius-8: 40%;
+}
+
 web-story#cheat {
 	font-family: var(--gotham);
-	background-image: linear-gradient(to left top, @color-hover, #ffdf6173);
+	background-image: linear-gradient(to left top, #F6EEEA, #FBDECC,@color-hover,#DBEEF2);
 	
 
 	.grid-container {
-		margin-top:30px;
+		margin-top:10px;
 		display:grid;
 		
-		width: 750px;
-		height:500px;
-		max-height:90%;
-		max-width:90%;
+		width:750px;
+		height:600px;
+		max-height:95%;
+		max-width:95%;
 		grid-template-columns: 22% 22% 22% 22%;
-		grid-template-rows: auto auto auto;
-		margin-bottom: 50px;
+		grid-template-rows: 30% 30% 30%;
+		//margin-bottom: 50px;
 		grid-column-gap: 4%;
-		grid-row-gap: 6%;
+		grid-row-gap: 5%;
 
 		@media @mobile {
 			grid-template-columns: 44% 44%;
@@ -37,7 +48,10 @@ web-story#cheat {
 	}
 
 	h1 {
-		color:#a9a9a9;
+		color:#808080;
+		letter-spacing: 0.3em;
+		//color:white;
+		font-size: 14px;
 	}
 
 	div.controls {
@@ -55,7 +69,7 @@ web-story#cheat {
 	.grid-item {
 		//background-image: linear-gradient(to left top, white, @color-bg);
 		//background: radial-gradient(#a9a9a9,white 100%);
-		background-color:#ffffff73;
+		background-color:#ffffff66;
 		display:flex;
 		flex-direction:column;
 		justify-content: center;
@@ -65,34 +79,31 @@ web-story#cheat {
 		flex: 2;
 
 		a {
-			
 			text-decoration: none;
-			color: black;//#808080;
+			color: #707070;
 			text-transform: uppercase;
-			letter-spacing:0.08em;
+			letter-spacing:0.15em;
 			text-align:center;
 			width:90%;
 			word-wrap: normal;
 			margin:auto;
-			font-size:14px;
+			font-size:12px;
 			display:flex;
 			padding-bottom:5px;
 			flex-direction:column;
 			justify-content: center;
 			font-weight:normal;
 			flex:2;
+			//text-shadow: 0px 0px 5px white;
 
 			@media @mobile{
 				font-size:11px;
 			}
-
-			//border-bottom:1px solid #a9a9a9;
 		}
 
 		p {
 			flex: 3;
 			font-size:11px;
-			//max-width:90%;
 			color: #808080;
 			width:90%;
 			text-align:left;
@@ -100,20 +111,74 @@ web-story#cheat {
 			@media @mobile{
 				font-size:10px;
 			}
-
 		}
-
-		
-	}
-
-	.grid-item:nth-child(odd){
-		border-radius:62% 40% 50% 55%;
 	}
 
 	.grid-item:nth-child(even){
-		//border-radius:40% 50% 70% 80%;
-		border-radius:50% 45% 70% 47%;
+		border-top-left-radius: 30% 40%;
+  	border-top-right-radius: 70% 60%;
+  	border-bottom-right-radius: 70% 40%;
+  	border-bottom-left-radius: 30% 60%;
 	}
+
+	.grid-item:nth-child(odd){
+		border-top-left-radius: 70% 60%;
+  	border-top-right-radius: 30% 40%;
+  	border-bottom-right-radius: 30% 60%;
+  	border-bottom-left-radius: 70% 40%;
+		// border-top-left-radius: 60% 50%;
+  // 	border-top-right-radius: 70% 40%;
+  // 	border-bottom-right-radius: 30% 35%;
+  // 	border-bottom-left-radius: 70% 60%;
+	}
+
+	.grid-item:nth-child(1){
+		border-top-left-radius: 30% 40%;
+  	border-top-right-radius: 70% 40%;
+  	border-bottom-right-radius: 30% 60%;
+  	border-bottom-left-radius: 60% 40%;
+	}
+
+	.grid-item:nth-child(3n){
+		border-top-left-radius: 30% 60%;
+  	border-top-right-radius: 70% 40%;
+  	border-bottom-right-radius: 70% 60%;
+  	border-bottom-left-radius: 30% 40%;
+	}
+
+	.grid-item:nth-child(5n){
+		border-top-left-radius: 70% 40%;
+  	border-top-right-radius: 30% 40%;
+  	border-bottom-right-radius: 60% 40%;
+  	border-bottom-left-radius: 30% 60%;
+	}
+
+	.grid-item:nth-child(3){
+		border-top-left-radius: 70% 40%;
+  	border-top-right-radius: 30% 40%;
+  	border-bottom-right-radius: 60% 40%;
+  	border-bottom-left-radius: 30% 60%;
+	}
+
+.grid-item:nth-child(8){
+		border-top-left-radius: 70% 40%;
+  	border-top-right-radius: 30% 40%;
+  	border-bottom-right-radius: 60% 40%;
+  	border-bottom-left-radius: 30% 60%;
+	}
+
+
+	// .grid-item:nth-child(3n){
+	// 	border-top-left-radius: 70% 60%;
+ //  	border-top-right-radius: 30% 40%;
+ //  	border-bottom-right-radius: 30% 60%;
+ //  	border-bottom-left-radius: 70% 40%;
+	// }
+
+
+
+	
+
 
 	.grid-item:hover{
 		//opacity:0.5;
@@ -123,8 +188,9 @@ web-story#cheat {
 		background-image: none;//linear-gradient(to top, color-bg, white 10%, @color-bg);
 
 		a {
-			// color: black;
+			color: black;
 			// font-weight:bold;
+			//text-shadow: 1px 1px 5px @color-bg-light
 		}
 	}
 
