@@ -8,7 +8,7 @@ const PADDING = 16;
 class BlackoutPoetry extends CustomElement {
   constructor() {
     super();
-    var { canvas, reset, save, newPage } = this.elements;
+    var { canvas, undo, reset, save, newPage } = this.elements;
     this.context = canvas.getContext("2d");
     this.painting = false;
     canvas.addEventListener("touchstart", this.onPointerContact);
@@ -21,10 +21,14 @@ class BlackoutPoetry extends CustomElement {
     reset.addEventListener("click", this.typeset);
     save.addEventListener("click", this.download);
     newPage.addEventListener("click", this.turnPage);
+    undo.addEventListener("click", this.undo);
+
+    this.undoBuffer = null;
   }
 
   static get boundMethods() {
     return [
+      "undo",
       "turnPage",
       "typeset",
       "onPointerContact",
@@ -81,7 +85,9 @@ class BlackoutPoetry extends CustomElement {
     switch (e.type) {
       case "touchstart":
       case "mousedown":
+        var canvas = this.context.canvas;
         this.painting = true;
+        this.undoBuffer = this.context.getImageData(0, 0, canvas.width, canvas.height);
       break;
 
       case "touchend":
@@ -117,6 +123,10 @@ class BlackoutPoetry extends CustomElement {
     download.href = canvas.toDataURL();
     download.download = `poetry-${Date.now()}`
     download.click();
+  }
+
+  undo() {
+    if (this.undoBuffer) this.context.putImageData(this.undoBuffer, 0, 0);
   }
 
   connectedCallback() {

@@ -1,7 +1,7 @@
 <%
   var slug = [id, slide.slug, index, "video-gallery"].filter(d => d).join("-");
 %>
-<section data-slug="<%= slug %>" class="video-gallery">
+<section data-slug="<%= slide.slug %>" id="<%= slug %>" class="video-gallery">
   <div class="wide content">
     <%= slide.text %>
     <media-collection class="grid">

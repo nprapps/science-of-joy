@@ -1,7 +1,7 @@
 <%
   var slug = [id, slide.slug, index, "audio-mixer"].filter(d => d).join("-");
 %>
-<section data-slug="<%= slug %>" class="audio-mixer">
+<section data-slug="<%= slide.slug %>" id="<%= slug %>" class="audio-mixer">
   <div class="content">
     <%= slide.text %>
     <div class="mixer-elements">

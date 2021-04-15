@@ -2,6 +2,6 @@
   var slug = [id, slide.slug, index, "blackout"].filter(d => d).join("-");
 %>
 
-<section data-slug="<%= slug %>">
+<section data-slug="<%= slide.slug %>" id="<%= slug %>">
   <blackout-poetry data-activate="typeset"></blackout-poetry>
 </section>

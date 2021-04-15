@@ -124,7 +124,7 @@ class MediaControls extends CustomElement {
   }
 
   onPlayEvent(element) {
-    if (this.media != element) this.media.pause();
+    if (this.media && this.media != element) this.media.pause();
   }
 
   onSlotChange() {

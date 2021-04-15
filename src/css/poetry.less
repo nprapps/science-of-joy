@@ -5,4 +5,34 @@
     max-width: 100%;
     margin: 20px auto;
   }
+
+  @keyframes draw-strike {
+    to { width: 100%; }
+  }
+  
+  [data-slug="blackout-demo"] {
+    b {
+      font-weight: normal;
+    }
+
+    .strike {
+      position: relative;
+      display: inline-block;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        animation-name: draw-strike;
+        animation-duration: .2s;
+        animation-fill-mode: both;
+        animation-delay: inherit;
+        content: "";
+        display: block;
+        background: black;
+      }
+    }
+  }
 }

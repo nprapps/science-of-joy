@@ -1,7 +1,7 @@
 <%
   var slug = [id, slide.slug, index, "audio"].filter(d => d).join("-");
 %>
-<section data-slug="<%= slug %>" class="audio">
+<section data-slug="<%= slide.slug %>" id="<%= slug %>" class="audio">
 
   <shader-box class="backdrop" src="./assets/bokeh.glsl"></shader-box>
 
@@ -12,11 +12,11 @@
     <div class="clips">
       <!-- <hr class="divider"> -->
       <div class="top">
-        <media-controls for="<%= slug %>">
+        <media-controls for="<%= slug %>-audio">
           <%= slide.label || "" %>
         </media-controls>
         <audio
-          id="<%= slug %>"
+          id="<%= slug %>-audio"
           src="./assets/synced/audio/<%= slide.audio %>"
         >
           <% if (slide.captions) { %>
