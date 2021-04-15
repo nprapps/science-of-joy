@@ -8,8 +8,11 @@
     id="title-video"
   ></video>
   <% } %>
-  <div class="content">
+  <div class="content title">
     <h2><%= metadata.title %></h2>
+    <sketch-svg class="underline squiggle" speed=0.3 delay=2000 data-activate="sketch">
+      <%= t.include("assets/squiggle.svg") %>
+    </sketch-svg>
     <h3><%= metadata.subtitle %></h3>
     <div class="autoplay">
       <input type="checkbox" checked id="autoplay-vid-<%= id %>">
