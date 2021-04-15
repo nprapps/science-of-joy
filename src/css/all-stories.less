@@ -5,20 +5,19 @@
 @colorOdd: #F0F0F0;
 @colorEven: #F5F5F5;
 
-:root{
-  --radius-1: 70%;
-  --radius-2: 30%;
-  --radius-3: 30%;
-  --radius-4: 70%;
-  --radius-5: 73%;
-  --radius-6: 40%;
-  --radius-7: 70%;
-  --radius-8: 40%;
-}
-
 web-story#cheat {
 	font-family: var(--gotham);
-	background-image: linear-gradient(to left top, #F6EEEA, #FBDECC,@color-hover,#DBEEF2);
+	background: linear-gradient(270deg, #F6EEEA, #FBDECC,@color-hover,#DBEEF2);
+
+	//background: linear-gradient(270deg, #40203e, #02718d);
+    background-size: 400% 400%;
+    animation: colorShift 30s linear infinite alternate;
+
+    @keyframes colorShift {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
 	
 
 	.grid-container {
@@ -54,9 +53,9 @@ web-story#cheat {
 		font-size: 14px;
 	}
 
-	div.controls {
-		display:none;
-	}
+	// div.controls {
+	// 	display:none;
+	// }
 
 	// .grid-item:nth-child(even) {
 	// 	background-color:@colorEven;
