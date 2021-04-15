@@ -29,6 +29,28 @@ web-story {
     padding-bottom: 80px;
   }
 
+  .title {
+    h2 {
+      // line-height: 40px;
+      // margin-top: 5;
+      margin-bottom: 0px;
+      // max-height: 80px;
+
+      @media @mobile {
+        line-height: 15px;
+        max-height: 30px;
+      }
+    }
+
+    sketch-svg {
+      position: relative;
+      width: 100%;
+      z-index: 100;
+      line-height: 10px;
+      margin-top: -20px; 
+    }
+  }
+
   [intangible] {
     pointer-events: none;
   }
@@ -56,14 +78,19 @@ web-story {
       max-width: calc(~"100% - 20px");
     }
 
+    &.title {
+      border-radius: 200px 160px 220px 130px;
+      padding: 50px;
+    }
+
     h2 {
-      font-size: 48px;
+      font-size: 44px;
       font-family: @gotham;
       font-weight: 350;
       text-transform: uppercase;
 
       @media @mobile {
-        font-size: 38px;
+        font-size: 34px;
       }
     }
 

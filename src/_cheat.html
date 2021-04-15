@@ -1,15 +1,18 @@
-<web-story 
+<web-story
   id="cheat" class="story-route exclude-random"
   aria-hidden="true"
   hidecontrols="next previous filmstrip">
   <section>
-    <h1>CHEAT MENU</h1>
+    <h1>MENU</h1>
     <% Object.keys(archieml.text.pages).forEach(a => { %>
     <% var page = archieml.text.pages[a]; %>
     <br>
     <a href="#story=<%= a %>">
       <%= page.metadata ? page.metadata.title : a %>
     </a>
+    <span class="subtitle">
+      <%= page.metadata ? page.metadata.subtitle : a %>
+    </span>
     <% }) %>
   </section>
 </web-story>
