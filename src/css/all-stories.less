@@ -1,7 +1,7 @@
 @color-bg: #ffdf61;
 @color-bg-light: #ffdf6173;
 @color-hover: #E0BBE473;
-@color-hover-gray: #DCDCDC;
+@color-hover-gray: #DCDCDC73;
 @colorOdd: #F0F0F0;
 @colorEven: #F5F5F5;
 
@@ -11,22 +11,25 @@ web-story#cheat {
 	
 
 	.grid-container {
+		margin-top:30px;
 		display:grid;
 		grid-template-columns: 33% 33% 33%;
 		grid-template-rows: 25% 25% 25% 25%;
-		width:700px;
-		height: 500px;
-		max-height:100%;
-		margin-right:auto;
-		margin-left:auto;
-		margin-bottom: 100px;
-		max-width:100%;
+		width: 600px;
+		height:600px;
+		max-height:90%;
+		max-width:90%;
+		margin-bottom: 50px;
 		grid-column-gap: 30px;
 		grid-row-gap: 30px;
 
 		@media @mobile {
-			grid-template-columns: 50% 50%;
+			grid-template-columns: 40% 40%;
 			grid-template-rows: auto;
+			grid-column-gap: 20%;
+			grid-row-gap: 20px;
+			margin-left:10px;
+			margin-right:10px;
 		}
 	}
 
@@ -49,13 +52,12 @@ web-story#cheat {
 	.grid-item {
 		//background-image: linear-gradient(to left top, white, @color-bg);
 		//background: radial-gradient(#a9a9a9,white 100%);
-		background-color:white;
+		background-color:#ffffff73;
 		display:flex;
 		flex-direction:column;
 		justify-content: center;
 		align-items: center;
 		//background-color:@color1;
-		border-radius:10%;
 		//border: 2px white solid;
 		flex: 2;
 
@@ -69,7 +71,7 @@ web-story#cheat {
 			width:90%;
 			word-wrap: normal;
 			margin:auto;
-			font-size:16px;
+			font-size:14px;
 			display:flex;
 			padding-bottom:5px;
 			flex-direction:column;
@@ -101,16 +103,24 @@ web-story#cheat {
 		
 	}
 
+	.grid-item:nth-child(odd){
+		border-radius:70% 40% 90% 80%;
+	}
+
+	.grid-item:nth-child(even){
+		border-radius:40% 50% 70% 80%;
+	}
+
 	.grid-item:hover{
 		//opacity:0.5;
-		background-color:@color-bg-light;//@color-hover;
+		background-color:white;//@color-bg-light;//@color-hover;
 		cursor:pointer;
 		//border: 2px white solid;
 		background-image: none;//linear-gradient(to top, color-bg, white 10%, @color-bg);
 
 		a {
-			color: black;
-			font-weight:bold;
+			// color: black;
+			// font-weight:bold;
 		}
 	}
 
