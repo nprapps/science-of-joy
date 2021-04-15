@@ -13,7 +13,7 @@
         Science
       </div>
 
-      <a href="#story=cheat">Stories</a>
+      <a href="#story=menu">Stories</a>
 
       <button class="share">Share</button>
     </nav>
@@ -30,16 +30,18 @@
 
     <%= t.include("_asmr.html") %>
 
+    <%= t.include("_generic.html", { id: "forest" }) %>
+
     <!-- excluded from the page for now -->
     <% if (false) { %>
-    <%= t.include("_generic.html", { id: "forest" }) %>
+    
     <%= t.include("_generic.html", { id: "flow" }) %> 
     <%= t.include("_generic.html", { id: "ritual" }) %>
     <%= t.include("_generic.html", { id: "awe" }) %>
     <%= t.include("_generic.html", { id: "connection" }) %>
     <% } %>
 
-    <%= t.include("_cheat.html") %>
+    <%= t.include("_menu.html") %>
 
     <%= t.include("_generic.html", { id: "about", suppress: true }) %>
 
