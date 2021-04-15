@@ -13,24 +13,27 @@ web-story#cheat {
 	.grid-container {
 		margin-top:30px;
 		display:grid;
-		grid-template-columns: 33% 33% 33%;
-		grid-template-rows: 25% 25% 25% 25%;
-		width: 600px;
-		height:600px;
+		
+		width: 750px;
+		height:500px;
 		max-height:90%;
 		max-width:90%;
+		grid-template-columns: 22% 22% 22% 22%;
+		grid-template-rows: auto auto auto;
 		margin-bottom: 50px;
-		grid-column-gap: 30px;
-		grid-row-gap: 30px;
+		grid-column-gap: 4%;
+		grid-row-gap: 6%;
 
 		@media @mobile {
-			grid-template-columns: 40% 40%;
+			grid-template-columns: 44% 44%;
 			grid-template-rows: auto;
-			grid-column-gap: 20%;
-			grid-row-gap: 20px;
+			grid-column-gap: 12%;
+			grid-row-gap: 4%;
 			margin-left:10px;
 			margin-right:10px;
 		}
+
+		filter: drop-shadow(0 0 0.75rem #ffffff)
 	}
 
 	h1 {
@@ -64,7 +67,7 @@ web-story#cheat {
 		a {
 			
 			text-decoration: none;
-			color: #808080;
+			color: black;//#808080;
 			text-transform: uppercase;
 			letter-spacing:0.08em;
 			text-align:center;
@@ -104,11 +107,12 @@ web-story#cheat {
 	}
 
 	.grid-item:nth-child(odd){
-		border-radius:70% 40% 90% 80%;
+		border-radius:62% 40% 50% 55%;
 	}
 
 	.grid-item:nth-child(even){
-		border-radius:40% 50% 70% 80%;
+		//border-radius:40% 50% 70% 80%;
+		border-radius:50% 45% 70% 47%;
 	}
 
 	.grid-item:hover{
