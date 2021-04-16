@@ -15,7 +15,7 @@
   "scripts": {
     "src/js/main.js": "build/app.js"
   },
-  "title": "",
+  "title": "NPR's Joy Generator",
   "description": "",
   "url": "",
   "image": "assets/logo.png",

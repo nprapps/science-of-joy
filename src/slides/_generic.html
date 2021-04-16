@@ -11,7 +11,7 @@
   ></video>
   <% } %>
   <% if (slide.image) { %>
-  <img alt=""data-src="./assets/synced/images/<%= slide.image %>">
+  <img class="backdrop" alt=""data-src="./assets/synced/images/<%= slide.image %>">
   <% } %>
   <div class="content">
     <%= t.renderMarkdown(slide.text) %>
