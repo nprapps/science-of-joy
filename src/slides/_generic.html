@@ -10,6 +10,9 @@
     poster="./assets/synced/<%= slide.video %>.jpg"
   ></video>
   <% } %>
+  <% if (slide.image) { %>
+  <img alt=""data-src="./assets/synced/images/<%= slide.image %>">
+  <% } %>
   <div class="content">
     <%= t.renderMarkdown(slide.text) %>
     <% if (slide.muted) { %>
