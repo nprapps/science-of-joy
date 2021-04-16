@@ -23,8 +23,8 @@
     <%= t.include("_intro_alternate.html") %>
 
     <% 
-      for (var k in doc.pages) {
-        var { metadata } = doc.pages[k];
+      for (var k in archieml.text.pages) {
+        var { metadata } = archieml.text.pages[k];
         if (!metadata || !metadata.published) continue;
         if (metadata.template) {
           print(t.include(metadata.template));
