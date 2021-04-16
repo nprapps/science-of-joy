@@ -22,24 +22,17 @@
 
     <%= t.include("_intro_alternate.html") %>
 
-    <%= t.include("_generic.html", { id: "nostalgia" }) %>
-
-    <%= t.include("_generic.html", { id: "poetry" }) %>
-
-    <%= t.include("_generic.html", { id: "animals" }) %>
-
-    <%= t.include("_asmr.html") %>
-
-    <%= t.include("_generic.html", { id: "forest" }) %>
-
-    <!-- excluded from the page for now -->
-    <% if (false) { %>
-    
-    <%= t.include("_generic.html", { id: "flow" }) %> 
-    <%= t.include("_generic.html", { id: "ritual" }) %>
-    <%= t.include("_generic.html", { id: "awe" }) %>
-    <%= t.include("_generic.html", { id: "connection" }) %>
-    <% } %>
+    <% 
+      for (var k in doc.pages) {
+        var { metadata } = doc.pages[k];
+        if (!metadata || !metadata.published) continue;
+        if (metadata.template) {
+          print(t.include(metadata.template));
+        } else {
+          print(t.include("_generic.html", { id: k }));
+        }
+      }
+    %>
 
     <%= t.include("_menu.html") %>
 

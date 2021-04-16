@@ -6,14 +6,17 @@
     <h1>MENU</h1>
     <div class="grid-container">
     <% Object.keys(archieml.text.pages).forEach(a => { %>
-      <% var page = archieml.text.pages[a]; %>
+      <% 
+        var { metadata } = archieml.text.pages[a];
+        if (!metadata || !metadata.published) return;
+      %>
     <div class="grid-item">
     <!--<br>-->
     <a href="#story=<%= a %>">
-      <%= page.metadata ? page.metadata.title : a %>
+      <%= metadata ? metadata.title : a %>
     </a>
     <!--<span class="subtitle">
-      <%= page.metadata ? page.metadata.subtitle : a %>
+      <%= metadata ? metadata.subtitle : a %>
     </span>-->
 
     </div>
