@@ -29,28 +29,6 @@ web-story {
     padding-bottom: 80px;
   }
 
-  .title {
-    h2 {
-      // line-height: 40px;
-      // margin-top: 5;
-      margin-bottom: 0px;
-      // max-height: 80px;
-
-      // @media @mobile {
-      //   // line-height: 20px;
-      //   max-height: 30px;
-      // }
-    }
-
-    sketch-svg {
-      position: relative;
-      width: 100%;
-      z-index: 100;
-      line-height: 10px;
-      margin-top: -20px;
-    }
-  }
-
   [intangible] {
     pointer-events: none;
   }
@@ -62,6 +40,39 @@ web-story {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .splotch {
+    z-index: 50;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 30vw;
+    height: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 1699px) {
+      width: 40vw;
+      height: 40vw;
+    }
+
+    @media screen and (max-width: 1399px) {
+      width: 50vw;
+      height: 50vw;
+    }
+
+    @media screen and (max-width: 799px) {
+      width: 60vw;
+      height: 60vw;
+    }
+
+    @media screen and (max-width: 499px) {
+      width: 99vw;
+      height: 99vw;
+    }
   }
 
   .content {
@@ -79,15 +90,21 @@ web-story {
     }
 
     &.title {
-      border-radius: 180px 160px 220px 130px;
-      padding: 50px;
+      // border-radius: 180px 160px 220px 130px;
+      // padding: 100px;
+      background: transparent;
+      max-width: 400px;
+      margin: 0 auto;
+      color: black;
+      text-align: center;
+      // max-height: 50vw;
     }
 
     h2 {
-      font-size: 30px;
+      font-size: 38px;
       font-family: @gotham;
       font-weight: 350;
-      text-transform: uppercase;
+      // text-transform: uppercase;
 
       @media @mobile {
         font-size: 34px;
@@ -97,7 +114,7 @@ web-story {
     h3 {
       font-family: @gotham;
       font-weight: 300;
-      font-size: 20px;
+      font-size: 16px;
     }
 
     video {
@@ -107,6 +124,32 @@ web-story {
 
     @media @mobile {
       max-width: 300px;
+    }
+  }
+
+  .title {
+
+    h2 {
+      font-weight: bold;
+      margin-bottom: 0px;
+    }
+
+    sketch-svg {
+      position: relative;
+      width: 100%;
+      z-index: 100;
+      line-height: 10px;
+      margin-top: -20px;
+
+      // &.circle {
+      //   bottom: 200px;
+      //   stroke-width: 3;
+      //
+      //   svg {
+      //     max-width: 200%;
+      //     width: 150%;
+      //   }
+      // }
     }
   }
 }

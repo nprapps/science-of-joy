@@ -10,9 +10,9 @@
     font-size: 12px;
     font-style: italic;
     padding: 5px 8px 5px 10px;
-    border: 2px solid white;
+    border: 2px solid black;
     border-radius: 20px;
-    color: white;
+    color: black;
     background-color: transparent;
     white-space: nowrap;
     cursor: pointer;
@@ -23,7 +23,7 @@
     display: inline-block;
     width: 15px;
     height: 15px;
-    border: 2px solid white;
+    border: 2px solid black;
     border-radius: 100px;
     transition: background-color .2s;
     margin-right: 10px;
@@ -32,14 +32,14 @@
 
   input:checked + label {
     background-color: transparent;
-    color: white;
-    border: 2px solid white;
+    color: black;
+    border: 2px solid black;
   }
 
   input:checked + label::before {
     content: "✔";
-    background-color: white;
-    border-color: white;
+    background-color: var(--buttons-bg);
+    border-color: black;
     color: @unbiased;
   }
 }
