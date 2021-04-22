@@ -19,6 +19,7 @@ require("./stories");
 require("./stories/asmr");
 require("./stories/nostalgia");
 require("./stories/poetry");
+require("./stories/flow.js");
 
 // autoplay management
 var autoChecks = $(".autoplay input");

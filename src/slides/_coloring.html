@@ -1,0 +1,12 @@
+<%
+  var slug = [id, slide.slug, index, "coloring"].filter(d => d).join("-");
+%>
+<section data-slug="<%= slide.slug %>" id="<%= slug %>" class="audio">
+
+  <div class="content">
+    <%= t.renderMarkdown(slide.text) %>
+    <div class="coloring-container">
+      <coloring-book></coloring-book>
+    </div>
+  </div>
+</section>
