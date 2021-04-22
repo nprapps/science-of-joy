@@ -10,6 +10,7 @@ class ColoringBook extends CustomElement {
 
     this.drawing = false;
     this.maskPath = null;
+    this.clipped = true;
 
     outlines.addEventListener("touchstart", this.wrapTouch(this.onPointerStart));
     outlines.addEventListener("mousedown", this.onPointerStart);
@@ -80,6 +81,7 @@ class ColoringBook extends CustomElement {
 
   onPointerStart(e) {
     // do not allow multiple touches to create bad clip() zones
+    this.drawing = true;
     if (this.maskPath) return;
     var bounds = this.getBoundingClientRect();
     var x = e.clientX - bounds.left;
@@ -93,14 +95,16 @@ class ColoringBook extends CustomElement {
       this[p.type](context, p);
       if (context.isPointInPath(x, y)) {
         this.maskPath = p;
-        context.clip();
+        if (this.clipped) {
+          context.clip();
+        }
         return;
       }
     }
   }
 
   onPointerMove(e) {
-    if (!this.maskPath) return;
+    if (!this.drawing) return;
     var bounds = this.getBoundingClientRect();
     var x = e.clientX - bounds.left;
     var y = e.clientY - bounds.top;
@@ -115,6 +119,7 @@ class ColoringBook extends CustomElement {
     var context = this.elements.page.getContext("2d");
     context.restore();
     this.maskPath = null;
+    this.drawing = false;
   }
 
   strokePath(path) {
