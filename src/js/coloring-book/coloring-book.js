@@ -79,6 +79,8 @@ class ColoringBook extends CustomElement {
   }
 
   onPointerStart(e) {
+    // do not allow multiple touches to create bad clip() zones
+    if (this.maskPath) return;
     var bounds = this.getBoundingClientRect();
     var x = e.clientX - bounds.left;
     var y = e.clientY - bounds.top;
