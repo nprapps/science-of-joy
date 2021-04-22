@@ -52,12 +52,11 @@ class ColoringBook extends CustomElement {
 
   wrapTouch(fn) {
     return function(e) {
-      console.log(e);
       return fn(e.touches[0]);
     }
   }
 
-  connectedCallback() {
+  init() {
     var { outlines, page } = this.elements;
     outlines.width = outlines.clientWidth;
     outlines.height = outlines.clientHeight;
@@ -69,10 +68,6 @@ class ColoringBook extends CustomElement {
     var context = page.getContext("2d");
     context.fillStyle = "white";
     context.fillRect(0, 0, page.width, page.height);
-  }
-
-  disconnectedCallback() {
-
   }
 
   scalePoint(canvas, x, y) {

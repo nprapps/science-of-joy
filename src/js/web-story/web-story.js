@@ -91,7 +91,7 @@ class WebStory extends CustomElement {
           cursor.setAttribute("tabindex", -1);
         }
         cursor.focus();
-        this.activatePage(chosen);
+        requestAnimationFrame(() => this.activatePage(chosen));
         this.setAttribute("slug", chosen.dataset.slug);
         this.selectedSection = chosen;
         this.selectedIndex = index;
