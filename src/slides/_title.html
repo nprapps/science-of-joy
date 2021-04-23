@@ -8,6 +8,9 @@
     id="title-video"
   ></video>
   <% } %>
+  <% if (metadata.image) { %>
+  <img class="backdrop" alt=""data-src="./assets/synced/images/<%= metadata.image %>">
+  <% } %>
   <div class="splotch" style="background-image: url(assets/brush-bg-1.svg)">
     <div class="content title">
       <h2><%= metadata.title %></h2>
