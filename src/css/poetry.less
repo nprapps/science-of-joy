@@ -1,16 +1,11 @@
 #poetry {
-  blackout-poetry {
-    flex: 1;
-    width: 500px;
-    max-width: 100%;
-    margin: 20px auto;
-  }
 
   @keyframes draw-strike {
     to { width: 100%; }
   }
   
   [data-slug="blackout-demo"] {
+
     b {
       font-weight: normal;
     }
@@ -34,5 +29,19 @@
         background: black;
       }
     }
+  }
+
+  [data-slug="blackout-interactive"] {
+    background-image: url(./assets/synced/images/poetry-bg-1.jpg);
+    background-size: cover;
+  }
+
+  blackout-poetry {
+    flex: 1;
+    width: 500px;
+    max-width: 100%;
+    margin: 20px auto;
+    background: white;
+    box-shadow: 4px 4px 8px fade(black, 30%);
   }
 }

@@ -5,6 +5,13 @@ var index = (Math.random() * excerpts.length) | 0;
 const FONT_SCALE = 20;
 const PADDING = 16;
 
+var loadTexture = url => new Promise(function(ok, fail) {
+  var image = new Image();
+  image.src = url;
+  image.onload = () => ok(image);
+  image.onerror = fail;
+});
+
 class BlackoutPoetry extends CustomElement {
   constructor() {
     super();
@@ -47,16 +54,22 @@ class BlackoutPoetry extends CustomElement {
     var words = content.split(/[\n\r]+/).join(" \n ").split(/ /).filter(w => w);
     var { canvas } = this.elements;
     var context = this.context;
+
+    // clear canvas
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
     context.fillStyle = "white";
     context.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // create text metrics
     var fontSize = (canvas.width / FONT_SCALE) | 0;
     context.font = `bold ${fontSize}px courier`;
     context.fillStyle = "black";
     var en = context.measureText("N");
     var enHeight = en.actualBoundingBoxAscent;
     var tab = en.width * 4;
+
+    // lay out the text, word by word
     var x = PADDING + tab;
     var y = enHeight + PADDING;
     var rightEdge = canvas.width - PADDING;
