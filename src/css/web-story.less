@@ -47,27 +47,12 @@ web-story {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    width: 30vw;
-    height: 30vw;
+    width: calc(300px + 10vw);
+    height: calc(300px + 10vw);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    @media screen and (max-width: 1699px) {
-      width: 40vw;
-      height: 40vw;
-    }
-
-    @media screen and (max-width: 1399px) {
-      width: 50vw;
-      height: 50vw;
-    }
-
-    @media screen and (max-width: 799px) {
-      width: 60vw;
-      height: 60vw;
-    }
 
     @media screen and (max-width: 499px) {
       width: 99vw;
@@ -97,6 +82,7 @@ web-story {
       margin: 0 auto;
       color: black;
       text-align: center;
+      padding: 20px;
       // max-height: 50vw;
     }
 
