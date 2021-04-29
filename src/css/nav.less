@@ -5,8 +5,8 @@ nav.top-bar {
   left: 0;
   width: 100%;
   // background: fade(black, 50%);
-  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 100%);
-  padding-bottom: 10px; 
+  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 100%);
+  padding-bottom: 10px;
   display: flex;
   padding: 4px;
   justify-content: space-between;
@@ -29,7 +29,9 @@ nav.top-bar {
   a, button {
     display: block;
     background: transparent;
-    border: 1px solid white;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px;
     padding: 4px;
     font-family: inherit;
     text-transform: uppercase;
@@ -40,6 +42,7 @@ nav.top-bar {
     &:hover, &:focus {
       color: black;
       background: white;
+      border: 2px solid black ;
     }
   }
 }

@@ -7,7 +7,7 @@
     <media-collection class="grid">
       <% slide.videos.forEach(function(v) { %>
       <simple-video controls loop stretched src="./assets/synced/<%= v.file %>">
-        <%= v.label %>
+        <span class="video-label"><%= v.label %></span>
       </simple-video>
       <% }) %>
     </media-collection>
