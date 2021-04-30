@@ -7,7 +7,7 @@ class MixChannel extends CustomElement {
 		//audio.src = './assets/synced/audio/soundscape_tech.mp3.mp3'
 		play.addEventListener('click', this.onPlay)
 		slider.addEventListener('input', this.onSlide)
-		audio.play()
+		//audio.play()
 		document.body.addEventListener('webstorypage',d=> {
 			audio.pause()
 			play.setAttribute("aria-pressed",'false')
