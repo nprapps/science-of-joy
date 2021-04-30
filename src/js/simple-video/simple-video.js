@@ -2,6 +2,9 @@ var CustomElement = require("../customElement");
 require("../media-controls/media-controls");
 
 class SimpleVideo extends CustomElement {
+
+  static template = require("./_simple-video.html")
+  static boundMethods = ["proxyEvent", "onMediaEvent"]
   constructor() {
     super();
 
@@ -15,17 +18,8 @@ class SimpleVideo extends CustomElement {
     this.elements.control.connect(this.elements.video);
   }
 
-  static get boundMethods() {
-    return ["proxyEvent", "onMediaEvent"]
-  }
-
-  static get observedAttributes() {
-    return ["src", "autoplay", "loop"];
-  }
-
-  static get mirroredProps() {
-    return ["src"]
-  }
+  static observedAttributes = ["src", "autoplay", "loop"]
+  static mirroredProps = ["src"]
 
   attributeChangedCallback(attr, was, value) {
     switch (attr) {
@@ -67,9 +61,6 @@ class SimpleVideo extends CustomElement {
     }
   }
 
-  static get template() {
-    return require("./_simple-video.html");
-  }
 }
 
 SimpleVideo.define("simple-video");

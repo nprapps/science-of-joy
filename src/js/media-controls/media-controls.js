@@ -3,6 +3,15 @@ var events = require("../eventBus");
 var { watchSelector, unwatchSelector } = require("../watchSelector");
 
 class MediaControls extends CustomElement {
+
+  static boundMethods = [
+    "onWatch",
+    "onMediaUpdate",
+    "onClickedPlay",
+    "onPlayEvent",
+    "onSlotChange"
+  ]
+
   constructor() {
     super();
     this.media = null;
@@ -11,36 +20,8 @@ class MediaControls extends CustomElement {
     events.on("media-play", this.onPlayEvent);
   }
 
-  static get observedAttributes() {
-    return ["for", "label", "src"];
-  }
-
-  static get mirroredProps() {
-    return ["for", "src"];
-  }
-
-  static get boundMethods() {
-    return [
-      "onWatch",
-      "onMediaUpdate",
-      "onClickedPlay",
-      "onPlayEvent",
-      "onSlotChange"
-    ];
-  }
-
-  static get subscriptions() {
-    return [
-      "play",
-      "pause",
-      "timeupdate",
-      "canplaythrough"
-    ]
-  }
-
-  connectedCallback() {
-
-  }
+  static observedAttributes = ["for", "label", "src"]
+  static mirroredProps = ["for", "src"]
 
   attributeChangedCallback(attr, was, value) {
     switch (attr) {
@@ -58,6 +39,13 @@ class MediaControls extends CustomElement {
 
     }
   }
+
+  static subscriptions = [
+    "play",
+    "pause",
+    "timeupdate",
+    "canplaythrough"
+  ]
 
   connect(element) {
     if (element == this.media) return;
@@ -132,9 +120,7 @@ class MediaControls extends CustomElement {
     this.elements.labels.style.display = assigned.length ? "" : "none";
   }
 
-  static get template() {
-    return require("./_media-controls.html");
-  }
+  static template = require("./_media-controls.html")
 
 }
 

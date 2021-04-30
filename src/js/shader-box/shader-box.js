@@ -10,6 +10,16 @@ const POLYS = [
 ];
 
 class ShaderBox extends CustomElement {
+
+  static template = require("./_shader-box.html")
+  static boundMethods = [
+    "onIntersection",
+    "onMutation",
+    "onMouseMove",
+    "tick",
+    "recover"
+  ]
+  
   constructor() {
     super();
     this.observer = new IntersectionObserver(this.onIntersection);
@@ -50,27 +60,9 @@ class ShaderBox extends CustomElement {
     this.buffer = gl.createBuffer();
   }
 
-  static get boundMethods() {
-    return [
-      "onIntersection",
-      "onMutation",
-      "onMouseMove",
-      "tick",
-      "recover"
-    ];
-  }
 
-  static get observedAttributes() {
-    return [
-      "src"
-    ]
-  }
-
-  static get mirroredProps() {
-    return [
-      "src"
-    ]
-  }
+  static observedAttributes = ["src"]
+  static mirroredProps = ["src"]
 
   attributeChangedCallback(attr, was, value) {
     switch (attr) {
@@ -200,9 +192,6 @@ class ShaderBox extends CustomElement {
     gl.drawArrays(gl.TRIANGLES, 0, POLYS.length / 2);
   }
 
-  static get template() {
-    return require("./_shader-box.html");
-  }
 }
 
 ShaderBox.define("shader-box");

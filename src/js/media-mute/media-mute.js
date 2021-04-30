@@ -3,6 +3,14 @@ var events = require("../eventBus");
 var { watchSelector, unwatchSelector } = require("../watchSelector");
 
 class MediaMute extends CustomElement {
+
+  static boundMethods = [
+    "onWatch",
+    "onClickedMute",
+    "onVolumeChange",
+    "onPlayEvent"
+  ]
+  
   constructor() {
     super();
     this.media = null;
@@ -10,26 +18,8 @@ class MediaMute extends CustomElement {
     this.elements.muteButton.addEventListener("click", this.onClickedMute);
   }
 
-  static get observedAttributes() {
-    return ["for", "src"];
-  }
-
-  static get mirroredProps() {
-    return ["for", "src"];
-  }
-
-  static get boundMethods() {
-    return [
-      "onWatch",
-      "onClickedMute",
-      "onVolumeChange",
-      "onPlayEvent"
-    ];
-  }
-
-  connectedCallback() {
-
-  }
+  static observedAttributes = ["for", "src"]
+  static mirroredProps = ["for", "src"]
 
   attributeChangedCallback(attr, was, value) {
     switch (attr) {

@@ -2,6 +2,13 @@ var CustomElement = require("../customElement.js");
 var $ = require("../lib/qsa");
 
 class WebStory extends CustomElement {
+
+  static boundMethods = [
+    "onClickPager",
+    "setNav"
+  ]
+  static template = require("./_web-story.html")
+
   constructor() {
     super();
 
@@ -13,17 +20,6 @@ class WebStory extends CustomElement {
     observer.observe(this, { childList: true });
 
     this.reset();
-  }
-
-  static get boundMethods() {
-    return [
-      "onClickPager",
-      "setNav"
-    ];
-  }
-
-  static get template() {
-    return require("./_web-story.html")
   }
 
   reset() {

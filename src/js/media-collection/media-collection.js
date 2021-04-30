@@ -2,6 +2,13 @@ var CustomElement = require("../customElement");
 var events = require("../eventBus");
 
 class MediaCollection extends CustomElement {
+
+  static boundMethods = [
+    "onSlotChange",
+    "onMediaPlay",
+    "onMediaTouch"
+  ]
+  
   constructor() {
     super();
     this.connected = [];
@@ -9,16 +16,7 @@ class MediaCollection extends CustomElement {
     events.on("media-play", () => this.onMediaPlay());
   }
 
-  static get boundMethods() {
-    return [
-      "onSlotChange",
-      "onMediaPlay",
-      "onMediaTouch"
-    ]
-  }
-
-  static get template() {
-    return `
+  static template = `
 <style>
 :host {
   display: block;
@@ -26,8 +24,7 @@ class MediaCollection extends CustomElement {
 }
 </style>
 <slot as="slot"></slot>
-    `;
-  }
+    `
 
   connectedCallback() {
     this.onSlotChange();

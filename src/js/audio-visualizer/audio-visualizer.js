@@ -2,6 +2,16 @@ var CustomElement = require("../customElement");
 var { watchSelector, unwatchSelector } = require("../watchSelector");
 
 class AudioVisualizer extends CustomElement {
+
+  static boundMethods = [
+    "render",
+    "getAnalysis",
+    "onMediaPlayEvent",
+    "patch",
+    "tick"
+  ]
+  static template = require("./_audio-visualizer.html")
+
   constructor() {
     super();
     this.media = null;
@@ -13,33 +23,16 @@ class AudioVisualizer extends CustomElement {
     this.detail = 128;
   }
 
-  static get template() {
-    return require("./_audio-visualizer.html");
-  }
 
-  static get boundMethods() {
-    return [
-      "render",
-      "getAnalysis",
-      "onMediaPlayEvent",
-      "patch",
-      "tick"
-    ]
-  }
+  static mirroredProps = [
+    "for",
+    "color"
+  ]
 
-  static get mirroredProps() {
-    return [
-      "for",
-      "color"
-    ]
-  }
-
-  static get observedAttributes() {
-    return [
-      "for",
-      "color"
-    ]
-  }
+  static observedAttributes = [
+    "for",
+    "color"
+  ]
 
   attributeChangedCallback(attr, was, value) {
     switch (attr) {

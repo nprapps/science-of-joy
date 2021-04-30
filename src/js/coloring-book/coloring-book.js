@@ -3,6 +3,14 @@ var CustomElement = require("../customElement");
 var TAU = Math.PI * 2;
 
 class ColoringBook extends CustomElement {
+
+  static boundMethods = [
+    "onPointerStart",
+    "onPointerMove",
+    "onPointerEnd",
+    "strokePath"
+  ]
+
   constructor() {
     super();
 
@@ -40,15 +48,6 @@ class ColoringBook extends CustomElement {
     }
     this.paths.push({ type: "path", fill: "slateblue", points: star });
 
-  }
-
-  static get boundMethods() {
-    return [
-      "onPointerStart",
-      "onPointerMove",
-      "onPointerEnd",
-      "strokePath"
-    ]
   }
 
   wrapTouch(fn) {
@@ -179,9 +178,7 @@ class ColoringBook extends CustomElement {
     context.closePath();
   }
 
-  static get template() {
-    return require("./_coloring-book.html");
-  }
+  static template = require("./_coloring-book.html")
 
 }
 

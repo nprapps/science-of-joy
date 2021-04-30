@@ -6,19 +6,18 @@ var events = require("../eventBus");
 var tracks = $(`track[src*="vtt"]`);
 
 class ClosedCaptions extends CustomElement {
+
+  static boundMethods = [
+    "connectTrack",
+    "disconnectTrack",
+    "onCueChange",
+    "onEnded"
+  ]
+
   constructor() {
     super();
 
     tracks.forEach(this.connectTrack);
-  }
-
-  static get boundMethods() {
-    return [
-      "connectTrack",
-      "disconnectTrack",
-      "onCueChange",
-      "onEnded"
-    ]
   }
 
   connectedCallback() {
@@ -62,9 +61,7 @@ class ClosedCaptions extends CustomElement {
     this.elements.caption.style.display = "none";
   }
 
-  static get template() {
-    return require("./_closed-captions.html")
-  }
+  static template = require("./_closed-captions.html")
 }
 
 ClosedCaptions.define("closed-captions");

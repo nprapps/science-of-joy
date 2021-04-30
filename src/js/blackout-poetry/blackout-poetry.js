@@ -13,6 +13,17 @@ var loadTexture = url => new Promise(function(ok, fail) {
 });
 
 class BlackoutPoetry extends CustomElement {
+
+  static boundMethods = [
+    "undo",
+    "turnPage",
+    "typeset",
+    "onPointerContact",
+    "onPointerMove",
+    "download"
+  ]
+  static template = require("./_blackout-poetry.html")
+  
   constructor() {
     super();
     var { canvas, undo, reset, save, newPage } = this.elements;
@@ -31,17 +42,6 @@ class BlackoutPoetry extends CustomElement {
     undo.addEventListener("click", this.undo);
 
     this.undoBuffer = null;
-  }
-
-  static get boundMethods() {
-    return [
-      "undo",
-      "turnPage",
-      "typeset",
-      "onPointerContact",
-      "onPointerMove",
-      "download"
-    ];
   }
 
   turnPage() {
@@ -146,9 +146,6 @@ class BlackoutPoetry extends CustomElement {
     this.typeset();
   }
 
-  static get template() {
-    return require("./_blackout-poetry.html");
-  }
 }
 
 BlackoutPoetry.define("blackout-poetry");
