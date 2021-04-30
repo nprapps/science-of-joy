@@ -9,7 +9,7 @@ class MixChannel extends CustomElement {
 		slider.addEventListener('input', this.onSlide)
 		audio.play()
 		document.body.addEventListener('webstorypage',d=> {
-			audio.play()
+			audio.pause()
 			play.setAttribute("aria-pressed",'false')
 			slider.style.opacity = 1
 			audio.volume = 0
@@ -36,7 +36,9 @@ class MixChannel extends CustomElement {
 		//console.log(slider.style)
 		//slider.style.opacity = (slider.value < 0.3 ? 0.3 : slider.value)
 		//console.log(slider.input)
-
+		if (audio.paused){
+			audio.play()
+		}
 		audio.volume = slider.value;
 		if (slider.value > 0){
 			play.setAttribute("aria-pressed",'true')
