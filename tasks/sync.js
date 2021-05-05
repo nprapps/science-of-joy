@@ -14,12 +14,14 @@ module.exports = function(grunt) {
   grunt.registerTask("sync", "Sync to S3 using the AWS CLI", function(target = "stage") {
     var done = this.async();
 
-    shell.mkdir("-p", "src/assets/synced");
+    var folder = grunt.option("sync-folder") || "synced";
+
+    shell.mkdir("-p", `src/assets/${folder}`);
 
     var config = require("../project.json");
     var dest = config.s3[target];
-    var localSynced = "src/assets/synced";
-    var remoteSynced = path.join(dest.path, "assets/synced");
+    var localSynced = `src/assets/${folder}`;
+    var remoteSynced = path.join(dest.path, `assets/${folder}`);
 
     var creds = {
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -51,7 +53,7 @@ module.exports = function(grunt) {
         if (err) return callback(err);
         list.push(...results.Contents.map(function(obj) {
           return {
-            file: obj.Key.replace(/.*?assets\/synced\//, ""),
+            file: obj.Key.replace(new RegExp(`.*?assets/${folder}/`), ""),
             size: obj.Size,
             key: obj.Key,
             mtime: obj.LastModified
