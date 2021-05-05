@@ -71,9 +71,20 @@ module.exports = function(grunt) {
     async.waterfall([
       getRemote,
       function(remote, next) {
+
+        // early exit for forced push/pull
+        if (grunt.option("pull")) {
+          return next(null, [], remote);
+        }
+
+        if (grunt.option("push")) {
+          return next(null, local, []);
+        }
+
         // compare files
         var up = [];
         var down = [];
+
         // check for existing local files and their counterparts
         local.forEach(function(localItem) {
           var remoteItem = remote.filter(r => r.file == localItem.file).pop();
