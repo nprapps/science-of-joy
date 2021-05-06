@@ -2,14 +2,22 @@
   var slug = [id, slide.slug, index, "audio-mixer"].filter(d => d).join("-");
 %>
 <section data-slug="<%= slide.slug %>" id="<%= slug %>" class="audio-mixer">
+<% if (slide.video) { %>
+  <video 
+    id="<%= slug %>-video-backdrop"
+    class="backdrop" loop autoplay muted playsinline 
+    data-src="./assets/synced/<%= slide.video %>"
+    poster="./assets/synced/<%= slide.video %>.jpg"
+  ></video>
+  <% } %>
   <div class="content">
     <%= slide.text %>
     <div class="mixer-elements">
       <% slide.audios.forEach(function(v) { %>
       <div id="<%=v.label %>" class="mixer-element">
         
-      <mix-channel loop src="./assets/synced/<%= v.file %>">
-        <img alt="play button" id="<%=v.label %>" height="48" width="48" src="./assets/<%=v.icon %>">
+      <mix-channel loop src="./assets/synced/audio/<%= v.file %>">
+        <img alt="play button" id="<%=v.label %>" height="56" width="56" src="./assets/<%=v.icon %>">
         <h4 class="mixer-label"><%=v.label %></h4>
       </mix-channel>
       

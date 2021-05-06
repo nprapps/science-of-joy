@@ -3,7 +3,16 @@
 %>
 <section data-slug="<%= slide.slug %>" id="<%= slug %>" class="audio">
 
+  <% if (slide.video) { %>
+  <video 
+    id="<%= slug %>-video-backdrop"
+    class="backdrop" loop autoplay muted playsinline 
+    data-src="./assets/synced/<%= slide.video %>"
+    poster="./assets/synced/<%= slide.video %>.jpg"
+  ></video>
+  <% } else {%>
   <shader-box class="backdrop" src="./assets/bokeh.glsl"></shader-box>
+  <% } %>
 
   <audio-visualizer class="backdrop" color="white" for="<%= slug %>-audio"></audio-visualizer>
 
