@@ -1,13 +1,13 @@
 #naturesounds {
 
 	h4.mixer-label{
-  		font-size:11px;
-  		font-weight:normal;
-  		margin: 0px;
-  		color:white;
-  		text-align:center;
-  		text-transform:uppercase;
-  		letter-spacing: 0.15em;
+		font-size:11px;
+		font-weight:normal;
+		margin: 0px;
+		color:white;
+		text-align:center;
+		text-transform:uppercase;
+		letter-spacing: 0.15em;
 	}
 
 	.mixer-element{
@@ -23,16 +23,28 @@
 		margin-bottom:20px;
 	}
 
-	// .mixer-element#Mountains:hover{
-	// 	img{
-	// 		filter:invert(74%) sepia(85%) saturate(2008%) hue-rotate(183deg) brightness(84%) contrast(92%);
-	// 	}
+	@keyframes vanishing-point {
+		from { perspective-origin:center;perspective: 2000px;}
+		to { perspective-origin:center left;perspective: 2500px; }
+	}
 
-	// 	h4 {
-	// 		filter:invert(74%) sepia(85%) saturate(2008%) hue-rotate(183deg) brightness(84%) contrast(92%);
-	// 	}
-		
-	// }
+	.parallax {
+	  top: 0;
+	  left: 0;
+	  position:fixed;
+	  width: 100vw;
+	  height: 100vh;
+	  animation-name: vanishing-point;
+	  animation-duration: 4s;
+	  animation-fill-mode: both;
+	  animation-iteration-count: infinite;
+	  animation-direction: alternate;
+	  animation-timing-function: ease-in;
+	}
+
+	img {
+	 transform: translateZ(var(--image-parallax));
+	}
 	
 
 }

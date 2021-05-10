@@ -10,7 +10,18 @@
     data-src="./assets/synced/<%= slide.video %>"
     poster="./assets/synced/<%= slide.video %>.jpg"
   ></video>
-  <% } else {%>
+  <% } else if (slide.parallax){ %>
+    <div class="parallax">
+    <% for (var p of slide.parallaxImages) { %>
+      <img 
+        src="./assets/synced/images/<%= p.image %>" 
+        class="backdrop"
+        alt="background nature image"
+        style="--image-parallax:<%= p.position %>;">
+    <% } %>
+    </div>
+
+  <%}  else {%>
   <shader-box class="backdrop" src="./assets/bokeh.glsl"></shader-box>
   <% } %>
 
