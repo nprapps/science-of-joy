@@ -23,9 +23,10 @@
 
   <%}  else {%>
   <shader-box class="backdrop" src="./assets/bokeh.glsl"></shader-box>
+  <audio-visualizer class="backdrop" color="white" for="<%= slug %>-audio"></audio-visualizer>
   <% } %>
 
-  <audio-visualizer class="backdrop" color="white" for="<%= slug %>-audio"></audio-visualizer>
+  
 
   <div class="content">
     <%= t.renderMarkdown(slide.text) %>
