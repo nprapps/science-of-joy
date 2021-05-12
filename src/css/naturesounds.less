@@ -24,32 +24,58 @@
 	}
 
 	@keyframes vanishing-point {
-		from { perspective-origin:center;perspective: 2000px;}
-		to { perspective-origin:center left;perspective: 2500px; }
+		from { perspective: 10000px;}
+		to { perspective: 1000px;}
 	}
+
+	@keyframes opacity-fade {
+		from { opacity:0.2;}
+		10% {opacity:1;}
+		50% {opacity:1;}
+		90% {opacity:1;}
+		to { opacity:0.2;}
+	}
+
+
+
+	// @keyframes img-vanishing-point {
+	// 	from { transform: translateZ(0);}
+	// 	to { transform: translateZ(var(--image-parallax));}
+	// }
 
 	.backdrop {
 		//object-fit: contain;
 	}
 
 	.parallax {
+	  perspective-origin:center;
 	  top: 0;
 	  left: 0;
 	  position:fixed;
 	  width: 100vw;
 	  height: 100vh;
-	  animation-name: vanishing-point;
-	  animation-duration: 4s;
-	  animation-fill-mode: both;
-	  animation-iteration-count: infinite;
-	  animation-direction: alternate;
-	  animation-timing-function: ease-in;
-	}
+	  animation: vanishing-point 5s ease-in-out 0s infinite none;
+	  
+	  //animation-name: vanishing-point;
+	  //animation-duration: 10s;
+	  //animation-fill-mode: backwards;
+	  //animation-iteration-count: infinite;
+	  //animation-delay: -2s;
+	  //animation-direction: alternate;
+	  //animation-timing-function: ease-in-out;
 
-	img {
-	 transform: translateZ(var(--image-parallax));
+  	img:not(:first-child) {
+  	// 	animation-name: img-vanishing-point;
+	  // animation-duration: 1s;
+	  // //animation-fill-mode: backwards;
+	  // animation-iteration-count: infinite;
+	  // //animation-delay: -2s;
+	  // //animation-direction: alternate;
+	  // animation-timing-function: ease-in;
+ 			transform: translateZ(var(--image-parallax));
+ 			animation: opacity-fade 5s linear 0s infinite none;
 	}
-	
+	}
 
 }
 
