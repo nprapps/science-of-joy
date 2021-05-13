@@ -24,16 +24,16 @@
 	}
 
 	@keyframes vanishing-point {
-		from { perspective: 10000px;}
+		from { perspective: 2000px;}
 		to { perspective: 1000px;}
 	}
 
 	@keyframes opacity-fade {
-		from { opacity:0.2;}
+		from { opacity:0.8;}
 		10% {opacity:1;}
 		50% {opacity:1;}
-		90% {opacity:1;}
-		to { opacity:0.2;}
+		80% {opacity:1;}
+		to { opacity:0;}
 	}
 
 
@@ -48,13 +48,13 @@
 	}
 
 	.parallax {
-	  perspective-origin:center;
+	  perspective-origin:bottom;
 	  top: 0;
 	  left: 0;
 	  position:fixed;
 	  width: 100vw;
 	  height: 100vh;
-	  animation: vanishing-point 5s ease-in-out 0s infinite none;
+	  animation: vanishing-point 20s ease-out 0s infinite alternate;
 	  
 	  //animation-name: vanishing-point;
 	  //animation-duration: 10s;
@@ -73,7 +73,7 @@
 	  // //animation-direction: alternate;
 	  // animation-timing-function: ease-in;
  			transform: translateZ(var(--image-parallax));
- 			animation: opacity-fade 5s linear 0s infinite none;
+ 			//animation: opacity-fade 7s linear 0s infinite none;
 	}
 	}
 
