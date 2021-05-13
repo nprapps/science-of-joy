@@ -87,10 +87,19 @@ done
 # convert images
 # requires ImageMagick 7
 mkdir -p ../synced/images
-for img in images/*; do
+for img in images/*.jpg; do
   echo "Processing $img..."
   if [ ! -f "../synced/$img" ]; then
-    magick convert $img -resize 1200x800\> ../synced/$img
+    magick convert $img -resize 1200x800\> -quality 70 ../synced/$img
+  fi
+done
+for img in images/*.png; do
+  echo "Processing $img..."
+  if [ ! -f "../synced/$img" ]; then
+    magick convert $img -resize 1200x800\> \
+      -define png:compression-filter=5 \
+      -define png:compression-level=9 \
+      ../synced/$img
   fi
 done
 
