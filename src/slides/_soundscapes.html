@@ -21,7 +21,11 @@
           id="soundscape-<%= s.id %>"
           data-label="<%= s.label %>"
           src="./assets/synced/audio/<%= s.audio %>"
-        ></audio>
+        >
+          <% if (s.captions) { %>
+          <track default kind="captions" src="./assets/synced/audio/<%= s.captions %>"></track>
+          <% } %>
+        </audio>
         <% } %>
       </div>
     </div>
