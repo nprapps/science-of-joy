@@ -29,19 +29,15 @@ class MixChannel extends CustomElement {
 	onSlide() {
 		var { audio, slider, play } = this.elements;
 		if (audio.paused) audio.play();
-		//console.log(slider.style)
-		//slider.style.opacity = (slider.value < 0.3 ? 0.3 : slider.value)
-		//console.log(slider.input)
-		if (audio.paused){
-			audio.play()
-		}
+		// if (audio.paused){
+		// 	audio.play()
+		// }
 		audio.volume = slider.value;
 		if (slider.value > 0) {
 			play.setAttribute("aria-pressed", "true");
 		} else {
 			play.setAttribute("aria-pressed", "false");
 		}
-		//slider.style.backgroundOpacity = slider.value;
 	}
 
 	onPlay() {
@@ -49,15 +45,9 @@ class MixChannel extends CustomElement {
 		if (audio.paused) {
 			audio.play();
 			play.setAttribute("aria-pressed", "true");
-			//slider.setAttribute("disabled",'false');
-			//slider.style.opacity = 1
-			//console.log(slider.disabled)
 		} else {
 			audio.pause();
 			play.setAttribute("aria-pressed", "false");
-			//slider.style.opacity = 0.4
-			//slider.setAttribute("disabled",'true');
-			//console.log(slider.disabled)
 		}
 	}
 }

@@ -24,27 +24,8 @@
 	}
 
 	@keyframes vanishing-point {
-		from { perspective: 2000px;}
+		from { perspective: 3000px;}
 		to { perspective: 1000px;}
-	}
-
-	@keyframes opacity-fade {
-		from { opacity:0.8;}
-		10% {opacity:1;}
-		50% {opacity:1;}
-		80% {opacity:1;}
-		to { opacity:0;}
-	}
-
-
-
-	// @keyframes img-vanishing-point {
-	// 	from { transform: translateZ(0);}
-	// 	to { transform: translateZ(var(--image-parallax));}
-	// }
-
-	.backdrop {
-		//object-fit: contain;
 	}
 
 	.parallax {
@@ -55,29 +36,11 @@
 	  width: 100vw;
 	  height: 100vh;
 	  animation: vanishing-point 20s ease-out 0s infinite alternate;
-	  
-	  //animation-name: vanishing-point;
-	  //animation-duration: 10s;
-	  //animation-fill-mode: backwards;
-	  //animation-iteration-count: infinite;
-	  //animation-delay: -2s;
-	  //animation-direction: alternate;
-	  //animation-timing-function: ease-in-out;
 
   	img:not(:first-child) {
-  	// 	animation-name: img-vanishing-point;
-	  // animation-duration: 1s;
-	  // //animation-fill-mode: backwards;
-	  // animation-iteration-count: infinite;
-	  // //animation-delay: -2s;
-	  // //animation-direction: alternate;
-	  // animation-timing-function: ease-in;
- 			transform: translateZ(var(--image-parallax));
- 			//animation: opacity-fade 7s linear 0s infinite none;
+ 		transform: translateZ(var(--image-parallax));
 	}
+
 	}
 
 }
-
-
-

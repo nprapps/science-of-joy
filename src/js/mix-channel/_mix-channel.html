@@ -1,14 +1,10 @@
 <style>
 
-/*@riverHover: invert(74%) sepia(85%) saturate(2008%) hue-rotate(183deg) brightness(84%) contrast(92%);*/
-
 button {
-    /*cursor:pointer;*/
     pointer-events:none;
     background: transparent;
     opacity: 1;
     color: var(--nav-fg);
-    /*border-radius: 50px 30px 50px 20px;*/
     padding: 0px 20px 0px 0px;
     margin: 0;
     border: none;
@@ -18,29 +14,12 @@ button {
     width:30%;
 }
 
-/*button:hover, button[aria-pressed='true']:hover {
-  filter:sepia(50%);
-  filter:grayscale(0.5);
-}*/
-
-/*button:hover {
-  filter:invert(74%) sepia(85%)  hue-rotate(183deg) brightness(84%) contrast(92%);
-}*/
-
-/*button:nth-child(1) {
-  filter:@riverHover;
-}*/
-
 button:focus,button[aria-pressed='true']:focus {
   outline:none;
 }
 
 button[aria-pressed='true'] {
-  /*background:none;*/
-  /*background:var(--buttons-bg);*/
-  filter:none;/*invert(62%) sepia(25%) saturate(851%) hue-rotate(43deg) brightness(91%) contrast(89%);
-   */
-  /*border:1px solid black;*/
+  filter:none;
 }
 
 img {
@@ -65,10 +44,9 @@ input[type="range"]{
   appearance: none;
   height: 1px;
   border-radius: 5px; 
-  background: #BEBEBE;  /* Grey #d3d3d3; background */
-  outline: none; /* Remove outline */
-  /*opacity: 0.4;  Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  background: #BEBEBE;
+  outline: none;
+  -webkit-transition: .2s;
   transition: opacity .2s;
   width: 70%;
 }
@@ -76,45 +54,14 @@ input[type="range"]{
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-/*  width: 15px;
-  height: 15px;*/
-  /*border-radius: 50%; */
-  
+  background:transparent;
   background-image: url('./assets/audioMixer/slider-circle.svg');
   background-repeat:no-repeat;
   background-size:25px;
   width:25px;
   height:25px;
-  /*background: #7da644;/*var(--buttons-bg);*/
   cursor: pointer;
 }
-
-/*input[type="range"]::-webkit-slider-thumb {
-  background:black;
-}*/
-
-
-/*.play-pause:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.play-pause:focus-visible {
-  outline: 1px dashed var(--buttons-bg);
-  border-radius: 30px;
-}
-
-.play-pause:hover {
-  color: white;
-}*/
-/*
-img {
-  outline: none!important;
-}*/
-
-/*svg {
-  fill:black;
-  color:black;
-}*/
 
 </style>
 
