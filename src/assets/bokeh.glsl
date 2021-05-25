@@ -91,11 +91,11 @@ void main() {
   float co2 = cos(moment * 1.4);
   float si2 = sin(moment * 1.4);
 
-  vec4 color = vec4(0.4, 0.3, 0.3, 1.0);
+  vec4 color = vec4(rgb255(250,173,125), 1.0);
   // vec4 color = vec4(u_background, 1.0);
 
   // gradient fill
-  color = mix(color, vec4(0.3, 0.1, 0.4, 1.0), length(uv) * co);
+  color = mix(color, vec4(rgb255(205, 142, 212), 1.0), length(uv) * co);
 
   float c = blob(uv + vec2(si2, co * .3), .5, .05);
   color = merge(color, vec4(PAINT_B, ALPHA * c));
