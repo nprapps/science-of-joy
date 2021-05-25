@@ -86,6 +86,23 @@ web-story {
       // max-height: 50vw;
     }
 
+    mark {
+      margin: 0 -0.4em;
+      padding-right: 0.3em;
+      border-radius: 0.8em 0.3em;
+      background: transparent;
+      background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 1) 4%,
+        rgba(255, 255, 255, 0.9)
+      );
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+
+      // effect from here: https://max.hn/thoughts/how-to-create-a-highlighter-marker-effect-in-css
+    }
+
     h2 {
       font-size: 38px;
       font-family: @gotham;
