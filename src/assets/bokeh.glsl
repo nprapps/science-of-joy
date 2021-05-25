@@ -67,8 +67,8 @@ vec4 merge(vec4 lower, vec4 upper) {
   return vec4(hue, alpha);
 }
 
-vec3 rgb255(float r, float g, float b) {
-  return vec3(r / 255.0, g / 255.0, b / 255.0);
+vec3 rgb255(int r, int g, int b) {
+  return vec3(float(r) / 255.0, float(g) / 255.0, float(b) / 255.0);
 }
 
 void main() {
@@ -77,11 +77,11 @@ void main() {
   float aspect = u_resolution.x / u_resolution.y;
   uv.y /= aspect;
 
-  vec3 CADET = rgb255(95.0, 158.0, 160.0);
-  vec3 OLIVE = rgb255(85.0, 107.0, 47.0);
-  vec3 SALMON = rgb255(250.0, 128.0, 114.0);
-  vec3 THISTLE = rgb255(216.0, 191.0, 216.0);
-  vec3 WHEAT = rgb255(245.0, 222.0, 179.0);
+  vec3 PAINT_A = rgb255(250, 173, 125);
+  vec3 PAINT_B = rgb255(205, 142, 212);
+  vec3 PAINT_C = rgb255(144, 208, 222);
+  vec3 PAINT_D = rgb255(255, 255, 255);
+  vec3 PAINT_E = rgb255(255, 255, 200);
 
   float ALPHA = .5;
 
@@ -95,37 +95,37 @@ void main() {
   // vec4 color = vec4(u_background, 1.0);
 
   // gradient fill
-  color = mix(color, vec4(0.3, 0.2, 0.1, 1.0), length(uv) * co);
+  color = mix(color, vec4(0.3, 0.1, 0.4, 1.0), length(uv) * co);
 
   float c = blob(uv + vec2(si2, co * .3), .5, .05);
-  color = merge(color, vec4(OLIVE, ALPHA * c));
+  color = merge(color, vec4(PAINT_B, ALPHA * c));
 
   c = blob(uv + vec2(-.8, -.7) + vec2(co * .1, si2 * .4), .3, .05);
-  color = merge(color, vec4(THISTLE, ALPHA * c));
+  color = merge(color, vec4(PAINT_D, ALPHA * c));
 
   c = blob(uv + vec2(.6, -.8) + vec2(co * .8, co * .3), .6, .05);
-  color = merge(color, vec4(WHEAT, ALPHA * c));
+  color = merge(color, vec4(PAINT_E, ALPHA * c));
 
   c = blob(uv + vec2(.4, -.3) + vec2(si * .2, si * .2), .6, .05);
-  color = merge(color, vec4(SALMON, ALPHA * c));
+  color = merge(color, vec4(PAINT_C, ALPHA * c));
 
   c = blob(uv + vec2(0.8, -.3) + vec2(co, si), .5, .1);
-  color = merge(color, vec4(CADET, ALPHA * c));
+  color = merge(color, vec4(PAINT_A, ALPHA * c));
 
   c = blob(uv + vec2(si, co), .5, .05);
-  color = merge(color, vec4(CADET, ALPHA * c));
+  color = merge(color, vec4(PAINT_A, ALPHA * c));
 
   c = blob(uv + vec2(co2 * .1, si), .3, .05);
-  color = merge(color, vec4(THISTLE, ALPHA * c));
+  color = merge(color, vec4(PAINT_D, ALPHA * c));
 
   c = blob(uv + vec2(co * .1, co2 * .1), .6, .05);
-  color = merge(color, vec4(OLIVE, ALPHA * c));
+  color = merge(color, vec4(PAINT_B, ALPHA * c));
 
   c = blob(uv + vec2(si2 * .6, si2 * .6), .6, .05);
-  color = merge(color, vec4(WHEAT, ALPHA * c));
+  color = merge(color, vec4(PAINT_E, ALPHA * c));
 
   c = blob(uv + vec2(co2, si2 * 2.0), .5, .1);
-  color = merge(color, vec4(SALMON, ALPHA * c));
+  color = merge(color, vec4(PAINT_C, ALPHA * c));
 
   vec2 grainRez = u_resolution.xy / vec2(3.0, 5.0);
   vec2 grainCells = floor(uv * grainRez) / grainRez;
