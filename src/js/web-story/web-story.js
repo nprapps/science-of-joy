@@ -5,7 +5,8 @@ class WebStory extends CustomElement {
 
   static boundMethods = [
     "onClickPager",
-    "setNav"
+    "setNav",
+    "onKey"
   ]
   static template = require("./_web-story.html")
 
@@ -15,6 +16,8 @@ class WebStory extends CustomElement {
     this.elements.previous.addEventListener("click", this.onClickPager);
     this.elements.next.addEventListener("click", this.onClickPager);
     this.elements.backdrop.addEventListener("click", () => this.shiftPage(1));
+
+    this.addEventListener("keyup", this.onKey);
 
     var observer = new MutationObserver(this.setNav);
     observer.observe(this, { childList: true });
@@ -44,6 +47,23 @@ class WebStory extends CustomElement {
     var target = e.currentTarget;
     var shift = target.dataset.shift * 1;
     this.shiftPage(shift);
+  }
+
+  onKey(e) {
+    switch (e.key) {
+      case "PageDown":
+      case "ArrowDown":
+      case "ArrowRight":
+      case "space":
+        this.shiftPage(1);
+        break;
+
+      case "PageUp":
+      case "ArrowUp":
+      case "ArrowLeft":
+        this.shiftPage(-1);
+        break;
+    }
   }
 
   shiftPage(shift = 1) {
