@@ -7,6 +7,7 @@ Set those on the web-story elements via LESS to have them propagate in.
   --controls-bg: rgba(0, 0, 0, .5);
   --buttons-bg: white;
   --buttons-fg: black;
+  --filmstrip: var(--nav-fg);
   display: block;
   min-height: 100vh;
   position: relative;
@@ -60,7 +61,7 @@ button::before {
   right: -10px;
   bottom: -10px;
   border-radius: inherit;
-  border: 2px dashed var(--buttons-bg);
+  border: 2px dashed var(--nav-bg);
   content: "";
   display: none;
 }
@@ -69,8 +70,8 @@ button:hover,
 button:focus {
   outline: none;
   background: white;
-  color: var(--buttons-fg);
-  border-color: var(--buttons-fg);
+  color: var(--nav-focus);
+  border-color: var(--nav-focus);
 }
 
 button:hover::before, button:focus::before {
@@ -108,7 +109,7 @@ button .tutorial {
 .filmstrip .block {
   height: 16px;
   width: 16px;
-  background: white;
+  background: var(--filmstrip);
   border-radius: 100%;
   opacity: .4;
   margin: 2px;
@@ -116,7 +117,7 @@ button .tutorial {
 
 .filmstrip .block.active {
   opacity: .8;
-  border: 1px solid var(--buttons-fg);
+  border: 1px solid var(--filmstrip);
 }
 
 /* hide controls */

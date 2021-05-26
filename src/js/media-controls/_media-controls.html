@@ -1,7 +1,8 @@
 <style>
   :host {
-    --button-fg: currentColor;
-    --button-bg: transparent;
+    --button-fg: var(--yellow);
+    --button-bg: var(--sky);
+    --button-focus: var(--salmon);
     display: block;
     font-family: inherit;
     width: auto;
@@ -14,12 +15,12 @@
   }
 
   .background {
-    fill: var(--sky);
+    fill: var(--button-bg);
   }
 
   button.play-pause {
     background: transparent;
-    color: var(--buttons-bg);
+    color: var(--buttons-fg);
     cursor: pointer;
     border: none;
     position: relative;
@@ -38,12 +39,12 @@
   }
 
   .play-pause:focus-visible {
-    outline: 1px dashed var(--buttons-bg);
+    outline: 1px dashed var(--buttons-focus);
     border-radius: 30px;
   }
 
   .play-pause:hover .icon {
-    stroke: var(--salmon);
+    stroke: var(--buttons-focus);
   }
 
   .play-pause svg {
