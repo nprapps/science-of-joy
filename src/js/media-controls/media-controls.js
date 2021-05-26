@@ -80,7 +80,7 @@ class MediaControls extends CustomElement {
     var ratio = (currentTime / duration) || 1;
     var { labels, progressMask, playIcon, pauseIcon } = this.elements;
     try {
-      progressMask.setAttribute("width", ratio * 100 + "%");
+      progressMask.setAttribute("width", (ratio * 90 + 10) + "%");
       if (paused) {
         playIcon.style.display = "";
         pauseIcon.style.display = "none";
