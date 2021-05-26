@@ -77,13 +77,10 @@ class MediaControls extends CustomElement {
 
   onMediaUpdate(e) {
     var { duration, currentTime, paused } = this.media;
-    var ratio = currentTime / duration;
-    var { labels, progress, playIcon, pauseIcon } = this.elements;
+    var ratio = (currentTime / duration) || 1;
+    var { labels, progressMask, playIcon, pauseIcon } = this.elements;
     try {
-      var pLength = Math.ceil(progress.getTotalLength());
-      var pDash = Math.ceil(ratio * pLength);
-      progress.style.strokeDasharray = [pLength, pLength].join(" ");
-      progress.style.strokeDashoffset = pDash;
+      progressMask.setAttribute("width", ratio * 100 + "%");
       if (paused) {
         playIcon.style.display = "";
         pauseIcon.style.display = "none";
