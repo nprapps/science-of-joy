@@ -18,13 +18,17 @@ class SimpleVideo extends CustomElement {
     this.elements.control.connect(this.elements.video);
   }
 
-  static observedAttributes = ["src", "autoplay", "loop"]
+  static observedAttributes = ["src", "autoplay", "loop", "poster"]
   static mirroredProps = ["src"]
 
   attributeChangedCallback(attr, was, value) {
     switch (attr) {
       case "src":
         this.elements.video.src = value;
+      break;
+
+      case "poster":
+        this.elements.video.setAttribute("poster", value);
       break;
 
       case "autoplay":

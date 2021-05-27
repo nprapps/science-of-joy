@@ -48,7 +48,8 @@ class ClosedCaptions extends CustomElement {
 
   onCueChange(e) {
     var track = e.target.track;
-    if (track.activeCues.length) {
+    var media = e.target.closest("audio, video");
+    if (track.activeCues.length && media && !media.paused) {
       var [ cue ] = track.activeCues;
       this.elements.caption.style.display = ""
       this.elements.caption.innerHTML = cue.text;

@@ -6,7 +6,7 @@
     <%= slide.text %>
     <media-collection class="grid">
       <% slide.videos.forEach(function(v) { %>
-      <simple-video controls loop stretched src="./assets/synced/<%= v.file %>">
+      <simple-video controls loop stretched src="./assets/synced/<%= v.file %>" poster="./assets/synced/<%= v.file %>.jpg">
         <span class="video-label"><%= v.label %></span>
       </simple-video>
       <% }) %>
