@@ -1,46 +1,47 @@
 #naturesounds {
-
-	h4.mixer-label{
-		font-size:11px;
-		font-weight:normal;
+	h4.mixer-label {
+		font-size: 11px;
+		font-weight: normal;
 		margin: 0px;
-		color:#ffdf61;
-		text-align:center;
-		text-transform:uppercase;
+		color: #ffdf61;
+		text-align: center;
+		text-transform: uppercase;
 		letter-spacing: 0.15em;
 	}
 
-	.mixer-element{
-		margin-bottom:40px;
-		margin-top:40px;
+	.mixer-element {
+		margin-bottom: 40px;
+		margin-top: 40px;
 	}
 
 	.mixer-element:first-child {
-		margin-top:20px;
+		margin-top: 20px;
 	}
 
 	.mixer-element:last-child {
-		margin-bottom:20px;
+		margin-bottom: 20px;
 	}
 
 	@keyframes vanishing-point {
-		from { perspective: 3000px;}
-		to { perspective: 1000px;}
+		from {
+			perspective: 3000px;
+		}
+		to {
+			perspective: 1000px;
+		}
 	}
 
 	.parallax {
-	  perspective-origin:bottom;
-	  top: 0;
-	  left: 0;
-	  position:fixed;
-	  width: 100vw;
-	  height: 100vh;
-	  animation: vanishing-point 20s ease-out 0s infinite alternate;
+		perspective-origin: bottom;
+		top: 0;
+		left: 0;
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		animation: vanishing-point 20s ease-out 0s infinite alternate;
 
-  	img:not(:first-child) {
- 		transform: translateZ(var(--image-parallax));
+		img:not(:first-child) {
+			transform: translateZ(var(--image-parallax));
+		}
 	}
-
-	}
-
 }

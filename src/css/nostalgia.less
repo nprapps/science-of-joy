@@ -1,7 +1,10 @@
-
 @keyframes drift {
-  from { transform: rotate(0turn); }
-  to { transform: rotate(1turn); }
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 web-story#nostalgia {
@@ -10,6 +13,7 @@ web-story#nostalgia {
 
   .soundscapes {
     position: relative;
+    
     .pinned() {
       position: absolute;
       top: 0;
@@ -18,7 +22,8 @@ web-story#nostalgia {
       height: 100%;
     }
 
-    svg, shader-box {
+    svg,
+    shader-box {
       .pinned();
       background: #555;
     }
@@ -29,7 +34,7 @@ web-story#nostalgia {
       @media @portrait {
         top: 50%;
         height: 50vh;
-        max-heigh: 400px;
+        max-height: 400px;
         transform: translateY(-50%);
       }
     }
@@ -71,7 +76,7 @@ web-story#nostalgia {
       padding: 8px;
       border: none;
       border-radius: 8px;
-      border: 1px solid white; 
+      border: 1px solid white;
       .gotham();
       margin: 4px auto;
       display: block;

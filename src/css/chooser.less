@@ -58,7 +58,6 @@
 
     &:focus {
       outline: none;
-      // box-shadow: 0 0 0 2px var(--buttons-fg);
       border: 2px dashed var(--buttons-bg);
     }
 
@@ -67,33 +66,8 @@
       margin-bottom: 20px;
       background-repeat: no-repeat;
       background-size: contain;
-      // background: var(--buttons-bg);
       position: relative;
 
-      &:hover, &:focus {
-        // background: var(--buttons-bg);
-      }
-
-      &::after {
-        // content: "";
-        // display: block;
-        // position: absolute;
-        // border-color: var(--buttons-bg);
-        // border-style: solid;
-        // border-width: 3px 2px 4px 3px;
-        // top: 0;
-        // left: 0;
-        // width: 100%;
-        // height: 100%;
-        // transform-origin: center;
-        // transform: rotate(-2deg);
-        // border-radius: inherit;
-      }
-
-      &:nth-child(2n)::after {
-        // border-width: 3px 2px 4px 3px;
-        // transform: translateX(-4px) rotate(2deg);
-      }
 
       &:hover, &:focus {
         outline: none;
@@ -101,11 +75,6 @@
 
       &:focus {
         border: none;
-      }
-
-      &:focus::after, &:hover::after {
-        // border: 3px dashed var(--buttons-bg);
-        // background: var(--buttons-bg);
       }
     }
   }
