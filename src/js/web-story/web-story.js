@@ -114,7 +114,7 @@ class WebStory extends CustomElement {
         // trigger lazy-load for this page and the next page
         this.elements.previous.classList.toggle("inert", index == 0);
         this.elements.next.classList.toggle("inert", index == sections.length - 1);
-        this.loadLazy(chosen);
+        requestAnimationFrame(() => this.loadLazy(chosen));
         var nextUp = sections[index + 1];
         if (nextUp) {
           this.loadLazy(nextUp);
@@ -141,11 +141,15 @@ class WebStory extends CustomElement {
   }
 
   loadLazy(container) {
-    var media = $("[data-src]", container);
+    var media = $("[data-src],[data-poster],[data-style]", container);
     media.forEach(function(medium) {
-      var src = medium.dataset.src;
-      medium.setAttribute("src", src);
-      medium.removeAttribute("data-src");
+      "src poster style".split(" ").forEach(function(prop) {
+        if (prop in medium.dataset) {
+          var value = medium.dataset[prop];
+          medium.setAttribute(prop, value);
+          medium.removeAttribute("data-" + prop);
+        }
+      });
     });
   }
 }

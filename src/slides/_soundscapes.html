@@ -3,7 +3,7 @@
 %>
 <section data-slug="<%= slide.slug %>" id="<%= slug %>" class="soundscapes">
 
-  <shader-box></shader-box>
+  <shader-box data-src="./assets/bokeh.glsl"></shader-box>
 
   <audio-visualizer color="white"></audio-visualizer>
 
@@ -20,7 +20,7 @@
         <audio
           id="soundscape-<%= s.id %>"
           data-label="<%= s.label %>"
-          src="./assets/synced/audio/<%= s.audio %>"
+          data-src="./assets/synced/audio/<%= s.audio %>"
         >
           <% if (s.captions) { %>
           <track default kind="captions" src="./assets/synced/audio/<%= s.captions %>"></track>

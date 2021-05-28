@@ -7,11 +7,11 @@
     id="<%= slug %>-video-backdrop"
     class="backdrop" loop autoplay muted playsinline 
     data-src="./assets/synced/<%= slide.video %>"
-    poster="./assets/synced/<%= slide.video %>.jpg"
+    data-poster="./assets/synced/<%= slide.video %>.jpg"
   ></video>
   <% } %>
   <% if (slide.image) { %>
-  <img class="backdrop" alt=""data-src="./assets/synced/images/<%= slide.image %>">
+  <img class="backdrop" alt="" data-src="./assets/synced/images/<%= slide.image %>">
   <% } %>
   <div class="content">
     <%= t.renderMarkdown(slide.text) %>

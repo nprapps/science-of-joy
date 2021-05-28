@@ -6,7 +6,7 @@
   <div class="parallax">
     <% for (var p of slide.parallaxImages) { %>
       <img 
-        src="./assets/synced/images/<%= p.image %>" 
+        data-src="./assets/synced/images/<%= p.image %>" 
         class="backdrop"
         alt="background nature image"
         style="--image-parallax:<%= p.position %>;">
@@ -19,8 +19,8 @@
       <% slide.audios.forEach(function(v) { %>
       <div id="<%=v.label %>" class="mixer-element">
         
-      <mix-channel loop src="./assets/synced/audio/<%= v.file %>">
-        <img alt="play button" id="<%=v.label %>" height="56" width="56" src="./assets/audioMixer/<%=v.icon %>">
+      <mix-channel loop data-src="./assets/synced/audio/<%= v.file %>">
+        <img alt="play button" id="<%=v.label %>" height="56" width="56" data-src="./assets/audioMixer/<%=v.icon %>">
         <h4 class="mixer-label"><%=v.label %></h4>
       </mix-channel>
       

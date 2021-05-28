@@ -45,8 +45,8 @@ autoChecks.forEach(c => c.addEventListener("change", () => updateAutoplay(c.chec
 $("video.randomized").forEach(function(video) {
   var sources = $("source", video);
   var choice = sources[Math.random() * sources.length | 0];
-  video.setAttribute("src", choice.dataset.possible);
-  video.setAttribute("poster", choice.dataset.possible + ".jpg");
+  video.setAttribute("data-src", choice.dataset.possible);
+  video.setAttribute("data-poster", choice.dataset.possible + ".jpg");
 });
 
 // handle the share button
