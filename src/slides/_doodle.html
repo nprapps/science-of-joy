@@ -1,0 +1,12 @@
+<%
+  var slug = [id, slide.slug, index, "doodle"].filter(d => d).join("-");
+%>
+<section data-slug="<%= slide.slug %>" id="<%= slug %>" class="doodle">
+
+  <div class="content">
+    <%= t.renderMarkdown(slide.text) %>
+    <div class="doodle-container">
+      <zen-doodle data-activate="init"></zen-doodle>
+    </div>
+  </div>
+</section>

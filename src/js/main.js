@@ -1,16 +1,17 @@
 var $ = require("./lib/qsa");
 
 // elements
-require("./sketch-svg/sketch-svg");
-require("./web-story/web-story");
+require("./audio-visualizer/audio-visualizer");
+require("./closed-captions/closed-captions");
+require("./media-collection/media-collection");
 require("./media-controls/media-controls");
 require("./media-mute/media-mute");
-require("./media-collection/media-collection");
-require("./audio-visualizer/audio-visualizer");
+require("./mix-channel/mix-channel");
 require("./shader-box/shader-box");
 require("./simple-video/simple-video");
-require("./closed-captions/closed-captions");
-require("./mix-channel/mix-channel");
+require("./sketch-svg/sketch-svg");
+require("./web-story/web-story");
+require("./zen-doodle/zen-doodle");
 
 // general story architecture
 require("./stories");

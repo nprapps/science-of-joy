@@ -1,0 +1,107 @@
+<style>
+  :host {
+    display: block;
+    min-width: 300px;
+    width: 100%;
+  }
+
+  .canvas-container {
+    position: relative;
+    padding-bottom: 100%;
+  }
+
+  .canvas-container canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .sr-only {
+    opacity: 0;
+    position: absolute;
+    left: -1000px;
+    clip: inset(0, 0, 0, 0);
+    width: 1px;
+    height: 1px;
+  }
+
+  .brushes {
+    display: flex;
+    padding: 8px;
+    background: white;
+    color: black;
+    border-top: 1px dotted black;
+    justify-content: space-between;
+  }
+
+  .brushes label {
+    display: block;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+  }
+
+  .brushes label svg {
+    display: block;
+  }
+
+  .brushes input:checked + label {
+    border-color: ;
+    background: var(--yellow);
+    color: black;
+  }
+</style>
+<div class="canvas-container">
+  <canvas class="output" as="art"></canvas>
+  <canvas class="overlay" as="preview"></canvas>
+</div>
+<div class="brushes" as="brushes">
+  <input class="sr-only" type="radio" name="mode" value="line" id="mode-line" checked="checked">
+  <label for="mode-line">
+    <span class="sr-only">Line</span>
+    <svg width="30" height="30" aria-hidden="true">
+      <path d="M5,15 L25,15" stroke="currentColor" fill="none">
+    </svg>
+  </label>
+
+  <input class="sr-only" type="radio" name="mode" value="arc" id="mode-arc">
+  <label for="mode-arc">
+    <span class="sr-only">Curve</span>
+    <svg width="30" height="30" aria-hidden="true">
+      <path d="M5,15 Q15,5 25,15" stroke="currentColor" fill="none">
+    </svg>
+  </label>
+
+  <input class="sr-only" type="radio" name="mode" value="zigzag" id="mode-zigzag">
+  <label for="mode-zigzag">
+    <span class="sr-only">Zig-zag</span>
+    <svg width="30" height="30" aria-hidden="true">
+      <path d="M5,15 L10,5 L20,25 L25,15" stroke="currentColor" fill="none">
+    </svg>
+  </label>
+
+  <input class="sr-only" type="radio" name="thickness" value="1" id="thickness-light" checked="checked">
+  <label for="thickness-light">
+    <span class="sr-only">Light</span>
+    <svg width="30" height="30" aria-hidden="true">
+      <path d="M5,25 L25,5" stroke="currentColor" fill="none" stroke-width=1>
+    </svg>
+  </label>
+
+  <input class="sr-only" type="radio" name="thickness" value="4" id="thickness-medium">
+  <label for="thickness-medium">
+    <span class="sr-only">Light</span>
+    <svg width="30" height="30" aria-hidden="true">
+      <path d="M5,25 L25,5" stroke="currentColor" fill="none" stroke-width=4>
+    </svg>
+  </label>
+
+  <input class="sr-only" type="radio" name="thickness" value="8" id="thickness-heavy">
+  <label for="thickness-heavy">
+    <span class="sr-only">Light</span>
+    <svg width="30" height="30" aria-hidden="true">
+      <path d="M5,25 L25,5" stroke="currentColor" fill="none" stroke-width=8>
+    </svg>
+  </label>
+</div>
