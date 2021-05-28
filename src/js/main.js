@@ -11,7 +11,6 @@ require("./shader-box/shader-box");
 require("./simple-video/simple-video");
 require("./sketch-svg/sketch-svg");
 require("./web-story/web-story");
-require("./zen-doodle/zen-doodle");
 
 // general story architecture
 require("./stories");
@@ -20,7 +19,7 @@ require("./stories");
 require("./stories/asmr");
 require("./stories/nostalgia");
 require("./stories/poetry");
-require("./stories/flow.js");
+require("./stories/flow");
 
 // autoplay management
 var autoChecks = $(".autoplay input");
