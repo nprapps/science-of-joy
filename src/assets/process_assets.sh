@@ -4,7 +4,7 @@
 # if you want to update an existing file, delete the output first
 
 # set to "error" to suppress logs
-ffmpeg_log="info"
+ffmpeg_log="error"
 
 # enter the originals directory
 cd originals
@@ -24,7 +24,7 @@ for video in silent/*.mp4; do
     -strict -2 \
     -pix_fmt yuv420p \
     -crf 30 \
-    -vf scale=640:-2 \
+    -vf scale=800:-2 \
     ../synced/$video
   fi
 
