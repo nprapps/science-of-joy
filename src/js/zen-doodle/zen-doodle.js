@@ -8,7 +8,10 @@ class ZenDoodle extends CustomElement {
     "onPenUp",
     "onPenMove",
     "onBrushChange",
-    "onWheel"
+    "onWheel",
+    "onUndo",
+    "init",
+    "download"
   ]
 
   constructor() {
@@ -28,6 +31,8 @@ class ZenDoodle extends CustomElement {
     this.elements.preview.addEventListener("wheel", this.onWheel);
 
     this.elements.brushes.addEventListener("change", this.onBrushChange);
+    this.elements.undoButton.addEventListener("click", this.onUndo);
+    this.elements.restartButton.addEventListener("click", this.init);
 
     this.thickness = 1;
     this.mode = "line";
@@ -35,6 +40,7 @@ class ZenDoodle extends CustomElement {
   }
 
   init() {
+    this.setUndo();
     for (var canvas of [this.elements.preview, this.elements.art]) {
       canvas.width = canvas.clientWidth;
       canvas.height = canvas.clientHeight;
@@ -56,7 +62,7 @@ class ZenDoodle extends CustomElement {
 
   onPenUp(e) {
     this.elements.preview.width = this.elements.preview.width;
-    this.undoBuffer = this.artContext.getImageData(0, 0, this.elements.art.width, this.elements.art.height);
+    this.setUndo();
     var end = this.getLocalCoord(e);
     this[this.mode](this.artContext, this.startPoint, end, this.curve)
     this.startPoint = null;
@@ -79,17 +85,14 @@ class ZenDoodle extends CustomElement {
     }
   }
 
-  undo() {
-
-  }
-
-  save() {
+  download() {
 
   }
 
   line(context, start, end) {
-    context.beginPath();
     context.lineWidth = this.thickness;
+    context.lineCap = "round";
+    context.beginPath();
     context.moveTo(...start);
     context.lineTo(...end);
     context.stroke();
@@ -97,6 +100,7 @@ class ZenDoodle extends CustomElement {
 
   arc(context, start, end, curve = 10) {
     context.lineWidth = this.thickness;
+    context.lineCap = "round";
     var [x1, y1] = start;
     var [x2, y2] = end;
     var up = y1 > y2;
@@ -141,6 +145,15 @@ class ZenDoodle extends CustomElement {
     for (var context of [this.previewContext, this.artContext]) {
       context.lineWidth = this.thickness;
     }
+  }
+
+  onUndo() {
+    this.artContext.putImageData(this.undoBuffer, 0, 0);
+  }
+
+  setUndo() {
+    var { width, height } = this.elements.art;
+    this.undoBuffer = this.artContext.getImageData(0, 0, width, height);
   }
 
 }
