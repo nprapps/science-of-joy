@@ -19,7 +19,6 @@ require("./stories");
 require("./stories/asmr");
 require("./stories/nostalgia");
 require("./stories/poetry");
-require("./stories/flow");
 
 // autoplay management
 var autoChecks = $(".autoplay input");
@@ -56,7 +55,7 @@ if ("share" in navigator) {
     var story = params.get("story");
     var url = new URL(window.location.pathname, window.location.href);
     if (story) url.hash = `story=${story}`;
-    console.log(url.toString());
+    console.log(`Sharing: ${url.toString()}`);
     var shared = navigator.share({
       url
     });

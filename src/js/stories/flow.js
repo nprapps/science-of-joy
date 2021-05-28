@@ -1,1 +1,0 @@
-require("../coloring-book/coloring-book");
