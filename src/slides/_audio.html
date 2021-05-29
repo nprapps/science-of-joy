@@ -11,8 +11,8 @@
     data-poster="./assets/synced/<%= slide.video %>.jpg"
   ></video>
   <% } else if (slide.parallax){ %>
-    <div class="parallax">
-    <% for (var p of slide.parallaxImages) { %>
+    <div class="parallax" style="perspective-origin: <%= slide.origin %>;">
+    <% for (var p of slide.parallax) { %>
       <img 
         data-src="./assets/synced/images/<%= p.image %>" 
         class="backdrop"

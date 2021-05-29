@@ -45,6 +45,9 @@ $("video.randomized").forEach(function(video) {
   var choice = sources[Math.random() * sources.length | 0];
   video.setAttribute("data-src", choice.dataset.possible);
   video.setAttribute("data-poster", choice.dataset.possible + ".jpg");
+  if (video.classList.contains("immediate")) {
+    video.setAttribute("src", choice.dataset.possible);
+  }
 });
 
 // handle the share button
