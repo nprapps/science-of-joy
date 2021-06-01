@@ -16,6 +16,7 @@ require("./web-story/web-story");
 require("./stories");
 
 // story-specific code
+require("./stories/art");
 require("./stories/asmr");
 require("./stories/nostalgia");
 require("./stories/poetry");

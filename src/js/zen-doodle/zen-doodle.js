@@ -1,5 +1,12 @@
 var CustomElement = require("../customElement");
 
+const POINT_LIMIT = 4000;
+const POINT_SPACING = 3;
+const NEIGHBOR_LIMIT = 40;
+const NEIGHBOR_SPACING = 20;
+const INK = .4;
+const SHADE = .1;
+
 class ZenDoodle extends CustomElement {
 
   static template = require("./_zen-doodle.html")
@@ -7,153 +14,126 @@ class ZenDoodle extends CustomElement {
     "onPenDown",
     "onPenUp",
     "onPenMove",
-    "onBrushChange",
-    "onWheel",
-    "onUndo",
+    "popUndo",
     "init",
     "download"
   ]
 
   constructor() {
     super();
-    this.startPoint = null;
-    this.endPoint = null;
-    this.drawingPointer = null;
+    this.lastPoint = null;
+    this.points = [];
 
-    this.previewContext = this.elements.preview.getContext("2d");
-    this.artContext = this.elements.art.getContext("2d");
+    this.context = this.elements.canvas.getContext("2d");
 
     var undoBuffer = null;
 
-    this.elements.preview.addEventListener("mousedown", this.onPenDown);
-    this.elements.preview.addEventListener("mouseup", this.onPenUp);
-    this.elements.preview.addEventListener("mousemove", this.onPenMove);
-    this.elements.preview.addEventListener("wheel", this.onWheel);
+    this.elements.canvas.addEventListener("mousedown", this.onPenDown);
+    this.elements.canvas.addEventListener("mousemove", this.onPenMove);
+    this.elements.canvas.addEventListener("mouseup", this.onPenUp);
 
-    this.elements.brushes.addEventListener("change", this.onBrushChange);
-    this.elements.undoButton.addEventListener("click", this.onUndo);
-    this.elements.restartButton.addEventListener("click", this.init);
+    this.elements.canvas.addEventListener("touchstart", this.touchify(this.onPenDown));
+    this.elements.canvas.addEventListener("touchmove", this.touchify(this.onPenMove));
+    this.elements.canvas.addEventListener("touchend", this.touchify(this.onPenUp));
 
-    this.thickness = 1;
-    this.mode = "line";
-    this.curve = 30;
+    this.elements.undoButton.addEventListener("click", this.popUndo);
+    this.elements.resetButton.addEventListener("click", this.init);
+    this.elements.saveButton.addEventListener("click", this.download);
+
+    window.addEventListener("resize", this.init);
   }
 
   init() {
-    this.setUndo();
-    for (var canvas of [this.elements.preview, this.elements.art]) {
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
-    }
-    this.artContext.fillStyle = "white";
-    this.artContext.fillRect(0, 0, this.elements.art.width, this.elements.art.height);
+    this.pushUndo();
+    var { canvas } = this.elements;
+    this.points = [];
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+    this.context.fillStyle = "white";
+    this.context.fillRect(0, 0, canvas.width, canvas.height);
   }
 
   getLocalCoord(e) {
-    var bounds = this.elements.preview.getBoundingClientRect();
+    var bounds = this.elements.canvas.getBoundingClientRect();
     var x = e.clientX - bounds.left;
     var y = e.clientY - bounds.top;
     return [x, y];
   }
 
   onPenDown(e) {
-    this.startPoint = this.getLocalCoord(e);
+    this.lastPoint = this.getLocalCoord(e);
   }
 
   onPenUp(e) {
-    this.elements.preview.width = this.elements.preview.width;
-    this.setUndo();
+    this.pushUndo();
     var end = this.getLocalCoord(e);
-    this[this.mode](this.artContext, this.startPoint, end, this.curve)
-    this.startPoint = null;
+    
+    this.lastPoint = null;
+
+    var startAt = this.points.length - POINT_LIMIT;
+    if (startAt > 0) {
+      this.points = this.points.slice(startAt);
+    }
   }
 
   onPenMove(e) {
-    if (this.startPoint) {
-      var end = this.getLocalCoord(e);
-      this.elements.preview.width = this.elements.preview.width;
+    if (!this.lastPoint) return;
+    
+    var current = this.getLocalCoord(e);
 
-      // draw with the chosen method
-      this[this.mode](this.previewContext, this.startPoint, end, this.curve);
+    var distance = this.getDistance(this.lastPoint, current);
+    if (distance < POINT_SPACING) return;
+
+    this.context.strokeStyle = "black";
+    this.context.lineCap = "round";
+    this.context.globalAlpha = INK;
+    this.context.beginPath();
+    this.context.moveTo(...this.lastPoint);
+    this.context.lineTo(...current);
+    this.context.stroke();
+
+    // fill in gaps
+    this.context.beginPath();
+    for (var p of this.points) {
+      this.context.globalAlpha = SHADE * Math.random();
+      var d = this.getDistance(p, current);
+      if (d < NEIGHBOR_LIMIT && d > NEIGHBOR_SPACING) {
+        this.context.moveTo(...current);
+        this.context.lineTo(...p);
+      }
+    }
+    this.context.stroke();
+
+    this.points.push(current);
+
+    this.lastPoint = current;
+  }
+
+  touchify(fn) {
+    return function(e) {
+      var touch = e.changedTouches[0] || e.touches[0];
+      fn(touch);
     }
   }
 
-  onWheel(e) {
-    this.curve += e.deltaY * .1;
-    if (this.startPoint) {
-      this.onPenMove(e);
-    }
+  getDistance(a, b) {
+    var rise = b[1] - a[1];
+    var run = b[0] - a[0];
+    var distance = Math.sqrt((rise ** 2) + (run ** 2));
+    return distance;
   }
 
   download() {
 
   }
 
-  line(context, start, end) {
-    context.lineWidth = this.thickness;
-    context.lineCap = "round";
-    context.beginPath();
-    context.moveTo(...start);
-    context.lineTo(...end);
-    context.stroke();
+  popUndo() {
+    this.context.putImageData(this.undoBuffer, 0, 0);
   }
 
-  arc(context, start, end, curve = 10) {
-    context.lineWidth = this.thickness;
-    context.lineCap = "round";
-    var [x1, y1] = start;
-    var [x2, y2] = end;
-    var up = y1 > y2;
-    var left = x1 > x2;
-    var length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
-    var dx = (x2 - x1) / length;
-    var dy = (y2 - y1) / length;
-    var midX = x1 + dx * length / 2;
-    var midY = y1 + dy * length / 2;
-    var normalX, normalY;
-    if (up) {
-      normalY = midY + dx * curve;
-      normalX = midX - dy * curve;
-    } else {
-      if (left) {
-        normalY = midY + dx * curve;
-        normalX = midX - dy * curve;
-      } else {
-        normalY = midY + dx * curve;
-        normalX = midX - dy * curve;
-      }
-    }
-    var path = new Path2D(`M${x1},${y1} Q${normalX},${normalY} ${x2},${y2}`);
-    // context.fillStyle = "blue";
-    // context.fillRect(x1 + dy * curve, y1 + dx * curve, 2, 2);
-    // context.fillRect(x2 + dy * curve, y2 + dx * curve, 2, 2);
-    // context.fillStyle = "green";
-    // context.fillRect(midX - 1, midY - 1, 2, 2);
-    // context.fillStyle = "red";
-    // context.fillRect(normalX - 1, normalY - 1, 2, 2);
-    context.beginPath();
-    context.stroke(path);
-  }
-
-  zigzag(context, start, end, width) {
-
-  }
-
-  onBrushChange(e) {
-    var { name, value } = e.target;
-    this[name] = value;
-    for (var context of [this.previewContext, this.artContext]) {
-      context.lineWidth = this.thickness;
-    }
-  }
-
-  onUndo() {
-    this.artContext.putImageData(this.undoBuffer, 0, 0);
-  }
-
-  setUndo() {
-    var { width, height } = this.elements.art;
-    this.undoBuffer = this.artContext.getImageData(0, 0, width, height);
+  pushUndo() {
+    var { width, height } = this.elements.canvas;
+    this.undoBuffer = this.context.getImageData(0, 0, width, height);
   }
 
 }
