@@ -21,6 +21,14 @@ require("./stories/asmr");
 require("./stories/nostalgia");
 require("./stories/poetry");
 
+// enable the drop-down menu
+$(".drop-down").forEach(function(menu) {
+  var button = $.one(".drop-toggle", menu);
+  button.addEventListener("click", function() {
+    menu.classList.toggle("collapsed");
+  });
+});
+
 // autoplay management
 var autoChecks = $(".autoplay input");
 var autoVideo = $("video[autoplay]");

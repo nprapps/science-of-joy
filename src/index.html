@@ -13,9 +13,30 @@
         Science
       </div>
 
-      <a href="#story=menu">Stories</a>
+      <div class="drop-down collapsed">
 
-      <button class="share">Share</button>
+        <button class="drop-toggle" aria-hidden="true">Menu</button>
+
+        <ul>
+          <li>
+            <div class="autoplay checks">
+              <input type="checkbox" checked id="autoplay-all">
+              <label for="autoplay-all">Autoplay video?</label>
+            </div>
+
+
+          <li>
+            <div class="captioning checks">
+              <input type="checkbox" checked id="caption-all">
+              <label for="caption-all">Show captions?</label>
+            </div>
+
+          <li>
+            <button class="share">Share page</button>
+        </ul>
+
+      </div>
+
     </nav>
 
     <%= t.include("_intro.html") %>
