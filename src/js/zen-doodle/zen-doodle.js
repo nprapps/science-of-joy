@@ -133,7 +133,9 @@ class ZenDoodle extends CustomElement {
 
   pushUndo() {
     var { width, height } = this.elements.canvas;
-    this.undoBuffer = this.context.getImageData(0, 0, width, height);
+    if (width && height) {
+      this.undoBuffer = this.context.getImageData(0, 0, width, height);
+    }
   }
 
 }

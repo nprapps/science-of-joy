@@ -1,43 +1,30 @@
 require("../blackout-poetry/blackout-poetry");
 
 var $ = require("../lib/qsa");
+var dom = require("../lib/dom");
 
-var strikes = $(`[data-slug="blackout-demo"] b`);
+var paragraphs = $(`[data-slug="blackout-demo"] .content p`);
+
+var splits = [" "];
 
 var counter = 0;
-strikes.forEach(function(strikeout) {
-  var nodes = strikeout.childNodes;
-  var split = Array.from(nodes).flatMap(function(n) {
-    if (n.nodeType == Node.TEXT_NODE) {
-      return n.textContent.split(" ").map(w => ({ type: "word", content: w }));
-    } else {
-      return {
-        type: "span",
-        content: n.outerHTML
+paragraphs.forEach(function(p) {
+  var bolds = $("b", p);
+  for (var b of bolds) {
+    var converted = [];
+    for (var c of b.childNodes) {
+      if (c.nodeType == Node.TEXT_NODE) {
+        var words = c.textContent.split(" ");
+        for (var w of words) {
+          var span = dom("span.strike", w + " ");
+          span.style.animationDelay = 2000 + (counter++ * 200) + "ms";
+          converted.push(span);
+        }
+      } else {
+        converted.push(c);
       }
     }
-  });
-  var units = [];
-  //merge outliers
-  for (var i = 0; i < split.length; i++) {
-    var [ current, next, next2 ] = split.slice(i);
-    // collect spans
-    if (next && next.type == "span") {
-      units.push([current.content + next.content + (next2 ? next2.content : "")].join(" "));
-      i += 2;
-      continue;
-    }
-    // merge stray punctuation
-    if (current.content.match(/^[.,?]$/) && next) {
-      units.push(current.content + " " + next.content);
-      i++;
-      continue;
-    }
-    units.push(current.content);
+    b.innerHTML = "";
+    converted.forEach(c => b.appendChild(c));
   }
-  var spans = units.map(u => ` <span
-    class="strike"
-    style="animation-delay: ${2000 + (counter++) * 200}ms"
-  >${u}</span> `).join("");
-  strikeout.innerHTML = spans;
-})
+});
