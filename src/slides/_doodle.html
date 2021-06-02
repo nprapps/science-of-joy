@@ -2,5 +2,6 @@
   var slug = [id, slide.slug, index, "doodle"].filter(d => d).join("-");
 %>
 <section data-slug="<%= slide.slug %>" id="<%= slug %>" class="doodle">
+  <h3><%= slide.text %></h3>
   <zen-doodle data-activate="init"></zen-doodle>
 </section>

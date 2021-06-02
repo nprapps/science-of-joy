@@ -41,7 +41,9 @@ class ZenDoodle extends CustomElement {
     this.elements.resetButton.addEventListener("click", this.init);
     this.elements.saveButton.addEventListener("click", this.download);
 
-    window.addEventListener("resize", this.init);
+    window.addEventListener("resize", () => {
+      if (canvas.width != canvas.clientWidth) this.init();
+    });
   }
 
   init() {
