@@ -113,6 +113,8 @@ class ZenDoodle extends CustomElement {
     return function(e) {
       var touch = e.changedTouches[0] || e.touches[0];
       fn(touch);
+      e.preventDefault();
+      e.stopImmediatePropagation();
     }
   }
 

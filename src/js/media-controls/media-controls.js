@@ -81,7 +81,7 @@ class MediaControls extends CustomElement {
     var { labels, progressMask, playIcon, pauseIcon } = this.elements;
     try {
       // hard-coded - the progress SVG is 30 units wide
-      progressMask.setAttribute("width", 3 + (ratio * 27));
+      progressMask.setAttribute("width", ratio * 100 + "%");
       if (paused) {
         playIcon.style.display = "";
         pauseIcon.style.display = "none";
