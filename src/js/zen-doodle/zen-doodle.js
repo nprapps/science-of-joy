@@ -6,6 +6,7 @@ const NEIGHBOR_LIMIT = 40;
 const NEIGHBOR_SPACING = 20;
 const INK = .4;
 const SHADE = .1;
+const WEB_MARGIN = 3;
 
 class ZenDoodle extends CustomElement {
 
@@ -98,8 +99,11 @@ class ZenDoodle extends CustomElement {
       this.context.globalAlpha = SHADE * Math.random();
       var d = this.getDistance(p, current);
       if (d < NEIGHBOR_LIMIT && d > NEIGHBOR_SPACING) {
-        this.context.moveTo(...current);
-        this.context.lineTo(...p);
+        var unit = this.getUnitVector(current, p, d);
+        var a = this.addVectors(current, this.multiplyVector(unit, WEB_MARGIN));
+        var b = this.addVectors(p, this.multiplyVector(unit, -WEB_MARGIN));
+        this.context.moveTo(...a);
+        this.context.lineTo(...b);
       }
     }
     this.context.stroke();
@@ -125,8 +129,23 @@ class ZenDoodle extends CustomElement {
     return distance;
   }
 
-  download() {
+  getUnitVector(a, b, d) {
+    return [(b[0] - a[0]) / d, (b[1] - a[1]) / d];
+  }
 
+  multiplyVector(v, m) {
+    return v.map(c => c * m);
+  }
+
+  addVectors(a, b) {
+    return a.map((c, i) => c + b[i]);
+  }
+
+  download() {
+    var { canvas, download } = this.elements;  
+    download.href = canvas.toDataURL();
+    download.download = `doodle-${Date.now()}`
+    download.click();
   }
 
   popUndo() {

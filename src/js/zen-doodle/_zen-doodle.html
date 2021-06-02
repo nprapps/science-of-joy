@@ -16,12 +16,37 @@
     width: 100%;
     height: 100%;
   }
+
+  .buttons {
+    padding: 16px;
+    display: flex;
+    justify-content: space-around;
+    min-height: 0;
+  }
+
+  .buttons button {
+    padding: 8px 16px;
+    border-radius: 2px;
+    border: dashed 2px black;
+    font-family: var(--knockout);
+    background: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .buttons button:hover,
+  .buttons button:focus {
+    border: solid 2px black;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+  }
 </style>
 <div class="canvas-container">
   <canvas class="output" as="canvas"></canvas>
 </div>
-<div class="controls">
+<div class="buttons">
   <button as="saveButton">Save</button>
   <button as="resetButton">Reset</button>
   <button as="undoButton">Undo</button>
 </div>
+<a as="download" hidden></a>
