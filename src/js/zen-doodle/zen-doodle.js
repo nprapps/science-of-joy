@@ -60,24 +60,30 @@ class ZenDoodle extends CustomElement {
     this.lastPoint = null;
     this.points = [];
 
-    this.context = this.elements.canvas.getContext("2d");
+    var { canvas } = this.elements;
+
+    this.context = canvas.getContext("2d");
 
     var undoBuffer = null;
 
-    this.elements.canvas.addEventListener("mousedown", this.onPenDown);
-    this.elements.canvas.addEventListener("mousemove", this.onPenMove);
-    this.elements.canvas.addEventListener("mouseup", this.onPenUp);
+    canvas.addEventListener("mousedown", this.onPenDown);
+    canvas.addEventListener("mousemove", this.onPenMove);
+    canvas.addEventListener("mouseup", this.onPenUp);
 
-    this.elements.canvas.addEventListener("touchstart", this.touchify(this.onPenDown));
-    this.elements.canvas.addEventListener("touchmove", this.touchify(this.onPenMove));
-    this.elements.canvas.addEventListener("touchend", this.touchify(this.onPenUp));
+    canvas.addEventListener("touchstart", this.touchify(this.onPenDown));
+    canvas.addEventListener("touchmove", this.touchify(this.onPenMove));
+    canvas.addEventListener("touchend", this.touchify(this.onPenUp));
 
     this.elements.undoButton.addEventListener("click", this.popUndo);
     this.elements.resetButton.addEventListener("click", this.init);
     this.elements.saveButton.addEventListener("click", this.download);
 
     window.addEventListener("resize", () => {
-      if (canvas.width != canvas.clientWidth) this.init();
+      if (canvas.width != canvas.clientWidth) {
+        this.pushUndo();
+        this.init();
+        this.popUndo();
+      }
     });
   }
 

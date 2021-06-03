@@ -24,13 +24,16 @@ require("./stories/poetry");
 // enable the drop-down menu
 $(".drop-down").forEach(function(menu) {
   var button = $.one(".drop-toggle", menu);
+  var items = $("ul a, ul button, ul input", menu);
+  items.forEach(item => item.setAttribute("tabindex", -1));
   button.addEventListener("click", function(e) {
-    menu.classList.toggle("collapsed");
+    var expanded = menu.classList.toggle("expanded");
     e.stopPropagation();
+    items.forEach(item => item.setAttribute("tabindex", expanded ? 0 : -1));
   });
 
   menu.addEventListener("click", function() {
-    menu.classList.add("collapsed");
+    menu.classList.add("expanded");
   });
 });
 

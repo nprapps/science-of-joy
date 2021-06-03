@@ -1,5 +1,6 @@
 .drop-down {
   position: relative;
+  perspective: 200px;
 
   .drop-toggle {
     display: block;
@@ -22,10 +23,10 @@
     }
   }
 
-  &.collapsed ul {
-    .sr-only();
-    transform: translateX(100%);
-    opacity: .01;
+  &.expanded ul {
+    transform: none;
+    opacity: 1;
+    transition: all .3s ease;
   }
 
   ul {
@@ -34,13 +35,15 @@
     right: 0;
     background: white;
     color: black;
-    transition: all .3s ease;
     padding: 8px 20px;
     border-radius: 10px;
     margin: 0;
     list-style-type: none;
     border: 1px solid fade(black, 30%);
     box-shadow: 4px 4px 0 fade(black, 30%);
+    transform-origin: center;
+    transform: rotateX(-40deg) translateX(100%);
+    opacity: .01;
   }
 
   li {
@@ -61,9 +64,17 @@
     border-radius: 0;
 
     &:hover, &:focus {
-      color: black;
-      background: white;
       border-color: black;
+      outline: none;
     }
+  }
+
+  input + label {
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+  }
+
+  input:focus + label {
+    border-color: black;
   }
 }
