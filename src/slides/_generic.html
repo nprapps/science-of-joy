@@ -5,7 +5,9 @@
   <% if (slide.video) { %>
   <video 
     id="<%= slug %>-video-backdrop"
-    class="backdrop" loop autoplay muted playsinline 
+    class="backdrop" 
+    <% if (!slide.noLoop) { %>loop<% } %>
+    autoplay muted playsinline 
     data-src="./assets/synced/<%= slide.video %>"
     data-poster="./assets/synced/<%= slide.video %>.jpg"
   ></video>

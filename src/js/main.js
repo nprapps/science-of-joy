@@ -24,8 +24,13 @@ require("./stories/poetry");
 // enable the drop-down menu
 $(".drop-down").forEach(function(menu) {
   var button = $.one(".drop-toggle", menu);
-  button.addEventListener("click", function() {
+  button.addEventListener("click", function(e) {
     menu.classList.toggle("collapsed");
+    e.stopPropagation();
+  });
+
+  menu.addEventListener("click", function() {
+    menu.classList.add("collapsed");
   });
 });
 
