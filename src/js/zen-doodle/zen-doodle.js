@@ -8,6 +8,41 @@ const INK = .4;
 const SHADE = .1;
 const WEB_MARGIN = 3;
 
+class Vector extends Array {
+  vectorize(n) {
+    if (n instanceof Array) return n;
+    var v = new Array(this.length);
+    v.fill(n);
+    return v;
+  }
+
+  add(a) {
+    var v = this.vectorize(a);
+    return this.map((entry, i) => entry + v[i]);
+  }
+
+  subtract(a) {
+    var v = this.vectorize(a);
+    return this.map((entry, i) => entry - v[i]);
+  }
+
+  multiply(a) {
+    var v = this.vectorize(a);
+    return this.map((entry, i) => entry * v[i]);
+  }
+
+  divide(a) {
+    var v = this.vectorize(a);
+    return this.map((entry, i) => entry / v[i]);
+  }
+
+  distance(b) {
+    var v = this.subtract(b);
+    var [a2, b2] = v.multiply(v);
+    return Math.sqrt(a2 + b2);
+  }
+}
+
 class ZenDoodle extends CustomElement {
 
   static template = require("./_zen-doodle.html")
@@ -58,9 +93,7 @@ class ZenDoodle extends CustomElement {
 
   getLocalCoord(e) {
     var bounds = this.elements.canvas.getBoundingClientRect();
-    var x = e.clientX - bounds.left;
-    var y = e.clientY - bounds.top;
-    return [x, y];
+    return Vector.from([e.clientX, e.clientY]).subtract([bounds.left, bounds.top]);
   }
 
   onPenDown(e) {
@@ -84,7 +117,7 @@ class ZenDoodle extends CustomElement {
     
     var current = this.getLocalCoord(e);
 
-    var distance = this.getDistance(this.lastPoint, current);
+    var distance = current.distance(this.lastPoint);
     if (distance < POINT_SPACING) return;
 
     this.context.strokeStyle = "black";
@@ -99,11 +132,11 @@ class ZenDoodle extends CustomElement {
     this.context.beginPath();
     for (var p of this.points) {
       this.context.globalAlpha = SHADE * Math.random();
-      var d = this.getDistance(p, current);
+      var d = current.distance(p);
       if (d < NEIGHBOR_LIMIT && d > NEIGHBOR_SPACING) {
-        var unit = this.getUnitVector(current, p, d);
-        var a = this.addVectors(current, this.multiplyVector(unit, WEB_MARGIN));
-        var b = this.addVectors(p, this.multiplyVector(unit, -WEB_MARGIN));
+        var unit = current.subtract(p).divide(d);
+        var a = current.subtract(unit.multiply(WEB_MARGIN));
+        var b = p.subtract(unit.multiply(-WEB_MARGIN));
         this.context.moveTo(...a);
         this.context.lineTo(...b);
       }
@@ -122,25 +155,6 @@ class ZenDoodle extends CustomElement {
       e.preventDefault();
       e.stopImmediatePropagation();
     }
-  }
-
-  getDistance(a, b) {
-    var rise = b[1] - a[1];
-    var run = b[0] - a[0];
-    var distance = Math.sqrt((rise ** 2) + (run ** 2));
-    return distance;
-  }
-
-  getUnitVector(a, b, d) {
-    return [(b[0] - a[0]) / d, (b[1] - a[1]) / d];
-  }
-
-  multiplyVector(v, m) {
-    return v.map(c => c * m);
-  }
-
-  addVectors(a, b) {
-    return a.map((c, i) => c + b[i]);
   }
 
   download() {
