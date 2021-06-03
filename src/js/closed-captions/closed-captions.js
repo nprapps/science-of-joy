@@ -5,6 +5,19 @@ var events = require("../eventBus");
 
 var tracks = $(`track[src*="vtt"]`);
 
+const CAPTION_SETTINGS = "caption-settings";
+
+var captionChecks = $(".captioning.checks input");
+
+var updateCaptions = function(enabled) {
+  captionChecks.forEach(c => c.checked = enabled);
+  events.fire(CAPTION_SETTINGS, { disabled: !enabled });
+};
+
+captionChecks.forEach(function(input) {
+  input.addEventListener("change", e => updateCaptions(e.target.checked));
+});
+
 class ClosedCaptions extends CustomElement {
 
   static boundMethods = [
@@ -18,6 +31,7 @@ class ClosedCaptions extends CustomElement {
     super();
 
     tracks.forEach(this.connectTrack);
+    events.on(CAPTION_SETTINGS, e => this.toggleAttribute("disabled", e.disabled));
   }
 
   connectedCallback() {
@@ -49,7 +63,8 @@ class ClosedCaptions extends CustomElement {
   onCueChange(e) {
     var track = e.target.track;
     var media = e.target.closest("audio, video");
-    if (track.activeCues.length && media && !media.paused) {
+    var enabled = !this.hasAttribute("disabled");
+    if (enabled && track.activeCues.length && media && !media.paused) {
       var [ cue ] = track.activeCues;
       this.elements.caption.style.display = ""
       this.elements.caption.innerHTML = cue.text;
@@ -66,3 +81,5 @@ class ClosedCaptions extends CustomElement {
 }
 
 ClosedCaptions.define("closed-captions");
+
+module.exports = { ClosedCaptions, CAPTION_SETTINGS };
