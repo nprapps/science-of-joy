@@ -15,10 +15,10 @@
 
     <% if (metadata.refs) { %>
     <div class="text">
-      <h3 class="ref-hed">References</h3>
+      <h3 class="ref-hed">More NPR reading</h3>
       <ul class="refs">
         <% metadata.refs.forEach(function(r) { %>
-        <li> <a href="<%= r.url %>"><%= r.title %></a>
+        <li style="background-image: url(assets/audioMixer/slider-circle.svg)"> <a href="<%= r.url %>"><%= r.title %></a>
         <% }) %>
       </ul>
     </div>

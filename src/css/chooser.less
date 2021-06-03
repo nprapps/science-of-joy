@@ -23,6 +23,10 @@
       li {
         display: block;
         margin-bottom: 12px;
+        padding-left: 30px;
+        background-size: 20px 20px; 
+        background-repeat: no-repeat;
+        background-position: 0px 0px;
       }
     }
 
@@ -33,7 +37,12 @@
     }
 
     a {
-      color: inherit;
+      color: @yellow;
+      text-decoration: none;
+
+      &:hover {
+        color: white;
+      }
     }
   }
 
