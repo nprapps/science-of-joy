@@ -8,16 +8,16 @@
   <body>
 
     <nav class="top-bar">
-      <div class="logo">
+      <a class="logo" href="#story=intro">
         <img src="./assets/logo-outline.svg" alt="NPR">
         Science
-      </div>
+      </a>
 
       <div class="drop-down">
 
-        <button class="drop-toggle" aria-hidden="true">Menu</button>
+        <button class="drop-toggle" aria-haspopup="true" aria-controls="drop-down-menu">Menu</button>
 
-        <ul>
+        <ul id="drop-down-menu">
           <li>
             <a href="#story=menu">Browse stories</a>
 

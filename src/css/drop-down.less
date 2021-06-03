@@ -26,6 +26,9 @@
   &.expanded ul {
     transform: none;
     opacity: 1;
+  }
+
+  &.enabled ul {
     transition: all .3s ease;
   }
 
@@ -42,7 +45,7 @@
     border: 1px solid fade(black, 30%);
     box-shadow: 4px 4px 0 fade(black, 30%);
     transform-origin: center;
-    transform: rotateX(-40deg) translateX(100%);
+    transform: skew(15deg) rotateX(-40deg) translateX(100%);
     opacity: .01;
   }
 

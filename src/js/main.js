@@ -25,16 +25,23 @@ require("./stories/poetry");
 $(".drop-down").forEach(function(menu) {
   var button = $.one(".drop-toggle", menu);
   var items = $("ul a, ul button, ul input", menu);
-  items.forEach(item => item.setAttribute("tabindex", -1));
+  items.forEach(function(item) {
+    item.setAttribute("tabindex", -1);
+    item.addEventListener("click", () => button.click());
+  });
+
   button.addEventListener("click", function(e) {
     var expanded = menu.classList.toggle("expanded");
     e.stopPropagation();
     items.forEach(item => item.setAttribute("tabindex", expanded ? 0 : -1));
+    if (expanded) {
+      button.setAttribute("aria-expanded", "true");
+    } else {
+      button.removeAttribute("aria-expanded");
+    }
   });
 
-  menu.addEventListener("click", function() {
-    menu.classList.add("expanded");
-  });
+  menu.classList.add("enabled");
 });
 
 // autoplay management
