@@ -108,14 +108,16 @@ class WebStory extends CustomElement {
           cursor.setAttribute("tabindex", -1);
         }
         cursor.focus();
-        requestAnimationFrame(() => this.activatePage(chosen));
+        this.loadLazy(chosen);
+        this.startBackdrop(chosen);
+        this.activatePage(chosen);
         this.setAttribute("slug", chosen.dataset.slug);
         this.selectedSection = chosen;
         this.selectedIndex = index;
         // trigger lazy-load for this page and the next page
         this.elements.previous.classList.toggle("inert", index == 0);
         this.elements.next.classList.toggle("inert", index == sections.length - 1);
-        requestAnimationFrame(() => this.loadLazy(chosen));
+        this.loadLazy(chosen);
         var nextUp = sections[index + 1];
         if (nextUp) {
           this.loadLazy(nextUp);
@@ -143,12 +145,18 @@ class WebStory extends CustomElement {
       var method = element.dataset.activate;
       if (element[method]) element[method]();
     });
-    // also activate a video backdrop if it exists
-    this.elements.backdrop.toggleAttribute("hidden", "video" in page.dataset);
-    this.elements.backdrop.currentTime = 0;
-    this.elements.backdrop.src = page.dataset.video || "";
-    this.elements.backdrop.toggleAttribute("loop", "loop" in page.dataset);
-    this.elements.backdrop.toggleAttribute("autoplay", "autoplay" in page.dataset);
+  }
+
+  startBackdrop(page) {
+    // activate a video backdrop if it exists
+    var hasVideo = "video" in page.dataset;
+    this.elements.backdrop.toggleAttribute("hidden", !hasVideo);
+    if (hasVideo) {
+      this.elements.backdrop.currentTime = 0;
+      this.elements.backdrop.src = page.dataset.video || "";
+      this.elements.backdrop.toggleAttribute("loop", "loop" in page.dataset);
+      this.elements.backdrop.toggleAttribute("autoplay", "autoplay" in page.dataset);
+    }
   }
 
   loadLazy(container) {

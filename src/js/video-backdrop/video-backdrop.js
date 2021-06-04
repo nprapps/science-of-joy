@@ -22,7 +22,8 @@ class VideoBackdrop extends CustomElement {
     var present = value != null;
     switch (attr) {
       case "cuesrc":
-        back.src = value;
+          back.src = value;
+          back.pause();
         break;
 
       case "cueposter":
@@ -36,20 +37,23 @@ class VideoBackdrop extends CustomElement {
       case "src":
         if (!value) {
           front.classList.remove("front");
+          front.stop();
           return;
         }
         // check to see if this video was cued up
         if (value == back.getAttribute("src")) {
-          console.log(`Swapping buffers for ${value}`)
+          // console.log(`Swapping buffers for ${value}`);
           // swap buffers
           front.classList.remove("front");
           back.classList.add("front");
           this.buffers = [ back, front ];
+          front = back;
         } else {
-          console.log(`Uncued src: ${value}`)
-          front.src = value;
+          // console.log(`Uncued src: ${value}`);
           front.classList.add("front");
+          front.src = value;
         }
+        front.play();
         break;
 
       case "loop":

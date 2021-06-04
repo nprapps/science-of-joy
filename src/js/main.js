@@ -12,15 +12,6 @@ require("./simple-video/simple-video");
 require("./sketch-svg/sketch-svg");
 require("./web-story/web-story");
 
-// general story architecture
-require("./stories");
-
-// story-specific code
-require("./stories/art");
-require("./stories/asmr");
-require("./stories/nostalgia");
-require("./stories/poetry");
-
 // enable the drop-down menu
 $(".drop-down").forEach(function(menu) {
   var button = $.one(".drop-toggle", menu);
@@ -102,3 +93,12 @@ if ("share" in navigator) {
 } else {
   shareButton.style.display = "none";
 }
+
+// general story architecture
+require("./stories");
+
+// story-specific code
+require("./stories/art");
+require("./stories/asmr");
+require("./stories/nostalgia");
+require("./stories/poetry");

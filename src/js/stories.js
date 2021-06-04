@@ -56,7 +56,8 @@ var hashRoute = async function() {
   var current = await setStory(story, page);
 };
 
-hashRoute();
+// give the event loop a chance to terminate, then route
+requestAnimationFrame(hashRoute);
 window.addEventListener("hashchange", hashRoute);
 
 // handle internal story link clicks
