@@ -41,6 +41,15 @@ class Vector extends Array {
     var [a2, b2] = u.multiply(u);
     return Math.sqrt(a2 + b2);
   }
+
+  normalize() {
+    var total = this.reduce((acc, v) => acc + v, 0);
+    return this.map(v => v / total);
+  }
+
+  dot(v) {
+    return this.reduce((acc, entry, i) => acc + entry * v[i], 0);
+  }
 }
 
 class ZenDoodle extends CustomElement {
