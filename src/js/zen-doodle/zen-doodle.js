@@ -16,29 +16,29 @@ class Vector extends Array {
     return v;
   }
 
-  add(a) {
-    var v = this.vectorize(a);
+  add(v) {
+    v = this.vectorize(v);
     return this.map((entry, i) => entry + v[i]);
   }
 
-  subtract(a) {
-    var v = this.vectorize(a);
+  subtract(v) {
+    v = this.vectorize(v);
     return this.map((entry, i) => entry - v[i]);
   }
 
-  multiply(a) {
-    var v = this.vectorize(a);
+  multiply(v) {
+    v = this.vectorize(v);
     return this.map((entry, i) => entry * v[i]);
   }
 
-  divide(a) {
-    var v = this.vectorize(a);
+  divide(v) {
+    v = this.vectorize(v);
     return this.map((entry, i) => entry / v[i]);
   }
 
-  distance(b) {
-    var v = this.subtract(b);
-    var [a2, b2] = v.multiply(v);
+  distance(v) {
+    var u = this.subtract(v);
+    var [a2, b2] = u.multiply(u);
     return Math.sqrt(a2 + b2);
   }
 }
