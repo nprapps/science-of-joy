@@ -1,6 +1,14 @@
 var CustomElement = require("../customElement");
 require("../media-controls/media-controls");
 
+var isSafari = !!navigator.userAgent.match(/i(os|pad|phone)/i);
+
+var observer = new IntersectionObserver(function(list) {
+  for (var observation of list) {
+    observation.target.rationVideo(observation.isIntersecting);
+  }
+});
+
 class SimpleVideo extends CustomElement {
 
   static template = require("./_simple-video.html")
@@ -16,6 +24,7 @@ class SimpleVideo extends CustomElement {
     ["play", "pause"].forEach(p => this.proxyMethod(p));
 
     this.elements.control.connect(this.elements.video);
+    if (isSafari) observer.observe(this);
   }
 
   static observedAttributes = ["src", "autoplay", "loop", "poster"]
@@ -62,6 +71,14 @@ class SimpleVideo extends CustomElement {
     this[name] = (...args) => {
       // console.log(this, name, ...args);
       video[name](...args);
+    }
+  }
+
+  rationVideo(attach) {
+    if (attach) {
+      this.elements.videoContainer.appendChild(this.elements.video);
+    } else {
+      this.elements.video.remove();
     }
   }
 

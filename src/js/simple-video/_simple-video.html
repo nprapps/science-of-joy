@@ -48,7 +48,9 @@ video {
 }
 </style>
 <div class="inner-container">
-  <video as="video" playsinline></video>
+  <div as="videoContainer">
+    <video as="video" playsinline></video>
+  </div>
   <div class="screen" as="screen"><slot></slot></div>
   <media-controls as="control"></media-controls>
 </div>
