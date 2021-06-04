@@ -1,16 +1,20 @@
 <%
   var slug = [id, slide.slug, index, "audio"].filter(d => d).join("-");
 %>
-<section data-slug="<%= slide.slug %>" id="<%= slug %>" class="audio">
+<section 
+  data-slug="<%= slide.slug %>" 
+  id="<%= slug %>" 
+  class="audio"
 
   <% if (slide.video) { %>
-  <video 
-    id="<%= slug %>-video-backdrop"
-    class="backdrop" loop autoplay muted playsinline 
-    data-src="./assets/synced/<%= slide.video %>"
-    data-poster="./assets/synced/<%= slide.video %>.jpg"
-  ></video>
-  <% } else if (slide.parallax){ %>
+  data-video="./assets/synced/<%= slide.video %>"
+  data-video-poster="./assets/synced/<%= slide.video %>.jpg"
+  <% if (!slide.noLoop) { %>data-loop<% } %>
+  data-autoplay
+  <% } %>
+>
+
+  <% if (slide.parallax){ %>
     <div class="parallax" style="perspective-origin: <%= slide.origin %>;">
     <% for (var p of slide.parallax) { %>
       <img 
@@ -21,7 +25,7 @@
     <% } %>
     </div>
 
-  <%}  else {%>
+  <%} else if (!slide.video) { %>
   <shader-box class="backdrop" data-src="./assets/bokeh.glsl"></shader-box>
   <audio-visualizer class="backdrop" color="white" for="<%= slug %>-audio"></audio-visualizer>
   <% } %>
