@@ -145,6 +145,7 @@ class WebStory extends CustomElement {
     });
     // also activate a video backdrop if it exists
     this.elements.backdrop.toggleAttribute("hidden", "video" in page.dataset);
+    this.elements.backdrop.currentTime = 0;
     this.elements.backdrop.src = page.dataset.video || "";
     this.elements.backdrop.toggleAttribute("loop", "loop" in page.dataset);
     this.elements.backdrop.toggleAttribute("autoplay", "autoplay" in page.dataset);

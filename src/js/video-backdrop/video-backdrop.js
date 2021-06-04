@@ -68,6 +68,14 @@ class VideoBackdrop extends CustomElement {
     }
   }
 
+  get currentTime() {
+    return this.buffers[0].currentTime;
+  }
+
+  set currentTime(t) {
+    return this.buffers[0].currentTime = t;
+  }
+
 }
 
 VideoBackdrop.define("video-backdrop");

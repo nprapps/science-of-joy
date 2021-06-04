@@ -1,12 +1,10 @@
 <%
   var { interstitials } = grunt.data.archieml.text.metadata;
 %>
-<section data-slug="<%= id %>-chooser" class="chooser-slide">
-  <video class="randomized backdrop" autoplay loop muted playsinline>
-    <% for (var f of interstitials) { %>
-    <source data-possible="./assets/synced/silent/<%= f %>">
-    <% } %>
-  </video>
+<section data-slug="<%= id %>-chooser" class="chooser-slide" data-randomized>
+  <% for (var f of interstitials) { %>
+  <source data-possible="./assets/synced/silent/<%= f %>">
+  <% } %>
   <div class="contents">
     <div class="choices">
       <button class="random-choice" style="background-image: url(assets/chooser-splotch.svg)">Surprise me!</button>

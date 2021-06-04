@@ -73,6 +73,18 @@ $("video.randomized").forEach(function(video) {
     video.setAttribute("src", choice.dataset.possible);
   }
 });
+// also handle randomized section that can use the video-backdrop player
+$("[data-randomized]").forEach(function(section) {
+  var sources = $("source", section);
+  var choice = sources[Math.random() * sources.length | 0];
+  section.setAttribute("data-video", choice.dataset.possible);
+  section.setAttribute("data-video-poster", choice.dataset.possible + ".jpg");
+  section.setAttribute("data-autoplay", "");
+  section.setAttribute("data-loop", "");
+  if (section.classList.contains("immediate")) {
+    section.setAttribute("src", choice.dataset.possible);
+  }
+});
 
 // handle the share button
 var shareButton = $.one("button.share");
