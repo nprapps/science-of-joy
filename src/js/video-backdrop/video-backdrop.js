@@ -2,6 +2,12 @@ var CustomElement = require("../customElement");
 
 var isSafari = !!navigator.userAgent.match(/i(os|pad|phone)/i);
 
+var observer = new IntersectionObserver(function(list) {
+  for (var observation of list) {
+    observation.target.attachBuffers(observation.isIntersecting);
+  }
+});
+
 class VideoBackdrop extends CustomElement {
   static template = require("./_video-backdrop.html");
   static boundMethods = [];
@@ -12,9 +18,13 @@ class VideoBackdrop extends CustomElement {
     this.buffers = [this.elements.buffer];
     var [ front ] = this.buffers;
     if (!isSafari) {
+      // good browsers get buffering help
       var cloned = front.cloneNode();
       this.elements.videoContainer.appendChild(cloned);
       this.buffers.push(cloned);
+    } else {
+      // bad browsers have to unload video when invisible
+      observer.observe(this);
     }
   }
 
@@ -88,6 +98,16 @@ class VideoBackdrop extends CustomElement {
       case "muted":
         this.buffers.forEach(b => b.muted = present);
         break;
+    }
+  }
+
+  // literally remove video elements from the DOM when the backdrop is hidden
+  // trying really hard to get under that Safari soft limit
+  attachBuffers(attach) {
+    if (attach) {
+      this.buffers.forEach(b => this.elements.videoContainer.appendChild(b));
+    } else {
+      this.buffers.forEach(b => b.remove());
     }
   }
 
