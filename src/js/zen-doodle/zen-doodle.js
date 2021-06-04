@@ -103,11 +103,11 @@ class ZenDoodle extends CustomElement {
   }
 
   onPenDown(e) {
+    this.pushUndo();
     this.lastPoint = this.getLocalCoord(e);
   }
 
   onPenUp(e) {
-    this.pushUndo();
     var end = this.getLocalCoord(e);
     
     this.lastPoint = null;
