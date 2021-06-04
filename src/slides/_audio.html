@@ -26,11 +26,9 @@
     </div>
 
   <%} else if (!slide.video) { %>
-  <shader-box class="backdrop" data-src="./assets/bokeh.glsl"></shader-box>
-  <audio-visualizer class="backdrop" color="white" for="<%= slug %>-audio"></audio-visualizer>
+    <shader-box class="backdrop" data-src="./assets/bokeh.glsl"></shader-box>
+    <audio-visualizer class="backdrop" color="white" for="<%= slug %>-audio"></audio-visualizer>
   <% } %>
-
-  
 
   <div class="content">
     <%= t.renderMarkdown(slide.text) %>
