@@ -1,13 +1,14 @@
-<section class="title-slide" data-slug="title">
+<section 
+  class="title-slide" 
+  data-slug="title"
   <% if (metadata.video) { %>
-  <video
-    class="backdrop"
-    loop autoplay muted playsinline
-    data-src="./assets/synced/<%= metadata.video %>"
-    data-poster="./assets/synced/<%= metadata.video %>.jpg"
-    id="title-video"
-  ></video>
+  data-video="./assets/synced/<%= metadata.video %>"
+  data-video-poster="./assets/synced/<%= metadata.video %>.jpg"
+  data-loop
+  data-autoplay
+  data-muted
   <% } %>
+>
   <% if (metadata.image) { %>
   <img class="backdrop" alt=""data-src="./assets/synced/images/<%= metadata.image %>">
   <% } %>

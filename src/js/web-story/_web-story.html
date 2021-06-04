@@ -17,7 +17,7 @@ Set those on the web-story elements via LESS to have them propagate in.
   box-sizing: border-box;
 }
 
-.touch-panel {
+.backdrop {
   position: absolute;
   top: 0;
   left: 0;
@@ -172,7 +172,7 @@ button.next.tutorialized:hover {
 </style>
 
 <!-- the backdrop gets events, can be swipeable -->
-<div as="backdrop" class="touch-panel"></div>
+<video-backdrop as="backdrop" class="backdrop"></video-backdrop>
 
 <!-- child elements are placed here -->
 <slot as="slot"></slot>

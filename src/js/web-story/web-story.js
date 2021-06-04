@@ -1,5 +1,6 @@
 var CustomElement = require("../customElement.js");
 var $ = require("../lib/qsa");
+require("../video-backdrop/video-backdrop");
 
 class WebStory extends CustomElement {
 
@@ -118,6 +119,10 @@ class WebStory extends CustomElement {
         var nextUp = sections[index + 1];
         if (nextUp) {
           this.loadLazy(nextUp);
+          if ("video" in nextUp.dataset) {
+            this.elements.backdrop.cuesrc = nextUp.dataset.video;
+            this.elements.backdrop.cueposter = nextUp.dataset.videoPoster;
+          }
         }
         this.setNav();
         this.broadcast("webstorypage", { page: this.selectedIndex, element: chosen });
@@ -138,6 +143,11 @@ class WebStory extends CustomElement {
       var method = element.dataset.activate;
       if (element[method]) element[method]();
     });
+    // also activate a video backdrop if it exists
+    this.elements.backdrop.toggleAttribute("hidden", "video" in page.dataset);
+    this.elements.backdrop.src = page.dataset.video || "";
+    this.elements.backdrop.toggleAttribute("loop", "loop" in page.dataset);
+    this.elements.backdrop.toggleAttribute("autoplay", "autoplay" in page.dataset);
   }
 
   loadLazy(container) {

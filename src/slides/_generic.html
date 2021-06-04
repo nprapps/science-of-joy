@@ -1,17 +1,16 @@
 <%
   var slug = [id, slide.slug, index, "slide"].filter(d => d).join("-");
 %>
-<section id="<% slug %>" data-slug="<%= slide.slug %>">
+<section 
+  id="<% slug %>"
+  data-slug="<%= slide.slug %>"
   <% if (slide.video) { %>
-  <video 
-    id="<%= slug %>-video-backdrop"
-    class="backdrop" 
-    <% if (!slide.noLoop) { %>loop<% } %>
-    autoplay muted playsinline 
-    data-src="./assets/synced/<%= slide.video %>"
-    data-poster="./assets/synced/<%= slide.video %>.jpg"
-  ></video>
+  data-video="./assets/synced/<%= slide.video %>"
+  data-video-poster="./assets/synced/<%= slide.video %>.jpg"
+  <% if (!slide.noLoop) { %>data-loop<% } %>
+  data-autoplay
   <% } %>
+>
   <% if (slide.image) { %>
   <img class="backdrop" alt="" data-src="./assets/synced/images/<%= slide.image %>">
   <% } %>
