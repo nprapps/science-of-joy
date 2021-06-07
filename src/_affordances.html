@@ -1,0 +1,19 @@
+<%
+var mapping = {
+  interactive: ["videogame_asset_black_24dp.svg", "Interactive visuals"],
+  audio: ["headphones_black_24dp.svg", "Headphones recommended"]
+}
+%>
+<ul class="affordances-block <%= format %>">
+  <%
+    for (var a of affordances) {
+      var [icon, label] = mapping[a];
+      if (!label) continue;
+      print(`
+      <li>
+        <img src="./assets/icons/${icon}" alt="">
+        <span class="label">${label}</span>
+      `);
+    }
+  %>
+</ul>

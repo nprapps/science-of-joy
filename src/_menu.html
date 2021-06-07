@@ -10,16 +10,16 @@
         var { metadata } = archieml.text.pages[a];
         if (!metadata || !metadata.published) return;
       %>
-    <div class="grid-item">
-    <!--<br>-->
-    <a href="#story=<%= a %>">
+    <a class="grid-item" href="#story=<%= a %>">
       <%= metadata ? metadata.title : a %>
+      <% if (metadata.affordances) { %>
+      <%= t.include("_affordances.html", {
+        affordances: metadata.affordances.trim().split(" "),
+        format: "short"
+      })
+      %>
+      <% } %>
     </a>
-    <!--<span class="subtitle">
-      <%= metadata ? metadata.subtitle : a %>
-    </span>-->
-
-    </div>
     <% }) %>
     </div>
   </section>

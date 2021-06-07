@@ -44,17 +44,13 @@ web-story {
     object-fit: cover;
   }
 
-  .splotch {
-    z-index: 50;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    width: calc(300px + 10vw);
-    height: calc(300px + 10vw);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  .splotch svg {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
 
     @media screen and (max-width: 499px) {
       width: 99vw;
@@ -63,6 +59,7 @@ web-story {
   }
 
   .content {
+    z-index: 99;
     position: relative;
     background: fade(black, 50%);
     border-radius: 20px;
@@ -81,11 +78,11 @@ web-story {
       // border-radius: 180px 160px 220px 130px;
       // padding: 100px;
       background: transparent;
-      max-width: 400px;
+      max-width: 450px;
       margin: 0 auto;
       color: black;
       text-align: center;
-      padding: 20px;
+      padding: 60px;
       // max-height: 50vw;
     }
 
