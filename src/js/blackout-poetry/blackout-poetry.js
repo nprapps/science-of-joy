@@ -3,6 +3,7 @@ var excerpts = require("./excerpts.txt").split("===").map(t => t.trim());
 var index = (Math.random() * excerpts.length) | 0;
 
 const FONT_SCALE = 20;
+const LINE_HEIGHT = 2;
 const PADDING = 16;
 
 var loadTexture = url => new Promise(function(ok, fail) {
@@ -80,7 +81,7 @@ class BlackoutPoetry extends CustomElement {
       var overflowed = x + measurement.width > rightEdge && w != " ";
       var isReturn = w.match(/[\n\r]+/);
       if (overflowed || isReturn) {
-        y += enHeight * 1.7;
+        y += enHeight * LINE_HEIGHT;
         x = PADDING;
         if (isReturn) {
           x += tab;
