@@ -112,6 +112,7 @@ class ZenDoodle extends CustomElement {
   }
 
   onPenDown(e) {
+    if (e.preventDefault) e.preventDefault();
     this.pushUndo();
     this.lastPoint = this.getLocalCoord(e);
   }
