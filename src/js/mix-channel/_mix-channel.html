@@ -1,7 +1,6 @@
 <style>
 
 button {
-    pointer-events:none;
     background: transparent;
     opacity: 1;
     color: var(--nav-fg);
@@ -67,7 +66,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 <div class="audio-mixer">
 <audio as="audio" loop></audio>
-<button as="play" class="play-pause" disabled>
+<button as="play" class="play-pause" aria-pressed="false">
 	<slot></slot>
 </button>
 <input type="range" as="slider" min="0" max="1" step="0.05" value="0"></input>
