@@ -2,16 +2,8 @@
   var slug = [id, slide.slug, index, "audio-mixer"].filter(d => d).join("-");
 %>
 <section data-slug="<%= slide.slug %>" id="<%= slug %>" class="audio-mixer">
-<% if (slide.parallax) { %>
-  <div class="parallax" style="perspective-origin: <%= slide.origin %>;">
-    <% for (var p of slide.parallax) { %>
-      <img 
-        data-src="./assets/synced/images/<%= p.image %>" 
-        class="backdrop"
-        alt="background nature image"
-        style="--image-parallax:<%= p.position %>;">
-    <% } %>
-    </div>
+  <% if (slide.image) { %>
+  <img class="backdrop" alt="" data-src="./assets/synced/images/<%= slide.image %>">
   <% } %>
   <div class="content">
     <%= slide.text %>
