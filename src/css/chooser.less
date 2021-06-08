@@ -40,12 +40,17 @@
       color: @yellow;
       text-decoration: none;
 
+      &.browse {
+        text-align: center;
+        text-transform: uppercase;
+        display: block;
+      }
+
       &:hover {
         color: white;
       }
     }
   }
-
   .choices button {
     display: block;
     background: transparent;
@@ -60,6 +65,11 @@
     // text-transform: uppercase;
     font-size: 20px;
     cursor: pointer;
+    background-image: url(assets/chooser-splotch.svg);
+
+    &.alternate {
+      background-image: url(assets/chooser-splotch-2.svg);
+    }
 
     &:hover {
       // background: white;
@@ -85,22 +95,6 @@
       &:focus {
         border: none;
       }
-    }
-  }
-
-  .expander {
-    background: transparent;
-    color: white;
-    text-align: center;
-    display: none;
-
-    &:hover {
-      background: fade(white, 20%);
-    }
-
-    svg {
-      display: block;
-      margin: 10px auto;
     }
   }
 

@@ -7,10 +7,14 @@
   <% } %>
   <div class="contents">
     <div class="choices">
-      <button class="random-choice" style="background-image: url(assets/chooser-splotch.svg)">Surprise me!</button>
-      <button class="random-choice" style="background-image: url(assets/chooser-splotch-2.svg)">Soothe me!</button>
+      <button class="random-choice">Experience more joy</button>
+      <!-- <button class="random-choice alternate">Soothe me!</button> -->
     </div>
 
+    <div class="text">
+      <a href="#story=menu" class="browse">Browse all stories</a>
+    </div>
+    
     <% if (metadata.refs) { %>
     <div class="text">
       <h3 class="ref-hed">More NPR reading</h3>
@@ -21,5 +25,6 @@
       </ul>
     </div>
     <% } %>
+
   </div>
 </section>
