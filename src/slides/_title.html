@@ -1,5 +1,5 @@
-<section 
-  class="title-slide" 
+<section
+  class="title-slide"
   data-slug="title"
   <% if (metadata.video) { %>
   data-video="./assets/synced/<%= metadata.video %>"
@@ -22,10 +22,10 @@
     </sketch-svg> -->
 
     <h3><%= metadata.subtitle %></h3>
-    
+
     <div class="autoplay checks">
       <input type="checkbox" checked id="autoplay-vid-<%= id %>">
-      <label for="autoplay-vid-<%= id %>">Autoplay video?</label>
+      <label for="autoplay-vid-<%= id %>">Autoplay video</label>
     </div>
 
     <% if (metadata.affordances) { %>
@@ -34,6 +34,6 @@
       format: "long"
     }) %>
     <% } %>
-      
+
   </div>
 </section>
