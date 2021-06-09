@@ -8,16 +8,17 @@
   <div class="contents">
     <div class="choices">
       <button class="random-choice">Experience more joy</button>
+      <a href="#story=menu" class="random-choice alternate">Browse all stories</a>
       <!-- <button class="random-choice alternate">Soothe me!</button> -->
     </div>
 
-    <div class="text">
+    <!-- <div class="text">
       <a href="#story=menu" class="browse">Browse all stories</a>
-    </div>
-    
+    </div> -->
+
     <% if (metadata.refs) { %>
     <div class="text">
-      <h3 class="ref-hed">More NPR reading</h3>
+      <h3 class="ref-hed">More NPR reading about <%= metadata.title %></h3>
       <ul class="refs">
         <% metadata.refs.forEach(function(r) { %>
         <li style="background-image: url(assets/audioMixer/slider-circle.svg)"> <a href="<%= r.url %>"><%= r.title %></a>

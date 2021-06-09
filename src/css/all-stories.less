@@ -137,4 +137,30 @@ web-story#about {
 			background-position: 0% 50%;
 		}
 	}
+
+	h3 {
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: 14px;
+		margin-bottom: 5px;
+	}
+}
+
+#intro section.chooser-slide {
+	background: linear-gradient(270deg, @salmon, @lavender, @sky);
+
+	background-size: 400% 400%;
+	animation: colorShift 30s linear infinite alternate;
+
+	@keyframes colorShift {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
+	}
 }
