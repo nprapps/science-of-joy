@@ -119,3 +119,22 @@ web-story#menu {
 		}
 	}
 }
+
+web-story#about {
+	background: linear-gradient(270deg, @salmon, @lavender, @sky);
+
+	background-size: 400% 400%;
+	animation: colorShift 30s linear infinite alternate;
+
+	@keyframes colorShift {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
+	}
+}

@@ -52,9 +52,14 @@ web-story {
     width: 100%;
     height: 100%;
 
-    @media screen and (max-width: 499px) {
-      width: 99vw;
-      height: 99vw;
+    @media screen and (min-width: 400px) and (max-width: 499px) {
+      width: 100vw;
+      height: 101vw;
+    }
+
+    @media screen and (min-width: 321px) and (max-width: 375px) {
+      width: 100vw;
+      height: 115vw;
     }
   }
 
