@@ -1,0 +1,53 @@
+<%
+  var section = grunt.data.archieml.text.pages.about;
+  var { metadata, slides } = section;
+  var id = "about";
+%>
+<web-story
+  id="about" class="story-route exclude-random"
+  aria-hidden="true"
+  hidecontrols="next previous filmstrip controls">
+  <section>
+    <h1>CREDITS</h1>
+    <span class="teaser">Click on the bubbles to see something that brings us joy!</span>
+
+    <div class="grid-container">
+      <% if (metadata.people) { %>
+        <% metadata.people.forEach(function(r) { %>
+          <div class="grid-item" ontouchstart="this.classList.toggle('hover');">
+            <div class="flipper">
+              <div class="front">
+                <h3 class="name"><%= r.name %></h3>
+                <span class="title"><%= r.title %></span>
+              </div>
+              <div class="back">
+                <span class="joy"><%= r.joy %></span>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+
+    <h1>ADDITIONAL CREDITS</h1>
+
+    <div class="story-creds">
+      <% if (metadata.creds) { %>
+        <% metadata.creds.forEach(function(r) { %>
+          <div class="cred-item">
+              <% if (r.story) { %>
+                <h3 class="name"><%= r.story %></h3>
+              <% } %>
+              <span class="title"><%= r.creds %></span>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </section>
+</web-story>
+
+<script>
+  $(document).on("click", ".flip-container", function () {
+      $(this).toggleClass('hover');
+  });
+</script>

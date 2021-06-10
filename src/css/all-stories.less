@@ -5,7 +5,7 @@
 @colorOdd: #f0f0f0;
 @colorEven: #f5f5f5;
 
-web-story#menu {
+web-story#menu, web-story#about {
 	font-family: var(--gotham);
 
 	//LIGHT VERSION
@@ -121,28 +121,52 @@ web-story#menu {
 }
 
 web-story#about {
-	background: linear-gradient(270deg, @salmon, @lavender, @sky);
+	color: white;
 
-	background-size: 400% 400%;
-	animation: colorShift 30s linear infinite alternate;
-
-	@keyframes colorShift {
-		0% {
-			background-position: 0% 50%;
-		}
-		50% {
-			background-position: 100% 50%;
-		}
-		100% {
-			background-position: 0% 50%;
-		}
+	.grid-container {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		align-items: center;
+		max-width: 1000px; 
 	}
 
-	h3 {
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		font-size: 14px;
-		margin-bottom: 5px;
+	.grid-item {
+		text-transform: none;
+		perspective: 1000px;
+	}
+
+	.grid-item:hover .flipper,
+	.grid-item.hover .flipper {
+		transform: rotateY(180deg);
+	}
+
+	// .grid-item, .front, .back {
+	// 	width: 200px;
+	// 	height: 180px;
+	//
+	// 	@media @mobile {
+	// 		width: 48vw;
+	// 	}
+	// }
+
+	.flipper {
+		transition: 0.6s;
+		transform-style: preserve-3d;
+		position: relative;
+	}
+
+	.front, .back {
+		backface-visibility: hidden;
+		// position: absolute;
+	}
+
+	.front {
+		z-index: 2;
+		transform: rotateY(0deg);
+	}
+
+	.back {
+		transform: rotateY(180deg);
 	}
 }
 
