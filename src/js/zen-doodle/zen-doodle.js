@@ -136,7 +136,7 @@ class ZenDoodle extends CustomElement {
     var distance = current.distance(this.lastPoint);
     if (distance < POINT_SPACING) return;
 
-    this.context.strokeStyle = "black";
+    this.context.strokeStyle = this.elements.color.value;
     this.context.lineCap = "round";
     this.context.globalAlpha = INK;
     this.context.beginPath();
