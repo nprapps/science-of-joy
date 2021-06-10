@@ -25,7 +25,8 @@
     min-height: 0;
   }
 
-  .buttons button {
+  .buttons button,
+  .buttons .wrapper {
     padding: 8px 16px;
     border-radius: 2px;
     border: dashed 2px black;
@@ -41,6 +42,11 @@
     border: solid 2px black;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
   }
+
+  .buttons .wrapper input {
+    display: inline-block;
+    vertical-align: middle;
+  }
 </style>
 <div class="canvas-container">
   <canvas class="output" as="canvas"></canvas>
@@ -49,6 +55,9 @@
   <button as="saveButton">Save</button>
   <button as="resetButton">Reset</button>
   <button as="undoButton">Undo</button>
-  <input type="color" as="color" value="black">
+  <div class="wrapper">
+    Ink: 
+    <input type="color" as="color" value="black">
+  </div>
 </div>
 <a as="download" hidden></a>
