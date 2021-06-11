@@ -24,7 +24,8 @@ for video in silent/*.mp4; do
     -strict -2 \
     -pix_fmt yuv420p \
     -crf 30 \
-    -vf scale=800:-2 \
+    -vf scale=1024:-2 \
+    -movflags +faststart \
     ../synced/$video
   fi
 
@@ -32,41 +33,70 @@ for video in silent/*.mp4; do
   if [ ! -f ../synced/$video.jpg ]; then
     ffmpeg -n -nostats -hide_banner -loglevel $ffmpeg_log \
     -i $video \
+    -vf scale=1024:-2 \
     -qscale:v 4 \
     -frames:v 1 \
-    ../synced/$video.jpg
+    ../synced/$video.jpg;
   fi
-
 done
-
-
 
 # transcode video with sound
 mkdir -p ../synced/video
+
+# special case for the sand bubbles
+bubbles="ASMR-sand-bubbles.mp4";
+if [ ! -f  "../synced/video/$bubbles" ]; then
+  echo "Processing video/$bubbles..."
+  ffmpeg -n -nostats -hide_banner -loglevel $ffmpeg_log \
+  -i "video/$bubbles" \
+  -vcodec libx264 \
+  -preset veryslow \
+  -strict -2 \
+  -pix_fmt yuv420p \
+  -t 5 \
+  -crf 28 \
+  -vf scale=1024:-2 \
+  -movflags +faststart \
+  "../synced/video/$bubbles";
+fi
+if [ ! -f  "../synced/video/$bubbles.jpg" ]; then
+  ffmpeg -n -nostats -hide_banner -loglevel $ffmpeg_log \
+  -i "video/$bubbles" \
+  -vf scale=1024:-2 \
+  -qscale:v 4 \
+  -frames:v 1 \
+  "../synced/video/$bubbles.jpg";
+fi
+
+# handle other files
 for video in video/*.mp4; do
   echo "Processing $video..."
 
-  if [ ! -f  ../synced/$video ]; then
+  if [ ! -f  "../synced/$video" ]; then
     ffmpeg -n -nostats -hide_banner -loglevel $ffmpeg_log \
-    -i $video \
+    -i "$video" \
     -vcodec libx264 \
     -preset veryslow \
     -strict -2 \
     -pix_fmt yuv420p \
-    -crf 30 \
-    -vf scale=640:-2 \
-    ../synced/$video
+    -t 15 \
+    -crf 28 \
+    -vf scale=1024:-2 \
+    -movflags +faststart \
+    "../synced/$video";
   fi
 
   # create posters
-  if [ ! -f  ../synced/$video.jpg ]; then
+  if [ ! -f  "../synced/$video.jpg" ]; then
     ffmpeg -n -nostats -hide_banner -loglevel $ffmpeg_log \
-    -i $video \
+    -i "$video" \
+    -vf scale=1024:-2 \
     -qscale:v 4 \
     -frames:v 1 \
-    ../synced/$video.jpg
+    "../synced/$video.jpg";
   fi
 done
+
 
 # processing audio into MP3
 mkdir -p ../synced/audio
@@ -99,7 +129,7 @@ for img in images/*.png; do
     magick convert $img -resize 1200x800\> \
       -define png:compression-filter=5 \
       -define png:compression-level=9 \
-      ../synced/$img
+      ../synced/$img;
   fi
 done
 
