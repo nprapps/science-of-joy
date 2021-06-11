@@ -94,6 +94,8 @@ class ZenDoodle extends CustomElement {
         this.popUndo();
       }
     });
+
+    this.elements.colorWrapper.addEventListener("click", () => this.elements.color.click());
   }
 
   init() {

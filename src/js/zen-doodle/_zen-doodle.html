@@ -46,6 +46,13 @@
   .buttons .wrapper input {
     display: inline-block;
     vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    border: none;
+  }
+
+  .buttons .wrapper input::-webkit-color-swatch-wrapper {
+    padding: 0;
   }
 </style>
 <div class="canvas-container">
@@ -55,7 +62,7 @@
   <button as="saveButton">Save</button>
   <button as="resetButton">Reset</button>
   <button as="undoButton">Undo</button>
-  <div class="wrapper">
+  <div class="wrapper" as="colorWrapper">
     Ink: 
     <input type="color" as="color" value="#000000">
   </div>
