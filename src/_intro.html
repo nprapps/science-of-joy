@@ -1,11 +1,7 @@
 <% var slides = grunt.data.archieml.text.pages.intro.slides.slice() %>
 <div id="intro" class="intro story-route exclude-random">
-  <video class="randomized backdrop immediate" autoplay loop muted playsinline>
-    <source data-possible="./assets/synced/silent/flock-x.mp4">
-    <source data-possible="./assets/synced/silent/jellyfish-x.mp4">
-    <source data-possible="./assets/synced/silent/painting-x.mp4">
-  </video>
-  <web-story hidecontrols="previous filmstrip close">
+  <shader-box class="backdrop" src="./assets/bokeh.glsl"></shader-box>
+  <web-story novideo hidecontrols="previous filmstrip close">
     <%
       for (var slide of slides) {
         print(t.include(`slides/_${slide.template}.html`, { slide }));
