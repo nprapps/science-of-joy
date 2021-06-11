@@ -98,6 +98,7 @@ if ("share" in navigator) {
 require("./stories");
 
 // story-specific code
+require("./stories/about");
 require("./stories/art");
 require("./stories/asmr");
 require("./stories/nostalgia");

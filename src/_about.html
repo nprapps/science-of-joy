@@ -14,7 +14,7 @@
     <div class="grid-container">
       <% if (metadata.people) { %>
         <% metadata.people.forEach(function(r) { %>
-          <div class="grid-item" id="bubble-<%= r.id %>" onClick="toggleClass(this.id)">
+          <div class="grid-item" id="bubble-<%= r.id %>">
             <div class="front">
               <h3 class="name"><%= r.name %></h3>
               <span class="title"><%= r.title %></span>
@@ -43,12 +43,3 @@
     </div>
   </section>
 </web-story>
-
-<script>
-  var toggleClass = function(clickedId) {
-    var parent = document.getElementById(clickedId);
-
-    parent.querySelector('.front').classList.toggle('hide');
-    parent.querySelector('.back').classList.toggle('show');
-  }
-</script>
