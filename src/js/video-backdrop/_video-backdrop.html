@@ -23,6 +23,14 @@ video.front {
   object-fit: cover;
 }
 
+:host([anchor="left"]) video {
+  object-position: left;
+}
+
+:host([anchor="right"]) video {
+  object-position: right;
+}
+
 </style>
 <div as="videoContainer">
   <video muted autoplay playsinline as="buffer"></video>

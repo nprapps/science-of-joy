@@ -157,6 +157,7 @@ class WebStory extends CustomElement {
       this.elements.backdrop.src = page.dataset.video || "";
       this.elements.backdrop.toggleAttribute("loop", "loop" in page.dataset);
       this.elements.backdrop.toggleAttribute("autoplay", "autoplay" in page.dataset);
+      this.elements.backdrop.setAttribute("anchor", page.dataset.anchor || "");
     }
   }
 

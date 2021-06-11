@@ -10,6 +10,9 @@
   <% if (!slide.noLoop) { %>data-loop<% } %>
   data-autoplay
   <% } %>
+  <% if (slide.anchor) { %>
+  data-anchor="<%= slide.anchor %>"
+  <% } %>
 >
   <% if (slide.image) { %>
   <img class="backdrop" alt="" data-src="./assets/synced/images/<%= slide.image %>">
