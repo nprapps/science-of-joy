@@ -150,6 +150,7 @@ class WebStory extends CustomElement {
   startBackdrop(page) {
     // activate a video backdrop if it exists
     var hasVideo = "video" in page.dataset;
+    if (this.hasAttribute("novideo")) hasVideo = false;
     this.elements.backdrop.toggleAttribute("hidden", !hasVideo);
     if (hasVideo) {
       this.elements.backdrop.currentTime = 0;
