@@ -127,47 +127,53 @@ web-story#about {
 		margin-top: 20px;
 		margin-bottom: 20px;
 		align-items: center;
-		max-width: 1000px; 
+		max-width: 1000px;
 	}
 
 	.grid-item {
 		text-transform: none;
-		perspective: 1000px;
+		// perspective: 1000px;
+
+		.back {
+			display: none;
+		}
 	}
 
-	.grid-item:hover .flipper,
-	.grid-item.hover .flipper {
-		transform: rotateY(180deg);
+	.front.hide {
+		display: none;
 	}
 
-	// .grid-item, .front, .back {
-	// 	width: 200px;
-	// 	height: 180px;
-	//
-	// 	@media @mobile {
-	// 		width: 48vw;
-	// 	}
+	.back.show {
+		display: block;
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+
+	// .grid-item:hover .flipper,
+	// .grid-item.hover .flipper {
+	// 	transform: rotateY(180deg);
 	// }
-
-	.flipper {
-		transition: 0.6s;
-		transform-style: preserve-3d;
-		position: relative;
-	}
-
-	.front, .back {
-		backface-visibility: hidden;
-		// position: absolute;
-	}
-
-	.front {
-		z-index: 2;
-		transform: rotateY(0deg);
-	}
-
-	.back {
-		transform: rotateY(180deg);
-	}
+	//
+	//
+	// .flipper {
+	// 	transition: 0.6s;
+	// 	transform-style: preserve-3d;
+	// 	position: relative;
+	// }
+	//
+	// .front, .back {
+	// 	backface-visibility: hidden;
+	// 	// position: absolute;
+	// }
+	//
+	// .front {
+	// 	z-index: 2;
+	// 	transform: rotateY(0deg);
+	// }
+	//
+	// .back {
+	// 	transform: rotateY(180deg);
+	// }
 }
 
 #intro section.chooser-slide {

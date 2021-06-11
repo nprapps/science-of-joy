@@ -14,15 +14,13 @@
     <div class="grid-container">
       <% if (metadata.people) { %>
         <% metadata.people.forEach(function(r) { %>
-          <div class="grid-item" ontouchstart="this.classList.toggle('hover');">
-            <div class="flipper">
-              <div class="front">
-                <h3 class="name"><%= r.name %></h3>
-                <span class="title"><%= r.title %></span>
-              </div>
-              <div class="back">
-                <span class="joy"><%= r.joy %></span>
-              </div>
+          <div class="grid-item" id="bubble-<%= r.id %>" onClick="toggleClass(this.id)">
+            <div class="front">
+              <h3 class="name"><%= r.name %></h3>
+              <span class="title"><%= r.title %></span>
+            </div>
+            <div class="back">
+              <span class="joy"><%= r.joy %></span>
             </div>
           </div>
         <% }) %>
@@ -47,7 +45,10 @@
 </web-story>
 
 <script>
-  $(document).on("click", ".flip-container", function () {
-      $(this).toggleClass('hover');
-  });
+  var toggleClass = function(clickedId) {
+    var parent = document.getElementById(clickedId);
+
+    parent.querySelector('.front').classList.toggle('hide');
+    parent.querySelector('.back').classList.toggle('show');
+  }
 </script>
