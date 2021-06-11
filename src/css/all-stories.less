@@ -119,19 +119,27 @@ web-story#about {
     border-bottom-left-radius: 30% 60%;
   }
 
-  // .grid-item:hover {
-  //  background-color: white;
-  //  cursor: pointer;
-  //  background-image: none;
+  .grid-item:hover {
+   background-color: white;
+   cursor: pointer;
+   background-image: none;
 
-  //  a {
-  //    color: black;
-  //  }
-  // }
+   a {
+     color: black;
+   }
+  }
 }
 
 web-story#about {
   color: white;
+
+	.teaser {
+		max-width: 80%;
+	}
+
+	.title {
+		font-size: 12px;
+	}
 
   .grid-container {
     @media @mobile {
@@ -148,6 +156,7 @@ web-story#about {
 
     h3 {
       margin: 0;
+			margin-bottom: 5px;
     }
 
     .front,
@@ -174,23 +183,12 @@ web-story#about {
       }
     }
   }
-}
 
-#intro section.chooser-slide {
-  // background: linear-gradient(270deg, @salmon, @lavender, @sky);
+	.story-creds {
+		max-width: 650px;
 
-  background-size: 400% 400%;
-  animation: colorShift 30s linear infinite alternate;
-
-  @keyframes colorShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+		@media @mobile {
+			max-width: 90%; 
+		}
+	}
 }
