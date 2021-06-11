@@ -1,6 +1,5 @@
 var CustomElement = require("../customElement.js");
 
-
 var context = "webkitAudioContext" in window ? new webkitAudioContext() : new AudioContext();
 
 class MixChannel extends CustomElement {
