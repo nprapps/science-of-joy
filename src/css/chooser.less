@@ -88,13 +88,24 @@
       background-size: contain;
       position: relative;
 
-
       &:hover, &:focus {
         outline: none;
       }
 
       &:focus {
         border: none;
+      }
+    }
+
+    &.tutorial-splotch {
+      background-image: url(assets/tutorial-splotch.svg);
+      max-width: 200px;
+      height: 200px;
+      margin: 0 auto;
+
+      @media @mobile {
+        max-width: 150px;
+        height: 150px;
       }
     }
   }
