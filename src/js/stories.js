@@ -45,7 +45,11 @@ var setStory = async function(story, page = 0) {
     track("story-page", `${story}-${page}`);
     lastPageID = pageID;
   }
+  var historyLength = history.size;
   history.add(story);
+  if (history.size != historyLength) {
+    track("history-size", history.size);
+  }
   return activated;
 }
 
