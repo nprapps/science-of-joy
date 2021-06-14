@@ -1,7 +1,20 @@
 #art {
   [data-slug="doodle"] {
     align-items: stretch;
-    background: @sky;
+    @spacing: 8px;
+    @color: fade(@sky, 30%);
+    @white: fade(white, 80%);
+    background-image: 
+      repeating-radial-gradient(circle at 66% center,
+        @white 0, @white @spacing * .5,
+        transparent @spacing * .5, transparent @spacing * 3,
+        @white @spacing * 3
+      ),
+      repeating-radial-gradient(circle at 33% center, 
+        transparent 0, transparent @spacing, 
+        @color @spacing, @color @spacing * 2, 
+        transparent @spacing * 2
+      );
 
     zen-doodle {
       flex: 1;
