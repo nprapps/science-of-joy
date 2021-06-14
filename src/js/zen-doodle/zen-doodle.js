@@ -1,4 +1,7 @@
 var CustomElement = require("../customElement");
+var track = require("../lib/tracking");
+
+var trackDoodle = label => track("zen-doodle", label);
 
 const POINT_LIMIT = 4000;
 const POINT_SPACING = 3;
@@ -180,6 +183,7 @@ class ZenDoodle extends CustomElement {
     download.href = canvas.toDataURL();
     download.download = `doodle-${Date.now()}`
     download.click();
+    trackDoodle("download");
   }
 
   popUndo() {

@@ -1,6 +1,8 @@
 var CustomElement = require("../customElement");
 var excerpts = require("./excerpts.txt").split("===").map(t => t.trim());
 var index = (Math.random() * excerpts.length) | 0;
+var track = require("../lib/tracking");
+var trackPoetry = label => track("blackout-poetry", label);
 
 const FONT_SCALE = 20;
 const LINE_HEIGHT = 2;
@@ -137,6 +139,7 @@ class BlackoutPoetry extends CustomElement {
     download.href = canvas.toDataURL();
     download.download = `poetry-${Date.now()}`
     download.click();
+    trackPoetry("download");
   }
 
   undo() {

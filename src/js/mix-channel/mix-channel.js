@@ -1,4 +1,6 @@
 var CustomElement = require("../customElement.js");
+var track = require("../lib/tracking");
+var trackMix = label => track("mix-channel", label);
 
 var context = "webkitAudioContext" in window ? new webkitAudioContext() : new AudioContext();
 
@@ -41,6 +43,7 @@ class MixChannel extends CustomElement {
     if (audio.paused) audio.play();
     context.resume();
     this.amp.gain.value = slider.valueAsNumber;
+    trackMix(this.src);
     if (slider.value > 0) {
       play.setAttribute("aria-pressed", "true");
     } else {

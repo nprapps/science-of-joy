@@ -1,6 +1,8 @@
 var CustomElement = require("../customElement");
 var events = require("../eventBus");
 var { watchSelector, unwatchSelector } = require("../watchSelector");
+var track = require("../lib/tracking");
+var trackMute = label => track("media-mute", label);
 
 class MediaMute extends CustomElement {
 
@@ -73,6 +75,7 @@ class MediaMute extends CustomElement {
     if (typeof update == "undefined") {
       update = !this.media.muted;
     }
+    trackMute(update ? "muted" : "unmuted");
     this.media.muted = update;
     this.elements.muteButton.setAttribute("aria-pressed", update);
   }

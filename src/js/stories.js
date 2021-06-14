@@ -2,6 +2,8 @@
 var $ = require("./lib/qsa");
 var hashUtils = require("./hashUtils");
 var events = require("./eventBus");
+var track = require("./lib/tracking");
+var lastPageID = null;
 
 var wait = (d = 1000) => new Promise(ok => setTimeout(ok, d));
 var nextTick = () => new Promise(ok => requestAnimationFrame(ok));
@@ -38,6 +40,11 @@ var setStory = async function(story, page = 0) {
   var storyElement = getStoryElement(activated);
   if (storyElement) storyElement.setPage(page);
   hashUtils.setParams({ story, page });
+  var pageID = `${story}-${page}`;
+  if (pageID != lastPageID) {
+    track("story-page", `${story}-${page}`);
+    lastPageID = pageID;
+  }
   history.add(story);
   return activated;
 }

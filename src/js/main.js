@@ -1,4 +1,5 @@
 var $ = require("./lib/qsa");
+var track = require("./lib/tracking");
 
 // elements
 require("./audio-visualizer/audio-visualizer");
@@ -27,6 +28,7 @@ $(".drop-down").forEach(function(menu) {
     items.forEach(item => item.setAttribute("tabindex", expanded ? 0 : -1));
     if (expanded) {
       button.setAttribute("aria-expanded", "true");
+      track("opened-menu");
     } else {
       button.removeAttribute("aria-expanded");
     }
@@ -40,6 +42,7 @@ var autoChecks = $(".autoplay input");
 var autoVideo = $("video[autoplay]");
 
 var updateAutoplay = function(enable) {
+  track("autoplay", enable ? "enabled" : "disabled");
   autoChecks.forEach(c => c.checked = enable);
   autoVideo.forEach(function(video) {
     if (enable) {
@@ -85,6 +88,7 @@ if ("share" in navigator) {
     var story = params.get("story");
     var url = new URL(window.location.pathname, window.location.href);
     if (story) url.hash = `story=${story}`;
+    track("shared", story);
     console.log(`Sharing: ${url.toString()}`);
     var shared = navigator.share({
       url
