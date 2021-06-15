@@ -1,5 +1,6 @@
 var $ = require("./lib/qsa");
 var track = require("./lib/tracking");
+var events = require("./eventBus");
 
 // elements
 require("./audio-visualizer/audio-visualizer");
@@ -53,6 +54,7 @@ var updateAutoplay = function(enable) {
       video.pause();
     }
   });
+  events.fire("autoplay-state", enable);
 }
 
 autoChecks.forEach(c => c.addEventListener("change", () => updateAutoplay(c.checked)));

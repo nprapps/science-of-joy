@@ -1,4 +1,5 @@
 var CustomElement = require("../customElement");
+var events = require("../eventBus");
 
 var isSafari = !!navigator.userAgent.match(/i(os|pad|phone)/i);
 
@@ -10,7 +11,7 @@ var observer = new IntersectionObserver(function(list) {
 
 class VideoBackdrop extends CustomElement {
   static template = require("./_video-backdrop.html");
-  static boundMethods = [];
+  static boundMethods = ["onGlobalAutoplay"];
 
   constructor() {
     super();
@@ -26,6 +27,9 @@ class VideoBackdrop extends CustomElement {
       // bad browsers have to unload video when invisible
       observer.observe(this);
     }
+
+    this.globalAutoplay = true;
+    events.on("autoplay-state", this.onGlobalAutoplay);
   }
 
   static observedAttributes = [
@@ -84,7 +88,7 @@ class VideoBackdrop extends CustomElement {
           front.src = value;
         }
         front.classList.add("front");
-        front.play();
+        if (this.globalAutoplay) front.play();
         break;
 
       case "loop":
@@ -92,13 +96,26 @@ class VideoBackdrop extends CustomElement {
         break;
 
       case "autoplay":
-        this.buffers.forEach(b => b.autoplay = present);
+        var auto = present && this.globalAutoplay;
+        this.buffers.forEach(b => {
+          b.autoplay = auto;
+        });
+        if (auto && front.src) {
+          front.play();
+        } else {
+          front.pause();
+        }
         break;
 
       case "muted":
         this.buffers.forEach(b => b.muted = present);
         break;
     }
+  }
+
+  onGlobalAutoplay(enabled) {
+    this.globalAutoplay = enabled;
+    this.attributeChangedCallback("autoplay", null, this.autoplay);
   }
 
   // literally remove video elements from the DOM when the backdrop is hidden
