@@ -61,8 +61,6 @@ var hashRoute = async function() {
     var section = $.one(`#${story} section`);
     if (section) section.setAttribute("data-tutorial", "true");
     first = false;
-  } else {
-    $("[data-tutorial]").forEach(t => t.removeAttribute("data-tutorial"));
   }
   var current = await setStory(story, page);
 };
@@ -90,6 +88,8 @@ document.body.addEventListener("webstorypage", function(e) {
   hashUtils.setParams(updated);
   // tell currently playing media files to pause
   events.fire("media-play", null);
+  var tutorials = $("[data-tutorial]");
+  tutorials.forEach(t => t.removeAttribute("data-tutorial"));
 });
 
 // handle goto events
