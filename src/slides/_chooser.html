@@ -1,5 +1,5 @@
 <%
-  var { interstitials } = grunt.data.archieml.text.metadata;
+  var { interstitials, chooserButtonText } = grunt.data.archieml.text.metadata;
 %>
 <section data-slug="<%= id %>-chooser" class="chooser-slide" data-randomized>
   <% for (var f of interstitials) { %>
@@ -7,7 +7,7 @@
   <% } %>
   <div class="contents">
     <div class="choices">
-      <button class="random-choice chooser-splotch-1">Experience more joy</button>
+      <button class="random-choice chooser-splotch-1"><%= chooserButtonText %></button>
       <a href="#story=menu" class="random-choice alternate chooser-splotch-2">Browse all stories</a>
     </div>
 

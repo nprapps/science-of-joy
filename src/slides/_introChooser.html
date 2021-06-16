@@ -1,3 +1,7 @@
+<%
+  var { introButtonText } = grunt.data.archieml.text.metadata;
+%>
+
 <section class="chooser-slide">
   <div class="title bubble">
     <img src="assets/npr-logo.png" alt="NPR logo">
@@ -20,6 +24,6 @@
     <%= t.renderMarkdown(slide.text) %>
   </div>
     <div class="choices">
-      <button class="random-choice tutorial-splotch">Generate <br>joy!</button>
+      <button class="random-choice tutorial-splotch"><%= introButtonText %></button>
     </div>
 </section>
