@@ -1,6 +1,7 @@
 var $ = require("./lib/qsa");
 var track = require("./lib/tracking");
 var events = require("./eventBus");
+var { isSafari } = require("./features");
 
 // elements
 require("./audio-visualizer/audio-visualizer");
@@ -109,3 +110,13 @@ require("./stories/art");
 require("./stories/asmr");
 require("./stories/nostalgia");
 require("./stories/poetry");
+
+// fix viewport height units in Safari
+if (isSafari) {
+  var setVH = function() {
+    var vh = window.innerHeight / 100;
+    document.body.style.setProperty("--vh", `${vh}px`);
+  };
+  window.addEventListener("resize", setVH);
+  setVH();
+}

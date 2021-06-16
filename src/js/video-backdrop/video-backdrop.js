@@ -1,7 +1,7 @@
 var CustomElement = require("../customElement");
 var events = require("../eventBus");
 
-var isSafari = !!navigator.userAgent.match(/i(os|pad|phone)/i);
+var { isSafari } = require("../features");
 
 var observer = new IntersectionObserver(function(list) {
   for (var observation of list) {

@@ -1,7 +1,7 @@
 var CustomElement = require("../customElement");
 require("../media-controls/media-controls");
 
-var isSafari = !!navigator.userAgent.match(/i(os|pad|phone)/i);
+var { isSafari } = require("../features");
 
 var observer = new IntersectionObserver(function(list) {
   for (var observation of list) {
