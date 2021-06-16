@@ -13,7 +13,7 @@ web-story#nostalgia {
 
   .soundscapes {
     position: relative;
-    
+
     .pinned() {
       position: absolute;
       top: 0;
@@ -74,16 +74,20 @@ web-story#nostalgia {
       background: var(--controls-bg);
       color: white;
       padding: 8px;
-      border: none;
-      border-radius: 8px;
-      border: 1px solid white;
-      .gotham();
+      border-radius: 12px;
+      border: dashed 2px white;
+      font-family: var(--knockout);
       margin: 4px auto;
       display: block;
-    }
-  }
+      text-transform: uppercase;
 
-  hr {
-    margin-bottom: 25px;
+      &:hover, &:focus {
+        border: solid white;
+      }
+    }
+
+    .clip-label {
+      margin-bottom: 10px; 
+    }
   }
 }
