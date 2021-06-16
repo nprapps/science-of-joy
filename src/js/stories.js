@@ -62,6 +62,8 @@ var hashRoute = async function() {
     if (section) section.setAttribute("data-tutorial", "true");
     first = false;
   }
+  document.body.dataset.story = story;
+  document.body.dataset.page = page;
   var current = await setStory(story, page);
 };
 

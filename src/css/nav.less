@@ -21,6 +21,11 @@ nav.top-bar {
     align-items: center;
     text-transform: lowercase;
 
+    body[data-story=intro] & {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
     img {
       height: 32px;
       vertical-align: middle;
