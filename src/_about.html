@@ -19,8 +19,8 @@
         <% metadata.people.forEach(function(r) { %>
           <div class="grid-item" id="bubble-<%= r.id %>">
             <div class="front">
-              <h3 class="name"><%= r.name %></h3>
-              <span class="title"><%= r.title %></span>
+              <h3 class="title"><%= r.name %></h3>
+              <span class="subtitle"><%= r.title %></span>
             </div>
             <div class="back">
               <span class="joy"><%= r.joy %></span>
@@ -37,9 +37,9 @@
         <% metadata.creds.forEach(function(r) { %>
           <div class="cred-item">
               <% if (r.story) { %>
-                <h3 class="name"><%= r.story %></h3>
+                <h3 class="title"><%= r.story %></h3>
               <% } %>
-              <span class="title"><%= r.creds %></span>
+              <span class="cred-text"><%= r.creds %></span>
           </div>
         <% }) %>
       <% } %>
