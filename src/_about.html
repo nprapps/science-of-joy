@@ -1,5 +1,6 @@
 <%
   var section = grunt.data.archieml.text.pages.about;
+  var all = grunt.data.archieml;
   var { metadata, slides } = section;
   var id = "about";
 %>
@@ -12,7 +13,7 @@
     <span class="about"><%= metadata.about %></span>
 
     <h1>CREDITS</h1>
-    <span class="teaser">Click on the bubbles to see something that brings us joy!</span>
+    <p class="teaser">Click on the bubbles to see something that brings us joy!</p>
 
     <div class="grid-container">
       <% if (metadata.people) { %>
@@ -33,13 +34,23 @@
     <h1>ADDITIONAL CREDITS</h1>
 
     <div class="story-creds">
+      <% Object.keys(all.text.pages).forEach(a => { %>
+        <%
+          var { metadata } = all.text.pages[a];
+          if (!metadata || !metadata.published) return;
+        %>
+      <a class="cred-item" href="#story=<%= a %>">
+        <h3 class="title"><%= metadata ? metadata.title : a %></h3>
+      </a>
+      <p class="cred-text"><%= metadata.creds %></p>
+      <% }) %>
       <% if (metadata.creds) { %>
         <% metadata.creds.forEach(function(r) { %>
           <div class="cred-item">
               <% if (r.story) { %>
                 <h3 class="title"><%= r.story %></h3>
               <% } %>
-              <span class="cred-text"><%= r.creds %></span>
+              <p class="cred-text"><%= r.creds %></p>
           </div>
         <% }) %>
       <% } %>

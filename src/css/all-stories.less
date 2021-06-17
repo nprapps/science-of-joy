@@ -147,21 +147,26 @@ web-story#about {
 web-story#about {
   color: white;
 
+  a {
+    color: white;
+    text-decoration: none;
+
+    &:hover, &:focus {
+      color: @yellow; 
+    }
+  }
+
 	.teaser {
 		max-width: 80%;
 	}
 
   .about {
-    margin-bottom: 20px;
-    max-width: 1000px;
+    margin-bottom: 30px;
+    max-width: 700px;
   }
 
   .grid-container {
-    @media @mobile {
-      // grid-template-columns: 1fr;
-      // max-width: 300px;
-      // gap: 20px;
-    }
+    margin-bottom: 30px;
   }
 
   .grid-item {
