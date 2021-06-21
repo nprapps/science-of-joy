@@ -77,11 +77,11 @@ void main() {
   float aspect = u_resolution.x / u_resolution.y;
   uv.y /= aspect;
 
-  vec3 PAINT_A = rgb255(250, 173, 125);
-  vec3 PAINT_B = rgb255(205, 142, 212);
-  vec3 PAINT_C = rgb255(144, 208, 222);
-  vec3 PAINT_D = rgb255(255, 255, 255);
-  vec3 PAINT_E = rgb255(255, 255, 200);
+  vec3 PAINT_A = rgb255(249, 143, 78);
+  vec3 PAINT_B = rgb255(196, 122, 205);
+  vec3 PAINT_C = rgb255(129, 201, 217);
+  vec3 PAINT_D = rgb255(255, 223, 97);
+  vec3 PAINT_E = rgb255(117, 228, 58);
 
   float ALPHA = .5;
 
