@@ -8,6 +8,7 @@ Set those on the web-story elements via LESS to have them propagate in.
   --buttons-bg: white;
   --buttons-fg: black;
   --filmstrip: var(--nav-fg);
+  --yellow: #ffdf61;
   display: block;
   min-height: 100vh;
   position: relative;
@@ -167,6 +168,16 @@ button.next.tutorialized:hover {
 
 .next.tutorialized .tutorial {
   display: block;
+}
+
+button.next.highlight {
+  background: var(--yellow);
+  color: black;
+  border: 2px solid black;
+}
+
+button.next.highlight:hover {
+  background: white; 
 }
 
 </style>

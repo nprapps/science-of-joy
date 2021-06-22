@@ -116,6 +116,7 @@ class WebStory extends CustomElement {
         this.selectedIndex = index;
         // trigger lazy-load for this page and the next page
         this.elements.previous.classList.toggle("inert", index == 0);
+        this.elements.next.classList.toggle("highlight", index == 0)
         this.elements.next.classList.toggle("inert", index == sections.length - 1);
         this.loadLazy(chosen);
         var nextUp = sections[index + 1];
@@ -131,10 +132,10 @@ class WebStory extends CustomElement {
       }
 
       // handle special section attributes
-      var isTakeover = "takeover" in chosen.dataset;
-      this.elements.controls.style.display = isTakeover ? "none" : "";
-      var isTutorial = "tutorial" in chosen.dataset;
-      this.elements.next.classList.toggle("tutorialized", isTutorial);
+      // var isTakeover = "takeover" in chosen.dataset;
+      // this.elements.controls.style.display = isTakeover ? "none" : "";
+      // var isTutorial = "tutorial" in chosen.dataset;
+      // this.elements.next.classList.toggle("tutorialized", isTutorial);
     }
   }
 
