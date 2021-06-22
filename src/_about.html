@@ -39,16 +39,18 @@
           var { metadata } = all.text.pages[a];
           if (!metadata || !metadata.published) return;
         %>
-      <a class="cred-item" href="#story=<%= a %>">
-        <h3 class="title"><%= metadata ? metadata.title : a %></h3>
-      </a>
+      <h3 class="cred-item">
+        <a class="title" href="#story=<%= a %>"><%= metadata ? metadata.title : a %></a>
+      </h3>
       <p class="cred-text"><%= metadata.creds %></p>
       <% }) %>
       <% if (metadata.creds) { %>
         <% metadata.creds.forEach(function(r) { %>
           <div class="cred-item">
               <% if (r.story) { %>
-                <h3 class="title"><%= r.story %></h3>
+                <h3 class="cred-item">
+                  <a class="title" href="#"><%= r.story %></a>
+                </h3>
               <% } %>
               <p class="cred-text"><%= r.creds %></p>
           </div>

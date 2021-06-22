@@ -26,7 +26,7 @@
         padding-left: 30px;
         background-size: 18px 18px;
         background-repeat: no-repeat;
-        background-position: 0px 0px;
+        background-position: 0px 5px;
       }
     }
 
@@ -38,7 +38,7 @@
     }
 
     a {
-      color: @yellow;
+      color: white;
       text-decoration: none;
 
       &.browse {
@@ -47,8 +47,15 @@
         display: block;
       }
 
-      &:hover {
-        color: white;
+      &.ref {
+        border-bottom: 2px dotted @yellow;
+        line-height: 1.6;
+        font-size: 14px;
+
+        &:hover {
+          color: @yellow;
+          border-bottom: 2px solid @yellow;
+        }
       }
     }
   }
