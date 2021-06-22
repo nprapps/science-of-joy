@@ -102,13 +102,18 @@ class ZenDoodle extends CustomElement {
   }
 
   init() {
-    this.pushUndo();
+    if (this.undoBuffer) {
+      this.pushUndo();
+    }
     var { canvas } = this.elements;
     this.points = [];
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
     this.context.fillStyle = "white";
     this.context.fillRect(0, 0, canvas.width, canvas.height);
+    if (!this.undoBuffer) {
+      this.pushUndo();
+    }
   }
 
   getLocalCoord(e) {
