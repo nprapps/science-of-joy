@@ -12,7 +12,7 @@
       %>
     <a class="grid-item" href="#story=<%= a %>">
       <h3 class="title"><%= metadata ? metadata.title : a %></h3>
-      <span class="subtitle"><%= metadata.reference %></span>
+      <span class="subtitle"><%= metadata.subtitle %></span>
       <% if (metadata.affordances) { %>
       <%= t.include("_affordances.html", {
         affordances: metadata.affordances.trim().split(" "),
