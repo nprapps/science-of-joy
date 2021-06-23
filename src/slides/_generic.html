@@ -13,6 +13,7 @@
   <% if (slide.anchor) { %>
   data-anchor="<%= slide.anchor %>"
   <% } %>
+  class="<%= slide.layout || "" %>"
 >
   <% if (slide.image) { %>
   <img class="backdrop" alt="" data-src="./assets/synced/images/<%= slide.image %>">

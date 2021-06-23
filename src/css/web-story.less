@@ -18,6 +18,10 @@ web-story {
     display: none !important;
   }
 
+  .flex-spacer {
+    flex: 1;
+  }
+
   section {
     display: flex;
     min-height: calc(~"var(--vh) * 100");
@@ -29,6 +33,16 @@ web-story {
     // background: linear-gradient(to bottom, #FFD, #FFB);
     padding-top: 40px;
     padding-bottom: 80px;
+
+    &.top {
+      justify-content: flex-start;
+      padding-top: 100px;
+    }
+
+    &.bottom {
+      justify-content: flex-end;
+      padding-bottom: 140px;
+    }
   }
 
   [intangible] {
