@@ -23,17 +23,19 @@
 
     <h3><%= metadata.subtitle %></h3>
 
-    <div class="autoplay checks">
-      <input type="checkbox" checked id="autoplay-vid-<%= id %>">
-      <label for="autoplay-vid-<%= id %>">Autoplay video</label>
-    </div>
-
     <% if (metadata.affordances) { %>
     <%= t.include("_affordances.html", {
       affordances: metadata.affordances.trim().split(" "),
       format: "long"
     }) %>
     <% } %>
+
+    <hr class="divider">
+
+    <div class="autoplay checks">
+      <input type="checkbox" checked id="autoplay-vid-<%= id %>">
+      <label for="autoplay-vid-<%= id %>">Autoplay video</label>
+    </div>
 
   </div>
 </section>
