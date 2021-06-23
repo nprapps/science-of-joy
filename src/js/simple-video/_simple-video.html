@@ -12,6 +12,7 @@ media-controls {
   left: 10px;
   pointer-events: none;
   width: 90px;
+  z-index: 99;
 }
 
 video {
@@ -35,6 +36,17 @@ video {
   background: black;
   transition: opacity 0.2s linear;
   pointer-events: none;
+  z-index: 9;
+}
+
+.screen img {
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .5;
 }
 
 .screen slot {
@@ -52,6 +64,9 @@ video {
   <div as="videoContainer">
     <video as="video" playsinline></video>
   </div>
-  <div class="screen" as="screen"><slot></slot></div>
+  <div class="screen" as="screen">
+    <img as="poster">
+    <slot></slot>
+  </div>
   <media-controls as="control"></media-controls>
 </div>

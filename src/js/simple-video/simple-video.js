@@ -37,7 +37,7 @@ class SimpleVideo extends CustomElement {
       break;
 
       case "poster":
-        this.elements.video.setAttribute("poster", value);
+        this.elements.poster.setAttribute("src", value);
       break;
 
       case "autoplay":
@@ -51,6 +51,8 @@ class SimpleVideo extends CustomElement {
   onMediaEvent() {
     var paused = this.paused;
     this.elements.screen.style.opacity = paused ? 0.7 : 0;
+    // eliminate the fake poster after playback starts
+    if (!paused) this.elements.poster.style.display = "none";
   }
 
   proxyEvent(e) {
