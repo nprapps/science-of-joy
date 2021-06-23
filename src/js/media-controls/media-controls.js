@@ -100,11 +100,11 @@ class MediaControls extends CustomElement {
   onClickedPlay() {
     if (!this.media) return;
     if (this.media.paused) {
-      this.media.currentTime = 0;
+      // this.media.currentTime = 0;
       this.media.play();
       events.fire("media-play", this.media);
     } else {
-      this.media.currentTime = 0;
+      // this.media.currentTime = 0;
       this.media.pause();
     }
   }
