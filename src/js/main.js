@@ -73,6 +73,7 @@ $("video.randomized").forEach(function(video) {
 // also handle randomized section that can use the video-backdrop player
 $("[data-randomized]").forEach(function(section) {
   var sources = $("source", section);
+  if (!sources.length) return;
   var choice = sources[Math.random() * sources.length | 0];
   section.setAttribute("data-video", choice.dataset.possible);
   section.setAttribute("data-video-poster", choice.dataset.possible + ".jpg");
