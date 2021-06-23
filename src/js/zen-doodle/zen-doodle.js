@@ -3,13 +3,15 @@ var track = require("../lib/tracking");
 
 var trackDoodle = label => track("zen-doodle", label);
 
+const DPR = window.devicePixelRatio || 1;
 const POINT_LIMIT = 4000;
-const POINT_SPACING = 3;
-const NEIGHBOR_LIMIT = 40;
-const NEIGHBOR_SPACING = 20;
+const POINT_SPACING = 3 * DPR;
+const NEIGHBOR_LIMIT = 40 * DPR;
+const NEIGHBOR_SPACING = 20 * DPR;
 const INK = .4;
 const SHADE = .1;
-const WEB_MARGIN = 3;
+const WEB_MARGIN = 3 * DPR;
+
 
 class Vector extends Array {
   vectorize(n) {
@@ -91,7 +93,7 @@ class ZenDoodle extends CustomElement {
     this.elements.saveButton.addEventListener("click", this.download);
 
     window.addEventListener("resize", () => {
-      if (canvas.width != canvas.clientWidth) {
+      if (canvas.width != canvas.clientWidth * DPR) {
         this.pushUndo();
         this.init();
         this.popUndo();
@@ -107,8 +109,8 @@ class ZenDoodle extends CustomElement {
     }
     var { canvas } = this.elements;
     this.points = [];
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
+    canvas.width = canvas.clientWidth * DPR;
+    canvas.height = canvas.clientHeight * DPR;
     this.context.fillStyle = "white";
     this.context.fillRect(0, 0, canvas.width, canvas.height);
     if (!this.undoBuffer) {
@@ -118,7 +120,7 @@ class ZenDoodle extends CustomElement {
 
   getLocalCoord(e) {
     var bounds = this.elements.canvas.getBoundingClientRect();
-    return Vector.from([e.clientX, e.clientY]).subtract([bounds.left, bounds.top]);
+    return Vector.from([e.clientX, e.clientY]).subtract([bounds.left, bounds.top]).multiply(window.devicePixelRatio);
   }
 
   onPenDown(e) {
@@ -146,6 +148,7 @@ class ZenDoodle extends CustomElement {
     var distance = current.distance(this.lastPoint);
     if (distance < POINT_SPACING) return;
 
+    this.context.lineWidth = DPR;
     this.context.strokeStyle = this.elements.color.value;
     this.context.lineCap = "round";
     this.context.globalAlpha = INK;

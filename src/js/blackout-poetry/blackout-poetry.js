@@ -4,6 +4,7 @@ var index = (Math.random() * excerpts.length) | 0;
 var track = require("../lib/tracking");
 var trackPoetry = label => track("blackout-poetry", label);
 
+const DPR = window.devicePixelRatio || 1;
 const FONT_SCALE = 20;
 const LINE_HEIGHT = 2;
 const PADDING = 16;
@@ -59,8 +60,8 @@ class BlackoutPoetry extends CustomElement {
     var context = this.context;
 
     // clear canvas
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
+    canvas.width = canvas.clientWidth * DPR;
+    canvas.height = canvas.clientHeight * DPR;
     context.fillStyle = "white";
     context.fillRect(0, 0, canvas.width, canvas.height);
     
@@ -120,15 +121,17 @@ class BlackoutPoetry extends CustomElement {
     var bounds = this.elements.canvas.getBoundingClientRect();
     var x = clientX - bounds.left;
     var y = clientY - bounds.top;
+    x *= DPR;
+    y *= DPR;
     this.context.fillStyle = "#0006";
     this.context.beginPath();
-    var r = FONT_SCALE * .6;
+    var r = FONT_SCALE * .5 * DPR;
     var d = r * 2;
     this.context.arc(x, y, r, 0, Math.PI * 2);
     for (var i = 0; i < 12; i++) {
       var dx = Math.random() * d - r;
       var dy = Math.random() * d - r;
-      var dr = Math.random() * 3 + 1;
+      var dr = Math.random() * 3 + 1 * DPR;
       this.context.arc(x + dx, y + dy, dr, 0, Math.PI * 2);
     }
     this.context.fill();
