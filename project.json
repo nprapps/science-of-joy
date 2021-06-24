@@ -17,8 +17,9 @@
   },
   "title": "NPR's Joy Generator",
   "description": "",
-  "url": "",
-  "image": "assets/logo.png",
+  "url": "http://stage-apps.npr.org/tragicomic-relief/",
+  "live-url": "https://apps.npr.org/joy-generator/",
+  "image": "assets/synced/social/promo-pics-cookie.jpg",
   "analytics": {
     "topicIDs": [],
     "primaryTopic": "",
@@ -28,6 +29,6 @@
   "docs": {
     "text": "1RWuTaYzMyRp7CTWHXsoc-4BGTh3bQYqHut1lHuZZ2X8"
   },
-  "embedded": true,
+  "embedded": false,
   "production": false
 }

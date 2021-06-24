@@ -132,6 +132,18 @@ for img in images/*.png; do
       ../synced/$img;
   fi
 done
+mkdir -p ../synced/social
+for img in social/*.png; do
+  echo "Processing $img..."
+  base=`basename -- $img`
+  filename="${base%.*}"
+  if [ ! -f "../synced/social/$filename" ]; then
+    magick convert $img \
+      -resize 1600x1200\> \
+      -quality 70 \
+      ../synced/social/$filename.jpg;
+  fi
+done
 
 # exit back to assets
 cd ..
