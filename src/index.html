@@ -5,7 +5,8 @@
       var { metadata } = archieml.text;
       var project = Object.assign({}, grunt.data.json.project, {
         title: metadata.title,
-        description: metadata.description
+        description: metadata.description,
+        image: `assets/synced/social/${metadata.image}`
       });
     %>
     <%= t.include("partials/_head.html", { project }) %>
