@@ -25,7 +25,7 @@ $(".drop-down").forEach(function(menu) {
     item.addEventListener("click", () => button.click());
   });
 
-  var menuAction = function(expanded) {
+  var menuAction = function(expanded, manual) {
     ul.setAttribute("aria-hidden", !expanded);
     items.forEach(item => item.setAttribute("tabindex", expanded ? 0 : -1));
     if (expanded) {
@@ -34,7 +34,7 @@ $(".drop-down").forEach(function(menu) {
       track("opened-menu");
     } else {
       button.removeAttribute("aria-expanded");
-      button.focus();
+      if (!manual) button.focus();
     }
   }
 
@@ -44,7 +44,7 @@ $(".drop-down").forEach(function(menu) {
     menuAction(expanded);
   });
 
-  menu.classList.add("enabled");
+  menu.classList.add("enabled", true);
   menuAction(false);
 });
 
