@@ -157,6 +157,7 @@ web-story#about {
     color: white;
     text-decoration: none;
     border-bottom: 2px solid white;
+    font-weight: bold;
 
     &:hover, &:focus {
       color: @yellow;
@@ -217,11 +218,32 @@ web-story#about {
     }
   }
 
-	.story-creds {
+	.story-creds, .acknowledgements {
 		max-width: 650px;
+    margin-bottom: 20px;
 
 		@media @mobile {
 			max-width: 90%;
 		}
 	}
+
+  .cred-item {
+    margin-top: 14px;
+  }
+
+  .footer {
+    margin: 20px auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5px;
+    align-items: stretch;
+    justify-content: stretch;
+    max-width: 900px;
+    width: 100%;
+
+    a {
+      font-size: 14px;
+    }
+  }
 }

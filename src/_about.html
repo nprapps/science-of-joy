@@ -31,9 +31,8 @@
       <% } %>
     </div>
 
-    <h1>ADDITIONAL CREDITS</h1>
-
     <div class="story-creds">
+      <h1>ADDITIONAL CREDITS</h1>
       <% Object.keys(all.text.pages).forEach(a => { %>
         <%
           var { metadata } = all.text.pages[a];
@@ -56,6 +55,11 @@
           </div>
         <% }) %>
       <% } %>
+    </div>
+
+    <div class="acknowledgements">
+      <h1><%= metadata.thanksTitle %></h1>
+      <p class="cred-text"><%= metadata.thanks %></p>
     </div>
 
     <%= t.include("partials/_footer.html") %>
