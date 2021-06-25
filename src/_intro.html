@@ -1,7 +1,7 @@
 <% var slides = grunt.data.archieml.text.pages.intro.slides.slice() %>
 <div id="intro" class="intro story-route exclude-random">
   <shader-box class="backdrop" src="./assets/bokeh.glsl"></shader-box>
-  <web-story novideo hidecontrols="previous filmstrip close">
+  <web-story novideo hidecontrols="controls">
     <%
       for (var slide of slides) {
         print(t.include(`slides/_${slide.template}.html`, { slide }));

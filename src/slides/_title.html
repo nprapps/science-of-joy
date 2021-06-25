@@ -12,14 +12,11 @@
   <% if (metadata.image) { %>
   <img class="backdrop" alt=""data-src="./assets/synced/images/<%= metadata.image %>">
   <% } %>
-  <div class="content title">
-    <div class="splotch">
+  <div class="content title" data-focus>
+    <div class="splotch" role="img" alt="">
       <%= t.include("./assets/brush-bg-1.svg") %>
     </div>
-    <h2><mark><%= metadata.title %></mark></h2>
-    <!-- <sketch-svg class="underline squiggle" speed=0.3 delay=1000 data-activate="sketch">
-      <%= t.include("assets/squiggle.svg") %>
-    </sketch-svg> -->
+    <h2><span class="mark"><%= metadata.title %></span></h2>
 
     <h3><%= metadata.subtitle %></h3>
 

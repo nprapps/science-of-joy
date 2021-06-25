@@ -5,7 +5,7 @@
   <% if (slide.image) { %>
   <img class="backdrop" alt="" data-src="./assets/synced/images/<%= slide.image %>">
   <% } %>
-  <div class="content">
+  <div class="content" data-focus tabindex="-1">
     <%= slide.text %>
     <div class="mixer-elements">
       <% slide.audio.forEach(function(v) { %>

@@ -4,10 +4,8 @@
 <section data-slug="<%= slide.slug %>" id="<%= slug %>" class="soundscapes">
 
   <shader-box data-src="./assets/bokeh.glsl"></shader-box>
-
   <audio-visualizer color="white"></audio-visualizer>
-
-  <div class="content">
+  <div class="content" data-focus>
     <%= t.renderMarkdown(slide.text) %>
     <div class="clips">
       <div class="top">

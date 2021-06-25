@@ -19,7 +19,7 @@
   <img class="backdrop" alt="" data-src="./assets/synced/images/<%= slide.image %>">
   <% } %>
   <% if (slide.text) { %>
-  <div class="content">
+  <div class="content" data-focus>
     <%= t.renderMarkdown(slide.text || "") %>
     <% if (slide.muted) { %>
     <media-mute for="<%= slug %>-video-backdrop"></media-mute>

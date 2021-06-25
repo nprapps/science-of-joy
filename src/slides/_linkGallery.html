@@ -2,7 +2,7 @@
   var slug = [id, slide.slug, index, "link-gallery"].filter(d => d).join("-");
 %>
 <section data-slug="<%= slide.slug %>" id="<%= slug %>" class="link-gallery">
-  <div class="wide content">
+  <div class="wide content" data-focus>
     <%= slide.text %>
     <ul>
       <% slide.links.forEach(function(v) { %>
