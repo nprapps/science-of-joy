@@ -1,9 +1,8 @@
 <web-story
   id="menu" class="story-route exclude-random"
-  aria-hidden="true"
   hidecontrols="next previous filmstrip controls">
   <section>
-    <h1>MENU</h1>
+    <h1 data-focus>Browse all stories</h1>
     <div class="grid-container">
     <% Object.keys(archieml.text.pages).forEach(a => { %>
       <%
@@ -11,7 +10,7 @@
         if (!metadata || !metadata.published) return;
       %>
     <a class="grid-item" href="#story=<%= a %>">
-      <h3 class="title"><%= metadata ? metadata.title : a %></h3>
+      <div class="title"><%= metadata ? metadata.title : a %></div>
       <span class="subtitle"><%= metadata.subtitle %></span>
       <% if (metadata.affordances) { %>
       <%= t.include("_affordances.html", {

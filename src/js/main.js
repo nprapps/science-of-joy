@@ -18,25 +18,34 @@ require("./web-story/web-story");
 // enable the drop-down menu
 $(".drop-down").forEach(function(menu) {
   var button = $.one(".drop-toggle", menu);
+  var ul = $.one("ul", menu);
   var items = $("ul a, ul button, ul input", menu);
   items.forEach(function(item) {
     item.setAttribute("tabindex", -1);
     item.addEventListener("click", () => button.click());
   });
 
-  button.addEventListener("click", function(e) {
-    var expanded = menu.classList.toggle("expanded");
-    e.stopPropagation();
+  var menuAction = function(expanded) {
+    ul.setAttribute("aria-hidden", !expanded);
     items.forEach(item => item.setAttribute("tabindex", expanded ? 0 : -1));
     if (expanded) {
+      items[0].focus();
       button.setAttribute("aria-expanded", "true");
       track("opened-menu");
     } else {
       button.removeAttribute("aria-expanded");
+      button.focus();
     }
+  }
+
+  button.addEventListener("click", function(e) {
+    e.stopPropagation();
+    var expanded = menu.classList.toggle("expanded");
+    menuAction(expanded);
   });
 
   menu.classList.add("enabled");
+  menuAction(false);
 });
 
 // autoplay management

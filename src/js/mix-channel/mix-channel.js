@@ -19,6 +19,9 @@ class MixChannel extends CustomElement {
     slider.addEventListener("input", this.onSlide);
     slider.addEventListener("touchstart", this.onSlide);
     slider.addEventListener("mousedown", this.onSlide);
+    slider.addEventListener("keydown", e => e.stopImmediatePropagation());
+    slider.addEventListener("keyup", e => e.stopImmediatePropagation());
+    slider.addEventListener("keypress", e => e.stopImmediatePropagation());
     document.body.addEventListener("webstorypage", (d) => {
       audio.pause();
       play.setAttribute("aria-pressed", "false");
