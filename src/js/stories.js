@@ -36,6 +36,7 @@ var setStory = async function(story, page = 0) {
     activated.classList.add("entering");
   }
   // activate the new story
+  await new Promise(ok => requestAnimationFrame(ok));
   activated.classList.add("active");
   var storyElement = getStoryElement(activated);
   if (storyElement) storyElement.setPage(page);

@@ -13,10 +13,13 @@ web-story#about {
   //background: linear-gradient(270deg, #F6EEEA, #FBDECC,@color-hover,#DBEEF2);
 
   //MORE COLOR VERSION (May 20, 2021)
-  background: linear-gradient(270deg, @salmon, @lavender, @sky);
 
-  background-size: 400% 400%;
-  animation: colorShift 30s linear infinite alternate;
+  section {
+    background: linear-gradient(270deg, @salmon, @lavender, @sky);
+
+    background-size: 400% 400%;
+    animation: colorShift 30s linear infinite alternate;
+  }
 
   @keyframes colorShift {
     0% {
