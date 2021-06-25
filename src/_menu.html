@@ -10,7 +10,7 @@
         if (!metadata || !metadata.published) return;
       %>
     <a class="grid-item" href="#story=<%= a %>">
-      <div class="title"><%= metadata ? metadata.title : a %></div>
+      <h3 class="title"><%= metadata ? metadata.title : a %></h3>
       <span class="subtitle"><%= metadata.subtitle %></span>
       <% if (metadata.affordances) { %>
       <%= t.include("_affordances.html", {
