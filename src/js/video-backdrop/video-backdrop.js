@@ -39,7 +39,8 @@ class VideoBackdrop extends CustomElement {
     "cueposter",
     "loop",
     "autoplay",
-    "muted"
+    "muted",
+    "anchor"
   ];
   static mirroredProps = [
     "src",
@@ -55,6 +56,11 @@ class VideoBackdrop extends CustomElement {
     var [front, back] = this.buffers;
     var present = value != null;
     switch (attr) {
+      case "anchor":
+        front.style.setProperty("object-position", value);
+        back.style.setProperty("object-position", value);
+        break;
+
       case "cuesrc":
         if (isSafari) return;
         back.src = value;
