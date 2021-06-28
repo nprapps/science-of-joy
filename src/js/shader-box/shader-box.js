@@ -17,7 +17,8 @@ class ShaderBox extends CustomElement {
     "onMutation",
     "onMouseMove",
     "tick",
-    "recover"
+    "recover",
+    "lost"
   ]
   
   constructor() {
@@ -29,8 +30,8 @@ class ShaderBox extends CustomElement {
     this.raf = null;
     this.program = null;
 
-    this.initGL();
-    this.elements.canvas.addEventListener("webglcontextlost", this.recover);
+    this.elements.canvas.addEventListener("webglcontextrestored", this.recover);
+    this.elements.canvas.addEventListener("webglcontextlost", this.lost);
 
     this.mutationObserver = new MutationObserver(this.onMutation);
     this.mutationObserver.observe(this, {
@@ -45,6 +46,7 @@ class ShaderBox extends CustomElement {
 
   initGL() {
     var gl = this.gl = this.elements.canvas.getContext("webgl");
+    gl.uniforms = {};
     var vertex = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vertex, `
     attribute vec2 coord;
@@ -85,8 +87,13 @@ class ShaderBox extends CustomElement {
     }
   }
 
-  recover() {
-    var uniforms = this.gl.uniforms;
+  lost(e) {
+    console.log("WebGL context lost", this);
+    e.preventDefault();
+  }
+
+  recover(e) {
+    var uniforms = this.gl ? this.gl.uniforms : {};
     this.initGL();
     Object.assign(this.gl.uniforms, uniforms);
     if (this.shaderCache) {
@@ -99,11 +106,14 @@ class ShaderBox extends CustomElement {
       this.requesting.abort();
       this.requesting = null;
     }
+    // cache early -- we might not be visible yet
+    this.shaderCache = shader;
+    // if we're not visible, this.gl won't exist
+    if (!this.gl) return;
     var gl = this.gl;
     var fragment = gl.createShader(gl.FRAGMENT_SHADER);
     gl.shaderSource(fragment, shader);
     gl.compileShader(fragment);
-    this.shaderCache = shader;
 
     var error = gl.getShaderInfoLog(fragment);
     if (error) {
@@ -159,9 +169,13 @@ class ShaderBox extends CustomElement {
     }
   }
 
-  onIntersection([e]) {
+  onIntersection(events) {
+    var e = events[events.length - 1];
     this.visible = e.isIntersecting;
-    if (this.visible) this.tick();
+    if (this.visible) {
+      this.recover();
+      this.tick();
+    }
     // seems to prevent cyan flash on some GPUs
     this.elements.canvas.style.opacity = this.visible ? 1 : 0;
   }
