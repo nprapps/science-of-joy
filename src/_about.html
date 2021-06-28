@@ -62,6 +62,8 @@
       <p class="cred-text"><%= metadata.thanks %></p>
     </div>
 
-    <%= t.include("partials/_footer.html") %>
+    <%= t.include("partials/_footer.html", { content: `
+      Originally published: ${grunt.data.archieml.text.metadata.originallyPublished}
+    `}) %>
   </section>
 </web-story>
