@@ -18,7 +18,8 @@ class ShaderBox extends CustomElement {
     "onMouseMove",
     "tick",
     "recover",
-    "lost"
+    "lost",
+    "render"
   ]
   
   constructor() {
@@ -29,6 +30,8 @@ class ShaderBox extends CustomElement {
     this.visible = false;
     this.raf = null;
     this.program = null;
+    this.lastTick = null;
+    this.canvasScaling = 1;
 
     this.elements.canvas.addEventListener("webglcontextrestored", this.recover);
     this.elements.canvas.addEventListener("webglcontextlost", this.lost);
@@ -188,6 +191,16 @@ class ShaderBox extends CustomElement {
   }
 
   render(t) {
+    if (!t) {
+      this.lastTick = null;
+    } else {
+      if (this.lastTick && t - this.lastTick > 100) {
+        this.canvasScaling *= 2;
+      } else if (this.lastTick && Math.random() < .2) {
+        this.canvasScaling *= .7;
+      }
+      this.lastTick = t;
+    }
     var { buffer, gl } = this;
     // require setShader() to be called
     if (!gl.program) return;
@@ -197,8 +210,8 @@ class ShaderBox extends CustomElement {
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(POLYS), gl.STATIC_DRAW);
     gl.vertexAttribPointer(gl.uniforms.coords, 2, gl.FLOAT, false, 0, 0);
     gl.uniform1f(gl.uniforms.u_time, t + 12581372.5324);
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
+    canvas.width = canvas.clientWidth / this.canvasScaling;
+    canvas.height = canvas.clientHeight / this.canvasScaling;
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.uniform2f(gl.uniforms.u_resolution, canvas.width, canvas.height);
     gl.clearColor(0, 1, 1, 1);
