@@ -66,7 +66,8 @@ class ZenDoodle extends CustomElement {
     "onPenMove",
     "popUndo",
     "init",
-    "download"
+    "download",
+    "onColor"
   ]
 
   constructor() {
@@ -91,6 +92,7 @@ class ZenDoodle extends CustomElement {
     this.elements.undoButton.addEventListener("click", this.popUndo);
     this.elements.resetButton.addEventListener("click", this.init);
     this.elements.saveButton.addEventListener("click", this.download);
+    this.elements.color.addEventListener("input", this.onColor);
 
     window.addEventListener("resize", () => {
       if (canvas.width != canvas.clientWidth * DPR) {
@@ -192,6 +194,10 @@ class ZenDoodle extends CustomElement {
     download.download = `doodle-${Date.now()}`
     download.click();
     trackDoodle("download");
+  }
+
+  onColor() {
+    this.elements.canvas.scrollIntoView();
   }
 
   popUndo() {
