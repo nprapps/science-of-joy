@@ -93,6 +93,7 @@ document.body.addEventListener("webstorypage", function(e) {
   events.fire("media-play", null);
   var tutorials = $("[data-tutorial]");
   tutorials.forEach(t => t.removeAttribute("data-tutorial"));
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
 });
 
 // handle goto events
