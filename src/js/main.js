@@ -133,3 +133,10 @@ if (isSafari) {
   window.addEventListener("resize", setVH);
   setVH();
 }
+
+// handle NPR One
+var here = new URL(window.location.href);
+var renderPlatform = here.searchParams.get("renderPlatform");
+if (renderPlatform && renderPlatform.match(/nprone/)) {
+  document.body.classList.add("nprone");
+}

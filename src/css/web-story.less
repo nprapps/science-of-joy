@@ -10,6 +10,10 @@ web-story {
   --nav-fg: white;
   --nav-focus: black;
 
+  .nprone & {
+    --control-padding: 90px;
+  }
+
   [tabindex="-1"] {
     outline: none;
   }
@@ -42,6 +46,10 @@ web-story {
     &.bottom {
       justify-content: flex-end;
       padding-bottom: 140px;
+    }
+
+    .nprone & {
+      padding-bottom: 120px;
     }
   }
 
