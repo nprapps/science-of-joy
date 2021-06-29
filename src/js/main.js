@@ -15,6 +15,9 @@ require("./simple-video/simple-video");
 require("./sketch-svg/sketch-svg");
 require("./web-story/web-story");
 
+var bokeh = require("../assets/bokeh.glsl");
+$("shader-box").forEach(el => el.setShader(bokeh));
+
 // enable the drop-down menu
 $(".drop-down").forEach(function(menu) {
   var button = $.one(".drop-toggle", menu);

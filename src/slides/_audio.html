@@ -26,7 +26,7 @@
     </div>
 
   <%} else if (!slide.video) { %>
-    <shader-box class="backdrop" data-src="./assets/bokeh.glsl"></shader-box>
+    <shader-box class="backdrop"></shader-box>
     <audio-visualizer class="backdrop" color="white" for="<%= slug %>-audio"></audio-visualizer>
   <% } %>
 
@@ -40,7 +40,7 @@
         </media-controls>
         <audio
           id="<%= slug %>-audio"
-          src="./assets/synced/audio/<%= slide.audio %>"
+          data-src="./assets/synced/audio/<%= slide.audio %>"
         >
           <% if (slide.captions) { %>
           <track default kind="captions" src="./assets/synced/audio/<%= slide.captions %>"></track>
