@@ -1,7 +1,7 @@
 var CustomElement = require("../customElement");
-var events = require("../eventBus");
+var sharedState = require("../sharedState");
 
-var { isSafari } = require("../features");
+var { isSafari } = sharedState.state;
 
 var observer = new IntersectionObserver(function(list) {
   for (var observation of list) {
@@ -29,7 +29,7 @@ class VideoBackdrop extends CustomElement {
     }
 
     this.globalAutoplay = true;
-    events.on("autoplay-state", this.onGlobalAutoplay);
+    sharedState.on("state:autoplay", this.onGlobalAutoplay);
   }
 
   static observedAttributes = [

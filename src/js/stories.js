@@ -1,7 +1,7 @@
 // routing and story transition code
 var $ = require("./lib/qsa");
 var hashUtils = require("./hashUtils");
-var events = require("./eventBus");
+var sharedState = require("./sharedState");
 var track = require("./lib/tracking");
 var lastPageID = null;
 
@@ -90,7 +90,7 @@ document.body.addEventListener("webstorypage", function(e) {
   var updated = { story, page };
   hashUtils.setParams(updated);
   // tell currently playing media files to pause
-  events.fire("media-play", null);
+  sharedState.fire("media-play", null);
   var tutorials = $("[data-tutorial]");
   tutorials.forEach(t => t.removeAttribute("data-tutorial"));
   document.body.scrollTop = document.documentElement.scrollTop = 0;

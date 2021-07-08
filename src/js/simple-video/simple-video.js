@@ -1,7 +1,7 @@
 var CustomElement = require("../customElement");
 require("../media-controls/media-controls");
 
-var { isSafari } = require("../features");
+var { isSafari } = require("../sharedState").state;
 
 var observer = new IntersectionObserver(function(list) {
   for (var observation of list) {

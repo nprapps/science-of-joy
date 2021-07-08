@@ -1,5 +1,5 @@
 var CustomElement = require("../customElement");
-var events = require("../eventBus");
+var sharedState = require("../sharedState");
 var { watchSelector, unwatchSelector } = require("../watchSelector");
 
 class MediaControls extends CustomElement {
@@ -17,7 +17,7 @@ class MediaControls extends CustomElement {
     this.media = null;
     this.elements.playButton.addEventListener("click", this.onClickedPlay);
     this.elements.slot.addEventListener("slotchange", this.onSlotChange);
-    events.on("media-play", this.onPlayEvent);
+    sharedState.on("media-play", this.onPlayEvent);
   }
 
   static observedAttributes = ["for", "label", "src"]
@@ -93,7 +93,7 @@ class MediaControls extends CustomElement {
       // SVG code will fail if the button isn't immediately visible, it's fine.
     }
     if (e.type == "ended") {
-      events.fire("media-ended", this.media);
+      sharedState.fire("media-ended", this.media);
     }
   }
 
@@ -102,7 +102,7 @@ class MediaControls extends CustomElement {
     if (this.media.paused) {
       // this.media.currentTime = 0;
       this.media.play();
-      events.fire("media-play", this.media);
+      sharedState.fire("media-play", this.media);
     } else {
       // this.media.currentTime = 0;
       this.media.pause();

@@ -1,0 +1,47 @@
+<style>
+:host {
+  display: block;
+}
+
+input {
+  opacity: 0;
+  position: absolute;
+  left: -1000px;
+  clip: inset(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+}
+
+input:focus + label {
+  outline: 2px dotted black;
+}
+
+label {
+  border-radius: 20px;
+  background-color: transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: var(--gotham);
+  padding: var(--padding, 8px 0);
+}
+
+label::before {
+  content: url(./assets/icons/radio_button_unchecked_black_24dp.svg);
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 1px;
+}
+
+input:checked + label {
+  background-color: transparent;
+  color: black;
+}
+
+input:checked + label::before {
+  content: url(./assets/icons/check_circle_black_24dp.svg);
+}
+</style>
+<input as="input" type="checkbox">
+<label as="label">
+  <slot></slot>
+</label>

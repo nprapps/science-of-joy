@@ -1,5 +1,5 @@
 var CustomElement = require("../customElement");
-var events = require("../eventBus");
+var sharedState = require("../sharedState");
 
 class MediaCollection extends CustomElement {
 
@@ -13,7 +13,7 @@ class MediaCollection extends CustomElement {
     super();
     this.connected = [];
     this.addEventListener("slotchange", this.onSlotChange);
-    events.on("media-play", () => this.onMediaPlay());
+    sharedState.on("media-play", () => this.onMediaPlay());
   }
 
   static template = `

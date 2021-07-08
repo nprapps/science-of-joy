@@ -1,22 +1,9 @@
 var CustomElement = require("../customElement");
 
 var $ = require("../lib/qsa");
-var events = require("../eventBus");
+var sharedState = require("../sharedState");
 
 var tracks = $(`track[src*="vtt"]`);
-
-const CAPTION_SETTINGS = "caption-settings";
-
-var captionChecks = $(".captioning.checks input");
-
-var updateCaptions = function(enabled) {
-  captionChecks.forEach(c => c.checked = enabled);
-  events.fire(CAPTION_SETTINGS, { disabled: !enabled });
-};
-
-captionChecks.forEach(function(input) {
-  input.addEventListener("change", e => updateCaptions(e.target.checked));
-});
 
 class ClosedCaptions extends CustomElement {
 
@@ -31,7 +18,7 @@ class ClosedCaptions extends CustomElement {
     super();
 
     tracks.forEach(this.connectTrack);
-    events.on(CAPTION_SETTINGS, e => this.toggleAttribute("disabled", e.disabled));
+    sharedState.on(`state:captions`, v => this.toggleAttribute("disabled", !v));
   }
 
   connectedCallback() {
@@ -82,4 +69,4 @@ class ClosedCaptions extends CustomElement {
 
 ClosedCaptions.define("closed-captions");
 
-module.exports = { ClosedCaptions, CAPTION_SETTINGS };
+module.exports = { ClosedCaptions };

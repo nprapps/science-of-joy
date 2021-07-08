@@ -1,5 +1,5 @@
 var CustomElement = require("../customElement");
-var events = require("../eventBus");
+var sharedState = require("../sharedState");
 var { watchSelector, unwatchSelector } = require("../watchSelector");
 var track = require("../lib/tracking");
 var trackMute = label => track("media-mute", label);
@@ -16,7 +16,7 @@ class MediaMute extends CustomElement {
   constructor() {
     super();
     this.media = null;
-    events.on("media-play", this.onPlayEvent);
+    sharedState.on("media-play", this.onPlayEvent);
     this.elements.muteButton.addEventListener("click", this.onClickedMute);
   }
 

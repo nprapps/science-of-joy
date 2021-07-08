@@ -1,10 +1,7 @@
 <%
   var { interstitials, chooserButtonText } = grunt.data.archieml.text.metadata;
 %>
-<section data-slug="<%= id %>-chooser" class="chooser-slide" data-randomized>
-  <% if (false) for (var f of interstitials) { %>
-  <source data-possible="./assets/synced/silent/<%= f %>">
-  <% } %>
+<section data-slug="<%= id %>-chooser" class="chooser-slide">
   <shader-box class="backdrop"></shader-box>
   <div class="contents">
     <div class="choices">
