@@ -30,8 +30,8 @@ if ("share" in navigator) {
   shareButton.addEventListener("click", function() {
     var params = new URLSearchParams(window.location.hash.replace("#", ""));
     var story = params.get("story");
-    var url = new URL(window.location.pathname, window.location.href);
-    if (story) url.hash = `story=${story}`;
+    var path = window.location.pathname.replace(/\/$/, "");
+    var url = new URL(`./${story}.html`, window.location.href);
     track("shared", story);
     console.log(`Sharing: ${url.toString()}`);
     var shared = navigator.share({
