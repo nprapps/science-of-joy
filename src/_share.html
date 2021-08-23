@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="NOINDEX">
+
+  <meta property="og:title" content="<%= title %>" />
+  <meta name="twitter:title" content="<%= title %>" />
+  
+  <meta name="description" content="<%= description %>" />
+  <meta property="og:description" content="<%= description %>" />
+  <meta name="twitter:description" content="<%= description %>" />
+
+  <meta property="og:image" content="assets/synced/<%= image %>" />
+  <meta name="twitter:image" content="assets/synced/<%= image %>" />
+
+  <meta property="og:url" content="<%= there %><%= slug %>.html" />
+  <meta name="twitter:url" content="<%= there %>#story=<%= slug %>" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@NPR">
+  <meta name="twitter:creator" content="@NPR">
+  <meta property="fb:app_id" content="138837436154588">
+  <meta property="article:opinion" content="false">
+  <meta property="article:content_tier" content="free">
+  <meta property="fb:pages" content="10643211755">
+  <meta property="og:site_name" content="NPR.org" />
+</head>
+<body>
+  <p>If you are not automatically redirected, <a href="<%= there %>#story=<%= slug %>">visit the Joy Generator here</a></p>
+
+  <script>
+    // Make sure we capture any UTM query parameters passed
+    var dest = new URL("<%= there %>#story=<%= slug %>");
+    dest.search = window.location.search;
+    var redirectURL = dest.toString();
+
+    // Using `location.replace()` means that users won't be able to
+    // navigate "back" to this stub page
+    window.location.replace(redirectURL);
+  </script>
+</body>
+</html>

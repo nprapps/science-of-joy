@@ -62,6 +62,24 @@ module.exports = function(grunt) {
       var output = process(input, data, src);
       grunt.file.write(file.dest, output);
     });
+
+    // build out the share pages
+    if (!grunt.data.archieml || !grunt.data.archieml.text) {
+      console.log("Unable to build share pages--ArchieML not loaded");
+      return;
+    }
+    var share = grunt.file.read("src/_share.html");
+    var pages = grunt.data.archieml.text.pages;
+    for (var slug in pages) {
+      var { metadata } = pages[slug];
+      if (!metadata || !metadata.published) continue;
+      var title = metadata.title;
+      var description = metadata.subtitle;
+      var there = grunt.data.json.project.url;
+      var image = metadata.shareImage || "social/promo-pics-cookie.jpg";
+      var rendered = process(share, { title, description, there, image, slug });
+      grunt.file.write(`build/${slug}.html`, rendered);
+    }
   });
 
 }
