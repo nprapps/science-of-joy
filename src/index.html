@@ -49,6 +49,7 @@
     <%
       for (var k in archieml.text.pages) {
         var { metadata } = archieml.text.pages[k];
+        if (metadata && grunt.option("preview")) metadata.published = true;
         if (!metadata || !metadata.published) continue;
         if (metadata.template) {
           print(t.include(metadata.template));
