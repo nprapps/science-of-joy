@@ -7,22 +7,29 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="robots" content="NOINDEX">
 
-  <meta property="og:title" content="<%= title %>" />
-  <meta name="twitter:title" content="<%= title %>" />
-  
-  <meta name="description" content="<%= description %>" />
-  <meta property="og:description" content="<%= description %>" />
-  <meta name="twitter:description" content="<%= description %>" />
-
-  <meta property="og:image" content="assets/synced/<%= image %>" />
-  <meta name="twitter:image" content="assets/synced/<%= image %>" />
-
-  <meta property="og:url" content="<%= there %><%= slug %>.html" />
-  <meta name="twitter:url" content="<%= there %>#story=<%= slug %>" />
-
+  <!-- BEGIN TWITTER SUMMARY CARD -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@NPR">
+  <meta name="twitter:title" content="<%= title %>">
+  <meta name="twitter:site" content="@nprviz">
   <meta name="twitter:creator" content="@NPR">
+  <meta name="twitter:url" content="<%= there %>#story=<%= slug %>" />
+  <meta name="twitter:image" content="<%= there %>assets/synced/<%= image %>" />
+  <meta name="twitter:description" content="<%= description %>">
+
+  <!-- Social sharing meta -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="<%= title %>">
+  <meta property="og:site_name" content="NPR Visuals">
+  <meta property="og:url" content="<%= there %><%= slug %>.html">
+  <meta property="og:image" content="<%= there %>assets/synced/<%= image %>" />
+  <meta property="og:description" content="<%= description %>">
+
+  <!-- Facebook-specific meta -->
+  <meta property="fb:app_id" content="138837436154588">
+  <meta property="article:opinion" content="false">
+  <meta property="article:content_tier" content="free">
+  <meta property="fb:pages" content="10643211755">
+
   <meta property="fb:app_id" content="138837436154588">
   <meta property="article:opinion" content="false">
   <meta property="article:content_tier" content="free">
