@@ -17,7 +17,7 @@ With those installed, you can then set the project up using your terminal:
 #. Pull the code - ``git clone git@github.com:nprapps/joy-generator``
 #. Enter the project folder - ``cd joy-generator``
 #. Install dependencies from NPM - ``npm install``
-#. Initial download of documents - ``grunt docs``
+#. Initial download of documents and assets - ``grunt sync docs``
 #. Start the server - ``grunt``
 
 Running tasks
