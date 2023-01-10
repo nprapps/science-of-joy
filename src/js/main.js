@@ -15,6 +15,7 @@ require("./simple-video/simple-video");
 require("./sketch-svg/sketch-svg");
 require("./state-check/state-check");
 require("./web-story/web-story");
+require("./analytics");
 
 // force all shader boxes from JS, instead of using fetch
 var bokeh = require("../assets/bokeh.glsl");
